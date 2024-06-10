@@ -1,4 +1,4 @@
-import "@reglobals.css";
+import "@repo/ui/styles/globals.scss";
 
 export default function RootLayout({
   children,

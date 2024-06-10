@@ -1,3 +1,6 @@
+import "@repo/ui/src/globals.css";
+import { Navbar } from "./components/Navbar";
+
 export default function RootLayout({
   children,
 }: {
@@ -5,7 +8,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }

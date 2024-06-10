@@ -1,3 +1,5 @@
+import "@reglobals.css";
+
 export default function RootLayout({
   children,
 }: {

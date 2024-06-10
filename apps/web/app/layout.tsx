@@ -1,3 +1,6 @@
+
+import "@repo/ui/src/globals.css";
+
 export default function RootLayout({
   children,
 }: {

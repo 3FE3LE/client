@@ -1,5 +1,5 @@
 
-import "@repo/ui/src/globals.css";
+import "@repo/ui/styles/globals.scss";
 
 export default function RootLayout({
   children,

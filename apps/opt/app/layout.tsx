@@ -1,3 +1,4 @@
+import { Form, Layout, Navbar } from "@repo/ui";
 import "@repo/ui/styles/globals.scss";
 
 export default function RootLayout({
@@ -7,7 +8,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Layout>
+          <Navbar />
+          {children}
+          <Form />
+        </Layout>
+      </body>
     </html>
   );
 }

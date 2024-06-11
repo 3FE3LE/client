@@ -2,7 +2,7 @@
 
 import { Button } from "@repo/ui";
 
-import styles from "../styles/index.module.css";
+import styles from "../styles/index.module.scss";
 
 export default function Web() {
   return (

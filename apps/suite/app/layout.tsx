@@ -1,4 +1,4 @@
-import "@repo/ui/src/globals.css";
+import "@repo/ui/styles/globals.scss";
 import { Navbar } from "./components/Navbar";
 
 export default function RootLayout({

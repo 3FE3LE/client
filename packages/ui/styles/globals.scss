@@ -2,27 +2,63 @@
 @import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-//Components
+// Core
+@import './core';
 
+//Components
 @import './components';
 
+* {
+  margin: 0;
+  padding: 0;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 :root {
-  --background: #eeeeee;
-  --foreground: #00171f;
+  background: $ss-white;
+  color: $ss-black;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #00171f;
-    --foreground: #eeeeee;
+    background: $ss-black;
+    color: $ss-white;
   }
 }
 
 body {
-  margin: 0;
-  padding: 0;
   font-family: 'Zilla Slab', serif;
-  color: var(--foreground);
-  background: var(--background);
   font-synthesis: none;
+  min-height: 100dvh;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+img,
+video,
+svg {
+  height: auto;
+  max-width: 100%;
 }

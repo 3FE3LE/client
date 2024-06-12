@@ -1,0 +1,11 @@
+:root {
+  background: $ss-white;
+  color: $ss-black;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    background: $ss-black;
+    color: $ss-white;
+  }
+}

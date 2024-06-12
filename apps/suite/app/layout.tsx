@@ -1,5 +1,6 @@
-import "@repo/ui/styles/globals.scss";
-import { Navbar } from "./components/Navbar";
+import { Navbar } from './components/Navbar';
+
+import '@repo/ui/styles/main.scss';
 
 export default function RootLayout({
   children,

@@ -1,5 +1,5 @@
-import { Form, Layout, Navbar } from "@repo/ui";
-import "@repo/ui/styles/globals.scss";
+import { Form, Layout, Navbar } from '@repo/ui';
+import '@repo/ui/styles/main.scss';
 
 export default function RootLayout({
   children,

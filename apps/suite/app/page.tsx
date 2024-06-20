@@ -1,16 +1,18 @@
-"use client";
-
-import { Button } from "@repo/ui";
-
-import styles from "../styles/index.module.css";
-import { Form } from "./components/Form";
+'use client';
+import Image from 'next/image';
+import ss_logo from '@repo/ui/assets/logo-17suit@4x.svg';
+import { Button, FormWrapper, Input } from '@repo/ui';
+import { RegisterForm } from './features/auth';
 
 export default function Web() {
   return (
-    <div className={styles.container}>
-      <h1>Esta es la suite</h1>
-      <Button onClick={() => console.log("Pressed!")} text="Boop" />
-      <Form/>
+    <div>
+      <Image
+        alt="17 suit logo"
+        style={{ fill: '#fff', color: '#000' }}
+        src={ss_logo}
+      />
+      <RegisterForm />
     </div>
   );
 }

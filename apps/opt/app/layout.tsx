@@ -1,4 +1,4 @@
-import { Form, Layout, Navbar } from '@repo/ui';
+import { Layout, Navbar } from '@repo/ui';
 import '@repo/ui/styles/main.scss';
 
 export default function RootLayout({
@@ -12,7 +12,6 @@ export default function RootLayout({
         <Layout>
           <Navbar />
           {children}
-          <Form />
         </Layout>
       </body>
     </html>

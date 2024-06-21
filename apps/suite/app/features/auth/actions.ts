@@ -2,7 +2,7 @@
 
 import { useRegister } from './useCases';
 
-export const userRegister = async (formData: FormData) => {
+export const UserRegister = async (formData: FormData) => {
   const { register } = useRegister();
 
   const name = formData.get('name')?.toString();

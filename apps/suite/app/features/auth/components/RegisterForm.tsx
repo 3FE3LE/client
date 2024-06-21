@@ -1,10 +1,10 @@
 import { FormWrapper, Input } from '@repo/ui';
-import { userRegister } from '../actions';
+import { UserRegister } from '../actions';
 
 export default function RegisterForm() {
   return (
     <FormWrapper title="Register">
-      <form action={userRegister}>
+      <form action={UserRegister}>
         <Input name="name" type="text" />
         <Input name="email" type="email" />
         <Input name="password" type="password" />

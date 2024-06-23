@@ -1,18 +1,24 @@
 'use client';
-import Image from 'next/image';
-import ss_logo from '@repo/ui/assets/logo-17suit@4x.svg';
-import { Button, FormWrapper, Input } from '@repo/ui';
-import { RegisterForm } from './features/auth';
+
+import { Navbar } from './components/Navbar';
 
 export default function Web() {
   return (
     <div>
-      <Image
-        alt="17 suit logo"
-        style={{ fill: '#fff', color: '#000' }}
-        src={ss_logo}
-      />
-      <RegisterForm />
+      <Navbar />
+      <h1 className="heading--1">Hello World</h1>
+      <h1 className="heading--2">Hello World</h1>
+      <h1 className="heading--3">Hello World</h1>
+      <h1 className="subtitle--1">Hello World</h1>
+      <h1 className="subtitle--2">Hello World</h1>
+      <h1 className="text--base">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci magnam
+        perferendis earum magni esse dolorum eligendi aperiam saepe nesciunt
+        delectus? Sed obcaecati non quo dolor error iure totam, modi ipsum!
+      </h1>
+      <h1 className="text--interface">Hello World</h1>
+      <h1 className="text--misc">Hello World</h1>
+      <h1 className="text--helps">Hello World</h1>
     </div>
   );
 }

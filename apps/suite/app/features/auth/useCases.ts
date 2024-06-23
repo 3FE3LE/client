@@ -1,4 +1,3 @@
-// suite/features/auth/useCases.ts
 import { registerUser, loginUser } from './repository';
 
 export const useRegister = () => {
@@ -11,15 +10,20 @@ export const useRegister = () => {
     email: string | undefined;
     password: string | undefined;
   }) => {
-    console.log(name, password, email);
     return await registerUser(name, email, password);
   };
   return { register };
 };
 
 export const useLogin = () => {
-  const login = async (name: string, password: string) => {
-    return await loginUser(name, password);
+  const login = async ({
+    email,
+    password,
+  }: {
+    email: string | undefined;
+    password: string | undefined;
+  }) => {
+    return await loginUser(email, password);
   };
   return { login };
 };

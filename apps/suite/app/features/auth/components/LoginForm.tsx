@@ -1,28 +1,60 @@
-import { useLogin } from '../useCases';
+'use client';
 import { FormWrapper, Input } from '@repo/ui';
+import { UserLogin } from '../actions';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm, FormProvider } from 'react-hook-form';
+import * as yup from 'yup';
+import { SubmitButton } from './SubmitButton';
+
+const schema = yup.object().shape({
+  email: yup.string().email('Invalid email').required('Email is required'),
+  password: yup
+    .string()
+    .min(6, 'Password must be at least 6 characters')
+    .required('Password is required'),
+});
 
 export default function LoginForm() {
-  const { login } = useLogin();
+  const {
+    handleSubmit,
+    register,
+    watch,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const handleSubmit = async (formData: FormData) => {
-    const email = formData.get('email');
-    const password = formData.get('password');
-    ('use server');
-    try {
-      const data = await login(`${email}`, `${password}`);
-      console.log('Login successful:', data);
-    } catch (error: any) {
-      console.error('Login failed:', error.message);
+  //react hook form validation
+  const formaValidation = () => {
+    if (watch('email') && watch('password')) {
+      return true;
+    } else {
+      return false;
     }
   };
 
   return (
-    <FormWrapper title="Login">
-      <form action={handleSubmit}>
-        <Input name="name" type="text" />
-        <Input name="name" type="password" />
-        <button className="form__button">Submit</button>
-      </form>
-    </FormWrapper>
+    <FormProvider {...methods}>
+      <FormWrapper title="Login">
+        <form onSubmit={handleSubmit(formaValidation)} action={UserLogin}>
+          <Input
+            register={register}
+            errors={errors['email']?.message}
+            label="Email"
+            name="email"
+            type="email"
+            placeholder={'example@17suit.com'}
+          />
+          <Input
+            register={register}
+            errors={errors['password']?.message}
+            label="Password"
+            name="password"
+            placeholder={'175785%%'}
+          />
+          <SubmitButton isDisable={isSubmitting} />
+        </form>
+      </FormWrapper>
+    </FormProvider>
   );
 }

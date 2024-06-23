@@ -1,6 +1,7 @@
 'use server';
 
-import { useRegister } from './useCases';
+import { redirect } from 'next/navigation';
+import { useLogin, useRegister } from './useCases';
 
 export const UserRegister = async (formData: FormData) => {
   const { register } = useRegister();
@@ -18,4 +19,23 @@ export const UserRegister = async (formData: FormData) => {
   await register(newUser);
 
   return newUser;
+};
+
+export const UserLogin = async (formData: FormData) => {
+  const { login } = useLogin();
+
+  const email = formData.get('email')?.toString();
+  const password = formData.get('password')?.toString();
+
+  const user = {
+    email,
+    password,
+  };
+
+  console.log(user);
+
+  await login(user);
+
+  redirect('/dashboard');
+  return user;
 };

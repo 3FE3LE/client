@@ -1,0 +1,40 @@
+.heading {
+  &--1 {
+    @include heading(1);
+    max-width: rem(600);
+  }
+
+  &--2 {
+    @include heading(2);
+  }
+
+  &--3 {
+    @include heading(3);
+  }
+}
+.subtitle {
+  &--1 {
+    @include subtitle(1);
+  }
+
+  &--2 {
+    @include subtitle(2);
+  }
+}
+.text {
+  &--base {
+    @include text(base);
+  }
+
+  &--interface {
+    @include text(interface);
+  }
+
+  &--misc {
+    @include text(misc);
+  }
+
+  &--helps {
+    @include text(helps);
+  }
+}

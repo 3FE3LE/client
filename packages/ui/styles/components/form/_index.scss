@@ -1,8 +1,8 @@
 .form {
   &__wrapper {
-    background-color: white;
-    box-shadow: 0px 12px 16px -4px $ss-gray-l;
-    border-radius: 12px;
+    @include border-color;
+    @include shadow-color;
+    border-radius: rem(12);
     display: flex;
     width: min-content;
     flex-direction: column;
@@ -14,26 +14,40 @@
   &__group {
     margin-bottom: 1rem;
     display: flex;
+    position: relative;
     flex-direction: column;
     align-items: flex-start;
   }
 
   &__label {
+    @include text(interface);
     display: block;
     margin-bottom: 0.5rem;
     padding-left: 0.5rem;
   }
 
   &__input {
+    @include text-color;
+    @include foreground-color;
+    &:hover {
+      @include hover-focus-color;
+    }
+    &:focus {
+      @include hover-focus-color;
+    }
     padding: 0.5rem;
-    border: 1px solid $ss-gray;
     width: 300px;
     border-radius: 4px;
     outline-style: none;
-    background: transparent !important;
+  }
+  &__error {
+    @include text(misc);
+    color: $ss-red;
+    padding-left: 0.5rem;
   }
 
   &__button {
+    @include text(interface);
     background-color: $ss-green;
     color: $ss-white;
     padding: 0.75rem;
@@ -44,6 +58,15 @@
 
     &:hover {
       background-color: $ss-green-d;
+    }
+    &:focus {
+      background-color: $ss-green-d;
+    }
+    &:active {
+      background-color: $ss-green-d;
+    }
+    &:disabled {
+      background-color: $ss-gray;
     }
   }
 }

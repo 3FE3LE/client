@@ -1,0 +1,32 @@
+.error {
+  &__container {
+    @include flex-center;
+    flex-direction: column;
+    height: 100vh;
+    gap: rem(32);
+  }
+  &__title {
+    @include heading(2);
+  }
+  &__message {
+    @include subtitle(2);
+    color: $ss-red;
+  }
+  &__button {
+    @include text(interface);
+    background-color: $ss-green;
+    color: $ss-white;
+    padding: 0.75rem;
+    width: 300px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $ss-green-d;
+    }
+    &:focus {
+      background-color: $ss-green-d;
+    }
+  }
+}

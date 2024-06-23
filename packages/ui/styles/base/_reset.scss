@@ -6,6 +6,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  transition: all 250ms ease-out;
 }
 
 body {
@@ -19,6 +20,8 @@ button,
 textarea,
 select {
   font: inherit;
+  outline: none;
+  border: none;
 }
 
 p {
@@ -39,4 +42,8 @@ video,
 svg {
   height: auto;
   max-width: 100%;
+}
+
+li {
+  list-style: none;
 }

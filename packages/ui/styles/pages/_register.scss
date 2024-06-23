@@ -1,0 +1,12 @@
+// _register.scss
+.register-page {
+  .form__button {
+    margin-top: rem(24);
+  }
+
+  &__container {
+    @include flex-center;
+    flex-wrap: wrap;
+    gap: rem(40);
+  }
+}

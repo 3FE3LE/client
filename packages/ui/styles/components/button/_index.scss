@@ -1,0 +1,20 @@
+// _button.scss
+.button {
+  display: inline-block;
+  padding: rem(12) rem(24);
+  background-color: $ss-gray;
+  color: $text-color;
+  border: none;
+  border-radius: rem(4);
+  cursor: pointer;
+  font-size: rem(16);
+  text-align: center;
+
+  &--primary {
+    background-color: $primary-color;
+  }
+
+  &--secondary {
+    background-color: $secondary-color;
+  }
+}

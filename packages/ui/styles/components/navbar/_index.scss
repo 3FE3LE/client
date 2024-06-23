@@ -1,27 +1,35 @@
 .navbar {
-  background-color: $ss-white;
-  color: $ss-gray;
-  padding: 1rem;
+  @include highlighted-color;
+  @include text-color;
+  position: sticky;
+  top: 0;
+  padding: rem(12) rem(40);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: rem(64);
 
   &__logo {
-    font-size: 1.5rem;
+    max-width: rem(100);
   }
 
   &__menu {
     list-style: none;
     display: flex;
-
-    &__item {
-      margin: 0 1rem;
+    gap: rem(4);
+    padding: 0;
+  }
+  &__menu-item {
+    padding: rem(8) rem(16);
+    &:hover {
+      background: $primary-color;
+      border-radius: rem(4);
+      color: $ss-white;
     }
-
-    &__link {
-      color: white;
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
+    &--active {
+      @include background-color;
+      border-radius: rem(4);
+      color: $ss-white;
     }
   }
 }

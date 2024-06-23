@@ -1,17 +1,11 @@
 :root {
-  background: $ss-white;
-  color: $ss-black;
+  //theme color schema
+  @include background-color;
+  @include text-color;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    background: $ss-black;
-    color: $ss-white;
-  }
-}
-
-img {
-  color: white !important;
-  fill-rule: evenodd;
-  fill: #fff;
+a {
+  @include text(interface);
+  text-decoration: none;
+  color: $primary-color;
 }

@@ -1,11 +1,6 @@
-'use client';
-
-import { Navbar } from './components/Navbar';
-
 export default function Web() {
   return (
     <div>
-      <Navbar />
       <h1 className="heading--1">Hello World</h1>
       <h1 className="heading--2">Hello World</h1>
       <h1 className="heading--3">Hello World</h1>

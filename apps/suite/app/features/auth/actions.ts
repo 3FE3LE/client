@@ -2,6 +2,9 @@
 
 import { redirect } from 'next/navigation';
 import { useLogin, useRegister } from './useCases';
+import { cookies } from 'next/headers';
+
+const cookie = cookies();
 
 export const UserRegister = async (formData: FormData) => {
   const { register } = useRegister();
@@ -18,7 +21,7 @@ export const UserRegister = async (formData: FormData) => {
 
   await register(newUser);
 
-  return newUser;
+  redirect('/login');
 };
 
 export const UserLogin = async (formData: FormData) => {

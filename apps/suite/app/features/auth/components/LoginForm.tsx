@@ -1,34 +1,40 @@
 'use client';
 import { FormWrapper, InputGroup } from '@repo/ui';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm, FormProvider } from 'react-hook-form';
-import * as yup from 'yup';
-import { SubmitButton } from './SubmitButton';
-
-const schema = yup.object().shape({
-  email: yup.string().email('Invalid email').required('Email is required'),
-  password: yup
-    .string()
-    .min(6, 'Password must be at least 6 characters')
-    .required('Password is required'),
-});
+import { useForm } from 'react-hook-form';
+import { SubmitButton } from '@repo/ui/src/SubmitButton';
+import { LoginSchema as schema } from '../constants/schemas';
+import { LoginInputs } from '../constants/inputs';
+import { LoginInput } from '../types/authTypes';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function LoginForm() {
+  const router = useRouter();
   const {
-    handleSubmit,
     register,
-    watch,
-    formState: { errors, isSubmitting },
+    handleSubmit,
+    formState: { errors, isSubmitting, isValid },
   } = useForm({
     resolver: yupResolver(schema),
+    mode: 'onChange',
+    reValidateMode: 'onBlur',
   });
 
-  //react hook form validation
-  const formaValidation = () => {
-    if (watch('email') && watch('password')) {
-      return true;
+  const onSubmit = async (data: any) => {
+    const result = await signIn('credentials', {
+      redirect: false,
+      email: data.email,
+      password: data.password,
+    });
+
+    console.log(result);
+    if (result?.error) {
+      // Manejar el error de inicio de sesión
+      console.error('Error en el inicio de sesión:', result.error);
     } else {
-      return false;
+      // Redirigir al dashboard si el inicio de sesión es exitoso
+      router.push('/dashboard');
     }
   };
 

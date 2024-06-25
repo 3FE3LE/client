@@ -1,7 +1,6 @@
-// suite/features/auth/repository.ts
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/server/auth';
+const API_URL = process.env.API_URL;
 
 export const registerUser = async (
   name: string | undefined,
@@ -14,7 +13,6 @@ export const registerUser = async (
       email,
       password,
     });
-    console.log(name, email, password);
     return response.data;
   } catch (error: any) {
     throw new Error(error.response?.data?.message || 'Registration failed');

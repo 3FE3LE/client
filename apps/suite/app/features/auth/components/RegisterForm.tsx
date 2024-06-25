@@ -1,5 +1,5 @@
 'use client';
-import { FormWrapper, Input } from '@repo/ui';
+import { FormWrapper, InputGroup } from '@repo/ui';
 import { UserRegister } from '../actions';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -31,41 +31,23 @@ export default function RegisterForm() {
     <FormWrapper title="Register">
       {/* <FormProvider {...methods}> */}
       <form action={UserRegister}>
-        <Input
-          // register={methods.register}
-          placeholder=""
-          name="name"
-          type="text"
-          label="Name"
-          // errors={methods.formState.errors}
-        />
-        <Input
-          // register={methods.register}
-          placeholder=""
-          name="email"
-          type="email"
-          label="Email"
-          // errors={methods.formState.errors}
-        />
-        <Input
-          // register={methods.register}
-          placeholder=""
-          name="password"
-          type="password"
-          label="Password"
-          // errors={methods.formState.errors}
-        />
-        <Input
-          // register={methods.register}
-          placeholder=""
-          name="passwordConfirm"
-          type="password"
-          label="Confirm Password"
-          // errors={methods.formState.errors}
-        />
-        <SubmitButton
-        // isDisable={methods.formState.isSubmitting}
-        />
+        {RegisterInputs.map((input: RegisterInput) => (
+          <InputGroup
+            key={input.name}
+            errors={errors[input.name]?.message}
+            label={input.label}
+            name={input.name}
+          >
+            <input
+              {...register(input.name)}
+              type={input.type}
+              name={input.name}
+              id={input.name}
+              placeholder={input.placeholder}
+            />
+          </InputGroup>
+        ))}
+        <SubmitButton isDisable={!isValid || isSubmitting} />
       </form>
       {/* </FormProvider> */}
     </FormWrapper>

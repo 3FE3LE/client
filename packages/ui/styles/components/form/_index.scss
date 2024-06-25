@@ -17,31 +17,33 @@
     position: relative;
     flex-direction: column;
     align-items: flex-start;
+    & input {
+      @include text-color;
+      @include foreground-color;
+      &:hover {
+        @include hover-focus-color;
+      }
+      &:focus {
+        @include hover-focus-color;
+      }
+      padding: 0.5rem;
+      width: 300px;
+      border-radius: 4px;
+      outline-style: none;
+    }
   }
 
   &__label {
     @include text(interface);
+    color: $primary-color;
     display: block;
     margin-bottom: 0.5rem;
     padding-left: 0.5rem;
   }
 
-  &__input {
-    @include text-color;
-    @include foreground-color;
-    &:hover {
-      @include hover-focus-color;
-    }
-    &:focus {
-      @include hover-focus-color;
-    }
-    padding: 0.5rem;
-    width: 300px;
-    border-radius: 4px;
-    outline-style: none;
-  }
   &__error {
     @include text(misc);
+    @include scale-in-ver-bottom;
     color: $ss-red;
     padding-left: 0.5rem;
   }
@@ -67,6 +69,16 @@
     }
     &:disabled {
       background-color: $ss-gray;
+      cursor: not-allowed;
+      &:hover {
+        background-color: $ss-gray-d;
+      }
+      &:focus {
+        background-color: $ss-gray;
+      }
+      &:active {
+        background-color: $ss-gray;
+      }
     }
   }
 }

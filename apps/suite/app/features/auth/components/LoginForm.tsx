@@ -1,6 +1,5 @@
 'use client';
-import { FormWrapper, Input } from '@repo/ui';
-import { UserLogin } from '../actions';
+import { FormWrapper, InputGroup } from '@repo/ui';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, FormProvider } from 'react-hook-form';
 import * as yup from 'yup';
@@ -34,27 +33,25 @@ export default function LoginForm() {
   };
 
   return (
-    <FormProvider {...methods}>
-      <FormWrapper title="Login">
-        <form onSubmit={handleSubmit(formaValidation)} action={UserLogin}>
-          <Input
-            register={register}
-            errors={errors['email']?.message}
-            label="Email"
-            name="email"
-            type="email"
-            placeholder={'example@17suit.com'}
-          />
-          <Input
-            register={register}
-            errors={errors['password']?.message}
-            label="Password"
-            name="password"
-            placeholder={'175785%%'}
-          />
-          <SubmitButton isDisable={isSubmitting} />
-        </form>
-      </FormWrapper>
-    </FormProvider>
+    <FormWrapper title="Login">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {LoginInputs.map((input: LoginInput) => (
+          <InputGroup
+            key={input.name}
+            errors={errors[input.name]?.message}
+            label={input.label}
+            name={input.name}
+          >
+            <input
+              {...register(input.name)}
+              type={input.type}
+              name={input.name}
+              placeholder={input.placeholder}
+            />
+          </InputGroup>
+        ))}
+        <SubmitButton isDisable={!isValid || isSubmitting} />
+      </form>
+    </FormWrapper>
   );
 }

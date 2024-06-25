@@ -27,7 +27,7 @@
       color: $ss-white;
     }
     &--active {
-      @include background-color;
+      background: $primary-color;
       border-radius: rem(4);
       color: $ss-white;
     }

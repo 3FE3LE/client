@@ -1,33 +1,45 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import ss_logo from '@repo/ui/assets/logo-17suit@4x.svg';
+import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
+import { usePathname } from 'next/navigation';
 
 export const Navbar = () => {
-  // create a new `Date` object
-  const now = new Date();
+  const pathname = usePathname();
 
-  // get the current date and time as a string
-  const currentDateTime = now.toLocaleString();
+  const menuItems = [
+    {
+      name: 'Home',
+      href: '/',
+    },
+    {
+      name: 'Login',
+      href: '/login',
+    },
+    {
+      name: 'Register',
+      href: '/register',
+    },
+    {
+      name: 'Dashboard',
+      href: '/dashboard',
+    },
+  ];
+
   return (
     <nav className="navbar">
       <Image alt="17 suit logo" className="navbar__logo" src={ss_logo} />
-      <div className="navbar__date">{currentDateTime}</div>
       <ul className="navbar__menu">
-        <li>
-          <Link className="navbar__menu-item" href={'/'}>
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link className="navbar__menu-item" href={'/login'}>
-            Login
-          </Link>
-        </li>
-        <li>
-          <Link className="navbar__menu-item" href={'/register'}>
-            Register
-          </Link>
-        </li>
+        {menuItems.map((item) => (
+          <li key={item.name}>
+            <Link
+              className={`navbar__menu-item ${item.href === pathname ? 'navbar__menu-item--active' : ''}`}
+              href={item.href}
+            >
+              {item.name}
+            </Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );

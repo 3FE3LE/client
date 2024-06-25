@@ -1,14 +1,10 @@
 import Image from 'next/image';
-import { LoginForm } from '../features/auth';
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
 import type { Metadata } from 'next';
-
+import { LoginForm } from '../features/auth/components';
 export const metadata: Metadata = {
   title: '17Suit - Login',
   description: 'Sign in to your account',
-  icons: {
-    icon: '/favicon.ico',
-  },
 };
 export default function Login() {
   return (

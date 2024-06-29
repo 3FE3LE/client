@@ -11,7 +11,6 @@ const getSessionOnServer = async (): Promise<Session | null> => {
 
 const DashboardPage = async () => {
   const session = await getSessionOnServer();
-  console.log('session:', session);
   if (!session) {
     redirect('/login');
   }

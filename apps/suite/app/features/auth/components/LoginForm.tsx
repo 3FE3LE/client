@@ -8,8 +8,11 @@ import { LoginInputs } from '../constants/inputs';
 import { LoginInput } from '../types/authTypes';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { GoogleSignInButton } from './GoogleSignInButton';
 
 export default function LoginForm() {
+  const [error, setError] = useState('');
   const router = useRouter();
   const {
     register,
@@ -28,10 +31,9 @@ export default function LoginForm() {
       password: data.password,
     });
 
-    console.log(result);
     if (result?.error) {
       // Manejar el error de inicio de sesión
-      console.error('Error en el inicio de sesión:', result.error);
+      setError(result.error);
     } else {
       // Redirigir al dashboard si el inicio de sesión es exitoso
       router.push('/dashboard');
@@ -39,7 +41,7 @@ export default function LoginForm() {
   };
 
   return (
-    <FormWrapper title="Login">
+    <FormWrapper title="Login" loading={isSubmitting}>
       <form onSubmit={handleSubmit(onSubmit)}>
         {LoginInputs.map((input: LoginInput) => (
           <InputGroup
@@ -56,6 +58,8 @@ export default function LoginForm() {
             />
           </InputGroup>
         ))}
+        <GoogleSignInButton />
+        {error && <p className="form__error">{error}</p>}
         <SubmitButton isDisable={!isValid || isSubmitting} />
       </form>
     </FormWrapper>

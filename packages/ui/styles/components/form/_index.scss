@@ -10,6 +10,11 @@
     align-items: center;
     gap: 1rem;
     padding: 2rem;
+    &--loading {
+      cursor: progress;
+      pointer-events: none;
+      opacity: 0.5;
+    }
   }
   &__group {
     margin-bottom: 1rem;
@@ -57,7 +62,25 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-
+    &--google {
+      @include text-color;
+      @include flex-center;
+      @include border-color;
+      @include text(interface);
+      padding: rem(4);
+      gap: rem(12);
+      width: 100%;
+      border-radius: rem(4);
+      &:hover {
+        @include highlighted-color;
+      }
+      &:focus {
+        background-color: $ss-red-d;
+      }
+      &:active {
+        background-color: $ss-red-d;
+      }
+    }
     &:hover {
       background-color: $ss-green-d;
     }
@@ -68,16 +91,10 @@
       background-color: $ss-green-d;
     }
     &:disabled {
-      background-color: $ss-gray;
       cursor: not-allowed;
       &:hover {
-        background-color: $ss-gray-d;
-      }
-      &:focus {
         background-color: $ss-gray;
-      }
-      &:active {
-        background-color: $ss-gray;
+        color: $ss-white;
       }
     }
   }

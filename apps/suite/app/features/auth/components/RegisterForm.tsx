@@ -19,7 +19,7 @@ export default function RegisterForm() {
   });
 
   return (
-    <FormWrapper title="Register">
+    <FormWrapper title="Register" loading={isSubmitting}>
       {isSubmitting && <p>Loading...</p>}
       <form action={UserRegister}>
         {RegisterInputs.map((input: RegisterInput) => (

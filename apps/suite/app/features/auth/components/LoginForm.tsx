@@ -1,8 +1,7 @@
 'use client';
-import { FormWrapper, InputGroup } from '@repo/ui';
+import { FormWrapper, InputGroup, SubmitButton } from '@repo/ui';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { SubmitButton } from '@repo/ui/src/SubmitButton';
 import { LoginSchema as schema } from '../constants/schemas';
 import { LoginInputs } from '../constants/inputs';
 import { LoginInput } from '../types/authTypes';
@@ -10,6 +9,8 @@ import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { GoogleSignInButton } from './GoogleSignInButton';
+import { BackButton } from '../../../../components/BackButton';
+import Link from 'next/link';
 
 export default function LoginForm() {
   const [error, setError] = useState('');
@@ -58,9 +59,16 @@ export default function LoginForm() {
             />
           </InputGroup>
         ))}
+        <div className="form__division">
+          <span>or</span>
+        </div>
         <GoogleSignInButton />
         {error && <p className="form__error">{error}</p>}
-        <SubmitButton isDisable={!isValid || isSubmitting} />
+        <div className="form__group form__group--buttons">
+          <BackButton />
+          <SubmitButton isDisable={!isValid || isSubmitting} />
+        </div>
+        <Link href="/register">Not have account yet?, click to Sign up</Link>
       </form>
     </FormWrapper>
   );

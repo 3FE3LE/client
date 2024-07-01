@@ -1,10 +1,6 @@
 'use server';
 
-import { redirect } from 'next/navigation';
 import { useLogin, useRegister } from './useCases';
-import { cookies } from 'next/headers';
-
-const cookie = cookies();
 
 export const UserRegister = async (formData: FormData) => {
   const { register } = useRegister();
@@ -19,9 +15,9 @@ export const UserRegister = async (formData: FormData) => {
     password,
   };
 
-  await register(newUser);
+  const result = await register(newUser);
 
-  redirect('/login');
+  return result;
 };
 
 export const UserLogin = async (formData: FormData) => {
@@ -38,7 +34,4 @@ export const UserLogin = async (formData: FormData) => {
   console.log(user);
 
   await login(user);
-
-  redirect('/dashboard');
-  return user;
 };

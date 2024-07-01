@@ -1,10 +1,8 @@
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
-import { useLogin } from '../../../features/auth/useCases';
-import { withAuth } from 'next-auth/middleware';
-
-const { login } = useLogin();
+import { cookies } from 'next/headers';
+import { loginUser } from '../../../features/auth/repository';
 
 export const authOptions = {
   providers: [
@@ -15,10 +13,7 @@ export const authOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const user = await login({
-          email: credentials?.email,
-          password: credentials?.password,
-        });
+        const user = await loginUser(credentials?.email, credentials?.password);
         if (user) {
           return user;
         } else {
@@ -39,26 +34,21 @@ export const authOptions = {
     }),
   ],
   pages: {
-    signUp: '/register', // Personaliza tu página de registro
-    signIn: '/login', // Personaliza tu página de inicio de sesión
-    error: '/login', // Personaliza tu página de error
+    signUp: '/register',
+    signIn: '/login',
   },
   callbacks: {
     async jwt({ token, user }: any) {
       if (user) {
         token.id = user.token;
-        token.name = user.email;
+        token.email = user.email;
       }
       return token;
     },
-    authorized({ req, token }: any) {
-      if (token) return true; // If there is a token, the user is authenticated
-    },
-    async signIn({ account, profile }: any) {
-      if (account.provider === 'google') {
-        return profile.email_verified && profile.email.endsWith('@gmail.com');
-      }
-      return true; // Do different verification for other providers that don't have `email_verified`
+    async session({ session, token }: any) {
+      session.authCookie = cookies().get('__Secure-next-auth.session-token');
+      session.token = token.id;
+      return session;
     },
   },
   cookies: {
@@ -70,7 +60,7 @@ export const authOptions = {
         path: '/',
         secure: true,
         domain:
-          process.env.NODE_ENV === 'production' ? '.17suit.com' : 'localhost', // Configurar el dominio compartido
+          process.env.NODE_ENV === 'production' ? '.17suit.com' : 'localhost',
       },
     },
   },

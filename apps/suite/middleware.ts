@@ -1,3 +1,15 @@
-export { default } from 'next-auth/middleware';
+import { withAuth } from 'next-auth/middleware';
 
-export const config = { matcher: ['/dashboard'] };
+export default withAuth({
+  pages: {
+    signIn: '/login',
+  },
+  callbacks: {
+    authorized: async ({ req, token }) => {
+      const authToken = req.cookies.get('__Secure-next-auth.session-token');
+      return authToken !== null;
+    },
+  },
+});
+
+export const config = { matcher: ['/dashboard', '/profile'] };

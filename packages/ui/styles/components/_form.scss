@@ -105,21 +105,21 @@
     &--google {
       @include text-color;
       @include flex-center;
-      @include shadow-sm;
       @include text(interface);
+      @include highlighted-color;
       padding: rem(4);
       gap: rem(12);
       width: rem(256);
       border-radius: rem(4);
       margin-bottom: rem(24);
       &:hover {
-        @include highlighted-color;
+        @include foreground-color;
       }
       &:focus {
-        @include highlighted-color;
+        @include foreground-color;
       }
       &:active {
-        @include highlighted-color;
+        @include foreground-color;
       }
     }
     &--back {

@@ -2,14 +2,13 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../api/auth/[...nextauth]/route';
 import { redirect } from 'next/navigation';
 import { Session } from 'next-auth';
-import SignOutButton from './components/SignOutButton';
-
+import { Navbar, SignOutButton } from '../../components';
 // Esta función se ejecutará en el servidor
 const getSessionOnServer = async (): Promise<Session | null> => {
   return await getServerSession(authOptions);
 };
 
-const DashboardPage = async () => {
+export default async function DashboardPage() {
   const session = await getSessionOnServer();
   if (!session) {
     redirect('/login');
@@ -22,6 +21,4 @@ const DashboardPage = async () => {
       <SignOutButton />
     </div>
   );
-};
-
-export default DashboardPage;
+}

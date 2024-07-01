@@ -12,8 +12,8 @@ export function InputGroup({ name, label, errors, children }: InputProps) {
       <label className="form__label" htmlFor={name}>
         {label}
       </label>
-      {errors && <span className="form__error">{errors}</span>}
       {children}
+      {errors && <span className="form__error">{errors}</span>}
     </div>
   );
 }

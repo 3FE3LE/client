@@ -1,6 +1,8 @@
 import React from 'react';
-
-export function SubmitButton({ isDisable }: { isDisable: boolean }) {
+export interface SubmitButtonProps {
+  isDisable: boolean;
+}
+export function SubmitButton({ isDisable }: SubmitButtonProps) {
   return (
     <button className="form__button" type="submit" disabled={isDisable}>
       Submit

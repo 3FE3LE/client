@@ -1,7 +1,10 @@
 import '@repo/ui/styles/main.scss';
-import { AppWrapper } from '../../components';
-import { metadata } from './metadata';
+
 import { dir } from 'i18next';
+
+import { AppWrapper } from '@/components';
+
+import { metadata } from './metadata';
 
 const languages = ['en', 'es'];
 

@@ -1,12 +1,13 @@
-import Image from 'next/image';
-import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
-import { RegisterForm } from '../features/auth/components';
 import { Metadata } from 'next';
-import { authOptions } from '../api/auth/[...nextauth]/authOptions';
-import { getServerSession } from 'next-auth/next';
-import { redirect } from 'next/navigation';
 import { Session } from 'next-auth';
+import { getServerSession } from 'next-auth/next';
+import Image from 'next/image';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+
+import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
+import { RegisterForm } from '@/app/features/auth/components';
+import ss_logo from '@repo/ui/as"importSorter.generalConfiguration.sortOnBeforeSave"sets/logo-17suit@4x.png';
 
 export const metadata: Metadata = {
   title: '17Suit - Register',

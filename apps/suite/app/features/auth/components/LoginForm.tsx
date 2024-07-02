@@ -1,16 +1,19 @@
 'use client';
-import { FormWrapper, InputGroup, SubmitButton } from '@repo/ui';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
-import { LoginSchema as schema } from '../constants/schemas';
-import { LoginInputs } from '../constants/inputs';
-import { LoginInput } from '../types/authTypes';
+
 import { signIn } from 'next-auth/react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+
+import { BackButton } from '@/components';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { FormWrapper, InputGroup, SubmitButton } from '@repo/ui';
+
+import { LoginInputs } from '../constants/inputs';
+import { LoginSchema as schema } from '../constants/schemas';
+import { LoginInput } from '../types/authTypes';
 import { GoogleSignInButton } from './GoogleSignInButton';
-import { BackButton } from '../../../../components/BackButton';
-import Link from 'next/link';
 
 export default function LoginForm() {
   const [error, setError] = useState('');

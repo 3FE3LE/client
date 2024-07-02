@@ -1,10 +1,13 @@
 'use client';
+
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useSession } from 'next-auth/react';
-import SignOutButton from './SignOutButton';
+
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
+
+import { SignOutButton } from './SignOutButton';
 
 export const Navbar = () => {
   const pathname = usePathname();

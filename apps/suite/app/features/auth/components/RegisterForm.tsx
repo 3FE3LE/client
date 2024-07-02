@@ -1,16 +1,19 @@
 'use client';
-import { useState } from 'react';
-import { FormWrapper, InputGroup, SubmitButton } from '@repo/ui';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
+
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { RegisterSchema as schema } from '../constants/schemas';
-import { RegisterInputs } from '../constants/inputs';
-import { RegisterInput } from '../types/authTypes';
-import { BackButton } from '../../../../components/BackButton';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+
+import { BackButton } from '@/components';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { FormWrapper, InputGroup, SubmitButton } from '@repo/ui';
+
 import { UserRegister } from '../actions';
-import { signIn } from 'next-auth/react';
+import { RegisterInputs } from '../constants/inputs';
+import { RegisterSchema as schema } from '../constants/schemas';
+import { RegisterInput } from '../types/authTypes';
 
 export default function RegisterForm() {
   const [error, setError] = useState('');

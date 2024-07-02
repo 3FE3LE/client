@@ -26,4 +26,11 @@
       color: $ss-white;
     }
   }
+  &__button {
+    padding: rem(8) rem(16);
+    &:hover {
+      border-radius: rem(4);
+      background: $primary-color;
+    }
+  }
 }

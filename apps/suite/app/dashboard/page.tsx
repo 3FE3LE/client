@@ -1,8 +1,8 @@
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../api/auth/[...nextauth]/route';
 import { redirect } from 'next/navigation';
 import { Session } from 'next-auth';
 import { Navbar, SignOutButton } from '../../components';
+import { authOptions } from '../api/auth/[...nextauth]/authOptions';
 // Esta función se ejecutará en el servidor
 const getSessionOnServer = async (): Promise<Session | null> => {
   return await getServerSession(authOptions);

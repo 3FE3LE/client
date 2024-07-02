@@ -2,7 +2,7 @@ import Image from 'next/image';
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
 import { RegisterForm } from '../features/auth/components';
 import { Metadata } from 'next';
-import { authOptions } from '../api/auth/[...nextauth]/route';
+import { authOptions } from '../api/auth/[...nextauth]/authOptions';
 import { getServerSession } from 'next-auth/next';
 import { redirect } from 'next/navigation';
 import { Session } from 'next-auth';

@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import { Navbar } from '../components';
+import { Navbar } from '../../components';
 import traveling_img from '@repo/ui/assets/traveling.svg';
 
-export default function Web() {
+export default function Home({ params: { lng } }) {
   return (
     <>
       <Navbar />

@@ -1,0 +1,8 @@
+// _register.scss
+.register-page {
+  &__container {
+    @include flex-center;
+    flex-wrap: wrap;
+    gap: rem(40);
+  }
+}

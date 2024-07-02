@@ -1,0 +1,41 @@
+//Colors
+// Gray scale
+$ss-black: #00171f;
+$ss-gray-dr: #263238;
+$ss-gray-d: #394448;
+$ss-gray: #717171;
+$ss-gray-l: #cfcfcf;
+$ss-gray-lr: #f5f5f5;
+$ss-white: #eeeeee;
+// Red Scale
+$ss-red-dr: #80303e;
+$ss-red-d: #c03d4d;
+$ss-red: #ff495c;
+$ss-red-l: #fb7381;
+$ss-red-lr: #f79ca5;
+// Green Scale
+$ss-green-dr: #005447;
+$ss-green-d: #00735b;
+$ss-green: #00916e;
+$ss-green-l: #3ca98e;
+$ss-green-lr: #77c0ae;
+// Blue Scale
+$ss-blue-dr: #1b5f8f;
+$ss-blue-d: #2883c7;
+$ss-blue: #35a7ff;
+$ss-blue-l: #64b9fb;
+$ss-blue-lr: #92cbf7;
+// notifications - states
+$ss-success: #44af69;
+$ss-warning: #edd83d;
+$ss-danger: #f3863d;
+$ss-error: #f8333c;
+$ss-info: #1e91d6;
+
+$text-color: $ss-black;
+$foreground-color: white;
+$background-color: $ss-white;
+
+$primary-color: $ss-green;
+$secondary-color: $ss-blue;
+$accent-color: $ss-red;

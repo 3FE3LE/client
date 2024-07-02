@@ -8,11 +8,38 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "clean": "turbo run clean && rm -rf node_modules",
-    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore"
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "type-check": "tsc --noEmit",
+    "precommit": "lint-staged",
+    "prepush": "yarn type-check",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.ts?(x)": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.js?(x)": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.json": [
+      "prettier --write"
+    ],
+    "*.scss": [
+      "prettier --write"
+    ]
   },
   "devDependencies": {
-    "prettier": "^3.1.1",
-    "turbo": "latest"
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
+    "eslint": "^9.4.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.6",
+    "prettier": "^3.3.2",
+    "turbo": "latest",
+    "typescript": "^5.4.5"
   },
   "packageManager": "yarn@1.22.19",
   "engines": {

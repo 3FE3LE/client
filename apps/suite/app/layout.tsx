@@ -1,3 +1,14 @@
+import { Metadata } from 'next';
+
+import '@repo/ui/styles/main.scss';
+import { Navbar, AppWrapper } from '../components';
+export const metadata: Metadata = {
+  title: '17Suit',
+  description: '17Suit a heaven suite apps',
+  icons: {
+    icon: '/favicon.ico',
+  },
+};
 export default function RootLayout({
   children,
 }: {
@@ -5,7 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <AppWrapper>{children}</AppWrapper>
+      </body>
     </html>
   );
 }

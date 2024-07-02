@@ -3,17 +3,15 @@
   @include background-color;
   @include text-color;
   // react-tooltip variables
-  :root {
-    --rt-color-white: $ss-white;
-    --rt-color-dark: $ss-black;
-    --rt-color-success: $ss-success;
-    --rt-color-error: $ss-error;
-    --rt-color-warning: $ss-warning;
-    --rt-color-info: $ss-info;
-    --rt-opacity: 0.9;
-    --rt-transition-show-delay: 0.15s;
-    --rt-transition-closing-delay: 0.15s;
-  }
+  --rt-color-white: $ss-white;
+  --rt-color-dark: $ss-black;
+  --rt-color-success: $ss-success;
+  --rt-color-error: $ss-error;
+  --rt-color-warning: $ss-warning;
+  --rt-color-info: $ss-info;
+  --rt-opacity: 0.9;
+  --rt-transition-show-delay: 0.15s;
+  --rt-transition-closing-delay: 0.15s;
 }
 
 a {

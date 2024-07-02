@@ -1,0 +1,13 @@
+.home {
+  &__container {
+    @include flex-center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  &__title {
+    max-width: 50%;
+    @include flex-center;
+    flex-direction: column;
+    gap: rem(20);
+  }
+}

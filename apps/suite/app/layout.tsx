@@ -1,5 +1,5 @@
 import '@repo/ui/styles/main.scss';
-import { Navbar, AppWrapper } from '../components';
+import { AppWrapper } from '../components';
 import { metadata } from './metadata';
 
 export default function RootLayout({

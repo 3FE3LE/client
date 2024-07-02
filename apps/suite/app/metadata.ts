@@ -52,6 +52,4 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
-  themeColor: '#17171a', // Ajusta este color al color principal de tu marca
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
 };

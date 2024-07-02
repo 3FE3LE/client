@@ -6,6 +6,7 @@ import { authOptions } from '../api/auth/[...nextauth]/authOptions';
 import { getServerSession } from 'next-auth/next';
 import { redirect } from 'next/navigation';
 import { Session } from 'next-auth';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: '17Suit - Login',
@@ -27,7 +28,9 @@ export default async function Login() {
       <div className="login-page__container">
         <h1 className="heading--1">
           Welcome to{'\n'}
-          <Image src={ss_logo} alt="logo" width={250} />
+          <Link href="/">
+            <Image src={ss_logo} alt="logo" width={250} />
+          </Link>
         </h1>
         <LoginForm />
       </div>

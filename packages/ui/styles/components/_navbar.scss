@@ -1,29 +1,37 @@
 .navbar {
   @include highlighted-color;
   @include text-color;
+  display: flex;
   position: sticky;
   top: 0;
-  padding: rem(16);
-  display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: rem(16);
+  height: rem(64);
 
   &__logo {
     max-width: rem(100);
   }
 
   &__menu {
-    list-style: none;
     display: flex;
     padding: 0;
+    list-style: none;
   }
   &__menu-item {
     padding: rem(8) rem(16);
     &:hover,
     &--active {
-      background: $primary-color;
       border-radius: rem(4);
+      background: $primary-color;
       color: $ss-white;
+    }
+  }
+  &__button {
+    padding: rem(8) rem(16);
+    &:hover {
+      border-radius: rem(4);
+      background: $primary-color;
     }
   }
 }

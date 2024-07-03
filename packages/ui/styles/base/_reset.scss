@@ -5,23 +5,23 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
   transition: all 250ms ease-out;
+  box-sizing: border-box;
 }
 
 body {
+  min-height: 100dvh;
   font-family: 'Zilla Slab', serif;
   font-synthesis: none;
-  min-height: 100dvh;
 }
 
 input,
 button,
 textarea,
 select {
-  font: inherit;
   outline: none;
   border: none;
+  font: inherit;
 }
 
 p {
@@ -40,8 +40,8 @@ h6 {
 img,
 video,
 svg {
-  height: auto;
   max-width: 100%;
+  height: auto;
 }
 
 li {

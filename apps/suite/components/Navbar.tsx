@@ -1,10 +1,13 @@
 'use client';
+
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useSession } from 'next-auth/react';
-import SignOutButton from './SignOutButton';
+
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
+
+import { SignOutButton } from './SignOutButton';
 
 export const Navbar = () => {
   const pathname = usePathname();
@@ -37,7 +40,12 @@ export const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <Image alt="17 suit logo" className="navbar__logo" src={ss_logo} />
+      <Image
+        priority
+        alt="17 suit logo"
+        className="navbar__logo"
+        src={ss_logo}
+      />
       <ul className="navbar__menu">
         {menuItems.map(
           (item) =>

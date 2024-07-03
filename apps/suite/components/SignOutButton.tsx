@@ -1,9 +1,17 @@
 'use client';
 
 import { signOut } from 'next-auth/react';
+import { toast } from 'react-hot-toast';
 
-const SignOutButton = () => {
-  return <button onClick={() => signOut()}>Sign out</button>;
+export const SignOutButton = () => {
+  return (
+    <button
+      onClick={() => {
+        signOut();
+        toast.success('You are logout');
+      }}
+    >
+      Sign out
+    </button>
+  );
 };
-
-export default SignOutButton;

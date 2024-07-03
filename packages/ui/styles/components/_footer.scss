@@ -1,0 +1,11 @@
+.footer {
+  &__container {
+    @include flex-center;
+    @include highlighted-color;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: rem(32);
+    padding: rem(32);
+  }
+}

@@ -1,8 +1,8 @@
-import { redirect } from 'next/navigation';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '../api/auth/[...nextauth]/authOptions';
-import { Navbar } from '../../components';
 import { Session } from 'next-auth';
+import { getServerSession } from 'next-auth/next';
+import { redirect } from 'next/navigation';
+
+import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
 
 const getSessionOnServer = async (): Promise<Session | null> => {
   return await getServerSession(authOptions);

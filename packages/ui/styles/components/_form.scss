@@ -2,18 +2,18 @@
   &__wrapper {
     @include border-color;
     @include shadow;
-    border-radius: rem(12);
     display: flex;
-    width: max-content;
     flex-direction: column;
     align-items: center;
     gap: rem(32);
+    border-radius: rem(12);
     padding: rem(24);
+    width: max-content;
     max-width: rem(332);
     &--loading {
+      opacity: 0.5;
       cursor: progress;
       pointer-events: none;
-      opacity: 0.5;
     }
   }
   &__group {
@@ -25,10 +25,10 @@
     & input {
       @include text-color;
       @include foreground-color;
+      outline-style: none;
+      border-radius: rem(4);
       padding: rem(8);
       width: rem(256);
-      border-radius: rem(4);
-      outline-style: none;
       &:hover {
         @include hover-focus-color;
       }
@@ -50,42 +50,42 @@
     display: block;
     position: absolute;
     top: rem(-20);
-    color: $primary-color;
-    border-radius: rem(4);
     margin-bottom: rem(8);
+    border-radius: rem(4);
     padding: rem(4) rem(8);
+    color: $primary-color;
   }
 
   &__error {
     @include text(misc);
     @include scale-in-ver-bottom;
-    color: $ss-error;
     padding-left: rem(8);
+    color: $ss-error;
   }
 
   &__division {
     @include foreground-color;
     @include flex-center;
-    width: rem(256);
-    height: rem(2);
     margin: rem(16) 0;
     margin-bottom: rem(24);
+    width: rem(256);
+    height: rem(2);
     span {
       @include background-color;
-      padding: rem(8);
       margin-top: rem(-4);
+      padding: rem(8);
     }
   }
 
   &__button {
     @include text(interface);
-    background-color: $ss-green;
-    color: $ss-white;
-    padding: rem(12);
-    width: 100%;
+    cursor: pointer;
     border: none;
     border-radius: rem(4);
-    cursor: pointer;
+    background-color: $ss-green;
+    padding: rem(12);
+    width: 100%;
+    color: $ss-white;
     &:hover {
       background-color: $ss-green-d;
     }
@@ -107,11 +107,11 @@
       @include flex-center;
       @include text(interface);
       @include highlighted-color;
-      padding: rem(4);
       gap: rem(12);
-      width: rem(256);
-      border-radius: rem(4);
       margin-bottom: rem(24);
+      border-radius: rem(4);
+      padding: rem(4);
+      width: rem(256);
       &:hover {
         @include foreground-color;
       }
@@ -126,8 +126,8 @@
       @include flex-center;
       @include border-color;
       @include highlighted-color;
-      padding: rem(8);
       border-radius: rem(4);
+      padding: rem(8);
     }
   }
 }

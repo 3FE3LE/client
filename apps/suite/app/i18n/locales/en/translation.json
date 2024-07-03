@@ -1,39 +1,30 @@
 {
-  "mainTitles": {
-    "title1": "17Suit: Your digital life, simplified",
-    "title2": "All your apps, one ecosystem",
-    "title3": "17Suit: Empower your everyday",
-    "title4": "Seamless integration, endless possibilities",
-    "title5": "17Suit: The evolution of your apps"
-  },
-  "subtitles": {
-    "subtitle1": "Discover the synergy of apps designed for you",
-    "subtitle2": "One suite for every aspect of your modern life",
-    "subtitle3": "Connecting your needs with smart solutions",
-    "subtitle4": "Experience consistency in design and functionality",
-    "subtitle5": "From travel to productivity: everything in one place"
-  },
-  "additionalPhrases": {
-    "phrase1": "Simplify. Integrate. Evolve.",
-    "phrase2": "Your cross-platform digital assistant",
-    "phrase3": "Where innovation meets practicality",
-    "phrase4": "One app ecosystem, infinite possibilities",
-    "phrase5": "Transform your routine with 17Suit"
-  },
-  "cta": {
-    "tryNow": "Try now",
-    "learnMore": "Learn more",
-    "getStarted": "Get started"
-  },
-  "features": {
-    "feature1": "Seamless integration",
-    "feature2": "Unified design",
-    "feature3": "Cross-device synchronization",
-    "feature4": "Advanced customization",
-    "feature5": "Continuous updates"
-  },
-  "about": {
-    "title": "About 17Suit",
-    "description": "17Suit is a suite of innovative applications designed to simplify and enhance your digital life. From travel planning to daily task management, 17Suit offers an integrated and consistent experience across all its applications."
-  }
+  "title1": "17Suit: Your digital life, simplified",
+  "title2": "All your apps, one ecosystem",
+  "title3": "17Suit: Empower your everyday",
+  "title4": "Seamless integration, endless possibilities",
+  "title5": "17Suit: The evolution of your apps",
+
+  "subtitle1": "Discover the synergy of apps designed for you",
+  "subtitle2": "One suite for every aspect of your modern life",
+  "subtitle3": "Connecting your needs with smart solutions",
+  "subtitle4": "Experience consistency in design and functionality",
+  "subtitle5": "From travel to productivity: everything in one place",
+
+  "phrase1": "Simplify. Integrate. Evolve.",
+  "phrase2": "Your cross-platform digital assistant",
+  "phrase3": "Where innovation meets practicality",
+  "phrase4": "One app ecosystem, infinite possibilities",
+  "phrase5": "Transform your routine with 17Suit",
+
+  "tryNow": "Try now",
+  "learnMore": "Learn more",
+  "getStarted": "Get started",
+  "feature1": "Seamless integration",
+  "feature2": "Unified design",
+  "feature3": "Cross-device synchronization",
+  "feature4": "Advanced customization",
+  "feature5": "Continuous updates",
+  "title": "About 17Suit",
+  "description": "17Suit is a suite of innovative applications designed to simplify and enhance your digital life. From travel planning to daily task management, 17Suit offers an integrated and consistent experience across all its applications."
 }

@@ -21,7 +21,7 @@ This Turborepo includes the following packages/apps:
 - `native`: a [react-native](https://reactnative.dev/) app built with [expo](https://docs.expo.dev/)
 - `web`: a [Next.js](https://nextjs.org/) app to see post & news [blog.17Suite.com](https://blog.17Suite.com)
 - `suite`: a [Next.js](https://nextjs.org/) app to authentication [www.17Suite.com](https://www.17Suite.com)
-- `opt`: a [Next.js](https://nextjs.org/) app to create plans [opt.17Suite.com](https://opt.17Suite.com)
+- `opt`: a [Next.js](https://nextjs.org/) app to create plans [oneplantrip.17Suite.com](https://oneplantrip.17Suite.com)
 - `@repo/ui`: a stub [react-native](https://reactnative.dev/) component library shared by both `web` and `native` applications
 - `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
 

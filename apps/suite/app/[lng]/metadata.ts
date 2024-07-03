@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+
 export const metadata: Metadata = {
   title: '17Suit - Innovative App Suite for Modern Life',
   description:
@@ -49,7 +50,6 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon-16x16.png',
-    apple: '/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
 };

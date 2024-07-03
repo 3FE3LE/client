@@ -40,7 +40,12 @@ export const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <Image alt="17 suit logo" className="navbar__logo" src={ss_logo} />
+      <Image
+        priority
+        alt="17 suit logo"
+        className="navbar__logo"
+        src={ss_logo}
+      />
       <ul className="navbar__menu">
         {menuItems.map(
           (item) =>

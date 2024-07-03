@@ -1,5 +1,6 @@
 import { signIn } from 'next-auth/react';
 import Image from 'next/image';
+
 import ss_google_icon from '@repo/ui/assets/google.svg';
 
 export const GoogleSignInButton = () => {

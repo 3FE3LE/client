@@ -30,7 +30,7 @@ export default async function Login() {
         <h1 className="heading--1">
           Welcome to{'\n'}
           <Link href="/">
-            <Image src={ss_logo} alt="logo" width={250} />
+            <Image priority src={ss_logo} alt="logo" width={250} />
           </Link>
         </h1>
         <LoginForm />

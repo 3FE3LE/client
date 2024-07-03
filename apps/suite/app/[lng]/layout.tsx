@@ -2,7 +2,7 @@ import '@repo/ui/styles/main.scss';
 
 import { dir } from 'i18next';
 
-import { AppWrapper } from '@/components';
+import { AppWrapper, Footer } from '@/components';
 
 import { metadata } from './metadata';
 
@@ -24,6 +24,7 @@ export default function RootLayout({
     <html lang={lng} dir={dir(lng)}>
       <body>
         <AppWrapper>{children}</AppWrapper>
+        <Footer lng={lng} />
       </body>
     </html>
   );

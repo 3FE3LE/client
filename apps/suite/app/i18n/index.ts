@@ -29,7 +29,7 @@ interface UseTranslationOptions {
 
 export async function useTranslation(
   lng: string,
-  ns: Namespace,
+  ns?: Namespace,
   options: UseTranslationOptions = {},
 ) {
   const i18nextInstance = await initI18next(lng, ns);
@@ -43,7 +43,6 @@ export async function useTranslation(
   };
 }
 
-// Si necesitas una función para usar en getStaticProps o getServerSideProps
 export async function getTranslation(
   context: GetStaticPropsContext,
   ns: Namespace,

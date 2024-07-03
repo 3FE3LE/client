@@ -1,3 +1,4 @@
+//SCALE ENTRANCES
 @keyframes scale-in-ver-bottom {
   0% {
     transform: scaleY(0);
@@ -21,5 +22,14 @@
     transform: scaleX(1);
     transform-origin: 0% 0%;
     opacity: 1;
+  }
+}
+// BACKGROUND
+@keyframes bg-pan-bottom {
+  0% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 50% 100%;
   }
 }

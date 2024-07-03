@@ -2,8 +2,6 @@
 .auth-layout {
   @include flex-center;
   min-height: 100dvh;
-  margin-top: rem(-64);
-  padding-top: rem(64);
   &__container {
     padding: rem(16);
     border-radius: rem(8);

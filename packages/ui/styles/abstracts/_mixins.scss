@@ -101,116 +101,86 @@
 
 @mixin heading($level) {
   @if $level == 1 {
-    font-family: Arvo;
     font-weight: 400;
     font-size: rem(96);
+    font-family: Arvo;
     letter-spacing: -1.5%;
     @media (max-width: 1200px) {
       font-size: rem(72);
     }
-    @media (max-width: 992px) {
+    @media (max-width: 768px) {
       font-size: rem(48);
     }
-    @media (max-width: 768px) {
-      font-size: rem(36);
-    }
-    @media (max-width: 576px) {
-      font-size: rem(24);
-    }
   } @else if $level == 2 {
-    font-family: Amaranth;
     font-weight: 400;
     font-size: rem(64);
+    font-family: Amaranth;
     letter-spacing: -0.5%;
     @media (max-width: 1200px) {
       font-size: rem(48);
     }
-    @media (max-width: 992px) {
+    @media (max-width: 768px) {
       font-size: rem(36);
     }
-    @media (max-width: 768px) {
-      font-size: rem(24);
-    }
-    @media (max-width: 576px) {
-      font-size: rem(18);
-    }
   } @else if $level == 3 {
-    font-family: Amaranth;
     font-weight: bold;
     font-size: rem(48);
+    font-family: Amaranth;
     letter-spacing: 0%;
     @media (max-width: 1200px) {
       font-size: rem(36);
     }
-    @media (max-width: 992px) {
-      font-size: rem(24);
-    }
     @media (max-width: 768px) {
-      font-size: rem(18);
-    }
-    @media (max-width: 576px) {
-      font-size: rem(14);
+      font-size: rem(24);
     }
   }
 }
 
 @mixin subtitle($level) {
   @if $level == 1 {
-    font-family: Amaranth;
     font-weight: 400;
     font-size: rem(32);
+    font-family: Amaranth;
     letter-spacing: 0.25%;
     @media (max-width: 1200px) {
       font-size: rem(28);
     }
-    @media (max-width: 992px) {
+    @media (max-width: 768px) {
       font-size: rem(24);
     }
-    @media (max-width: 768px) {
-      font-size: rem(20);
-    }
-    @media (max-width: 576px) {
-      font-size: rem(16);
-    }
   } @else if $level == 2 {
-    font-family: Arvo;
     font-weight: bold;
     font-size: rem(24);
+    font-family: Arvo;
     letter-spacing: 0%;
     @media (max-width: 1200px) {
       font-size: rem(20);
     }
-    @media (max-width: 992px) {
-      font-size: rem(18);
-    }
     @media (max-width: 768px) {
-      font-size: rem(16);
-    }
-    @media (max-width: 576px) {
-      font-size: rem(14);
+      font-size: rem(18);
     }
   }
 }
 @mixin text($type) {
   @if $type == base {
-    font-family: Zilla Slab;
     font-weight: 400;
     font-size: rem(16);
+    font-family: Zilla Slab;
     letter-spacing: 0%;
   } @else if $type == interface {
-    font-family: Zilla Slab;
     font-weight: 600;
     font-size: rem(14);
+    font-family: Zilla Slab;
     letter-spacing: 1.25%;
   } @else if $type == misc {
-    font-family: Arvo;
     font-weight: bold;
     font-size: rem(12);
+    font-family: Arvo;
     letter-spacing: 0.5%;
   } @else if $type == helps {
-    font-family: Zilla Slab;
     font-weight: 200;
     font-size: rem(10);
+    font-family: Zilla Slab;
     letter-spacing: 1.5%;
   }
 }

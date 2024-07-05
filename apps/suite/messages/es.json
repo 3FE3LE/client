@@ -1,0 +1,48 @@
+{
+  "home": {
+    "title1": "Tu vida digital, simplificada",
+    "title2": "Todas tus aplicaciones, un solo ecosistema",
+    "title3": "Potencia tu día a día",
+    "title4": "Integración perfecta, posibilidades infinitas",
+    "title5": "La evolución de tus aplicaciones",
+    "subtitle1": "Descubre la sinergia de aplicaciones diseñadas para ti",
+    "subtitle2": "Una suite para cada aspecto de tu vida moderna",
+    "subtitle3": "Conectando tus necesidades con soluciones inteligentes",
+    "subtitle4": "Experimenta la consistencia en diseño y funcionalidad",
+    "subtitle5": "Desde viajes hasta productividad: todo en un solo lugar",
+    "phrase1": "Simplifica. Integra. Evoluciona.",
+    "phrase2": "Tu asistente digital multiplataforma",
+    "phrase3": "Donde la innovación se encuentra con la practicidad",
+    "phrase4": "Un ecosistema de aplicaciones, infinitas posibilidades",
+    "phrase5": "Transforma tu rutina con 17Suit",
+    "tryNow": "Prueba ahora",
+    "learnMore": "Aprende más",
+    "getStarted": "Comienza ya",
+    "feature1": "Integración perfecta",
+    "feature2": "Diseño unificado",
+    "feature3": "Sincronización entre dispositivos",
+    "feature4": "Personalización avanzada",
+    "feature5": "Actualizaciones continuas",
+    "title": "Acerca de 17Suit",
+    "description": "17Suit es una suite de aplicaciones innovadoras diseñadas para simplificar y mejorar tu vida digital. Desde la planificación de viajes hasta la gestión de tareas diarias, 17Suit ofrece una experiencia integrada y consistente en todas sus aplicaciones."
+  },
+  "navbar": {
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "profile": "Perfil",
+    "dashboard": "Panel de control",
+    "log-out": "Cerrar sesión"
+  },
+  "footer": {
+    "about-us": "Sobre nosotros",
+    "social-impact": "Impacto social",
+    "for-business-partners": "Para socios comerciales",
+    "languages": "Idiomas",
+    "our-company": "Nuestra empresa",
+    "stories-news": "Historias y noticias",
+    "investor-relations": "Relaciones con inversores",
+    "people": "Personas",
+    "planet": "Planeta",
+    "coming-soon": "Próximamente"
+  }
+}

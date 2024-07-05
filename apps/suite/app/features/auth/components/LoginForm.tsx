@@ -76,7 +76,9 @@ export default function LoginForm() {
           <BackButton />
           <SubmitButton isDisable={!isValid || isSubmitting} />
         </div>
-        <Link href="/register">Not have account yet?, click to Sign up</Link>
+        <Link className="form__link" href="/register">
+          Not have account yet?, click to Sign up
+        </Link>
       </form>
     </FormWrapper>
   );

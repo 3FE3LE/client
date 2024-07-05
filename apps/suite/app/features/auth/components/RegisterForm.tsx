@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 
 import { BackButton } from '@/components';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -26,13 +27,18 @@ export default function RegisterForm() {
     mode: 'onChange',
     reValidateMode: 'onBlur',
   });
+  console.log(!isValid || isSubmitting);
 
   const onSubmit = async (data: FormData) => {
+    toast.loading('Loading...');
     const result = await UserRegister(data);
     if (result.message !== 'User created successfully') {
       // Manejar el error de inicio de sesión
+      toast.dismiss();
+      toast.error(result.message);
       setError(result.message);
     } else {
+      toast.success(result.message);
       // Redirigir al dashboard si el inicio de sesión es exitoso
       await signIn('credentials', {
         redirect: false,
@@ -69,7 +75,9 @@ export default function RegisterForm() {
           <BackButton />
           <SubmitButton isDisable={!isValid || isSubmitting} />
         </div>
-        <Link href="/login">Have an account?, click to Sign in</Link>
+        <Link className="form__link" href="/login">
+          Have an account?, click to Sign here
+        </Link>
       </form>
     </FormWrapper>
   );

@@ -1,48 +1,79 @@
-import Link from 'next/link';
+'use client';
 
-import { useTranslation } from '@/app/i18n';
+import { useTranslations } from 'next-intl';
 
-export const Footer = async ({ lng }: { lng: string }) => {
-  const { t } = await useTranslation(lng, 'footer');
+import { Link, usePathname } from '@/navigations';
+
+export const Footer = ({ locale }: { locale: string }) => {
+  const pathname = usePathname();
+  const t = useTranslations('footer');
+
   return (
     <footer className="footer__container">
       <div>
         <Link href="href">
-          <h5>About us</h5>
+          <h5>{t('about-us')}</h5>
         </Link>
         <ul>
           <Link href="href">
-            <li>Our Company</li>
+            <li>{t('our-company')}</li>
           </Link>
           <Link href="href">
-            <li>Stories and news </li>
+            <li>{t('stories-news')}</li>
           </Link>
           <Link href="href">
-            <li>Investor relations</li>
+            <li>{t('investor-relations')}</li>
           </Link>
         </ul>
       </div>
       <div>
         <Link href="href">
-          <h5>Social impact</h5>
+          <h5>{t('social-impact')}</h5>
         </Link>
         <ul>
           <Link href="href">
-            <li>People</li>
+            <li>{t('people')}</li>
           </Link>
           <Link href="href">
-            <li>Planet </li>
+            <li>{t('planet')}</li>
           </Link>
         </ul>
       </div>
       <div>
         <Link href="href">
-          <h5>For Business Partners</h5>
+          <h5>{t('for-business-partners')}</h5>
         </Link>
         <ul>
           <Link href="href">
-            <li>Coming soon</li>
+            <li>{t('coming-soon')}</li>
           </Link>
+        </ul>
+      </div>
+      <div>
+        <Link href="href">
+          <h5>{t('languages')}</h5>
+        </Link>
+        <ul>
+          <li>
+            <Link
+              hidden={locale === 'es'}
+              replace
+              locale="es"
+              scroll={false}
+              href={pathname}
+            >
+              ES
+            </Link>{' '}
+            <Link
+              hidden={locale === 'en'}
+              replace
+              locale="en"
+              scroll={false}
+              href={pathname}
+            >
+              EN
+            </Link>
+          </li>
         </ul>
       </div>
     </footer>

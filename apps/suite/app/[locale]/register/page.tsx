@@ -28,9 +28,9 @@ export default async function Register() {
     <div className="register-page">
       <div className="register-page__container">
         <h1 className="heading--1">
-          Sign Up your{' '}
+          Sign Up in{' '}
           <Link href="/">
-            <Image priority alt="logo" src={ss_logo} width={250} /> Account!!
+            <Image priority alt="logo" src={ss_logo} width={250} />
           </Link>
         </h1>
         <RegisterForm />

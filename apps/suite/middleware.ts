@@ -1,52 +1,49 @@
-import acceptLanguage from 'accept-language';
 import { withAuth } from 'next-auth/middleware';
-import { NextResponse } from 'next/server';
+import createMiddleware from 'next-intl/middleware';
+import { NextRequest } from 'next/server';
 
-import { cookieName, fallbackLng, languages } from './app/i18n/settings';
+const locales = ['es', 'en'];
 
-export default withAuth({
-  callbacks: {
-    authorized: async ({ req, token }) => {
-      console.log(token);
-      return token !== null;
-    },
-  },
+const publicPages = ['/', '/login', '/register'];
+
+const intlMiddleware = createMiddleware({
+  locales,
+  defaultLocale: 'en',
 });
 
-export const config = {
-  matcher: [
-    '/dashboard',
-    '/profile',
-    '/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js|site.webmanifest).*)',
-  ],
-};
+const authMiddleware = withAuth(
+  // Note that this callback is only invoked if
+  // the `authorized` callback has returned `true`
+  // and not for pages listed in `pages`.
+  function onSuccess(req) {
+    return intlMiddleware(req);
+  },
+  {
+    callbacks: {
+      authorized: ({ token }) => token != null,
+    },
+    pages: {
+      signIn: '/login',
+    },
+  },
+);
 
-export function middleware(req: any) {
-  let lng;
-  if (req.cookies.has(cookieName))
-    lng = acceptLanguage.get(req.cookies.get(cookieName).value);
-  if (!lng) lng = acceptLanguage.get(req.headers.get('Accept-Language'));
-  if (!lng) lng = fallbackLng;
+export default function middleware(req: NextRequest) {
+  const publicPathnameRegex = RegExp(
+    `^(/(${locales.join('|')}))?(${publicPages
+      .flatMap((p) => (p === '/' ? ['', '/'] : p))
+      .join('|')})/?$`,
+    'i',
+  );
+  const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
 
-  // Redirect if lng in path is not supported
-  if (
-    !languages.some((loc) => req.nextUrl.pathname.startsWith(`/${loc}`)) &&
-    !req.nextUrl.pathname.startsWith('/_next')
-  ) {
-    return NextResponse.redirect(
-      new URL(`/${lng}${req.nextUrl.pathname}`, req.url),
-    );
+  if (isPublicPage) {
+    return intlMiddleware(req);
+  } else {
+    return (authMiddleware as any)(req);
   }
-
-  if (req.headers.has('referer')) {
-    const refererUrl = new URL(req.headers.get('referer'));
-    const lngInReferer = languages.find((l) =>
-      refererUrl.pathname.startsWith(`/${l}`),
-    );
-    const response = NextResponse.next();
-    if (lngInReferer) response.cookies.set(cookieName, lngInReferer);
-    return response;
-  }
-
-  return NextResponse.next();
 }
+
+export const config = {
+  matcher: ['/profile', '/dashboard', '/((?!api|_next|.*\\..*).*)'],
+};

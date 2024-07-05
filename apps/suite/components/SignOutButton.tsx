@@ -3,7 +3,7 @@
 import { signOut } from 'next-auth/react';
 import { toast } from 'react-hot-toast';
 
-export const SignOutButton = ({ text }: { text: string }) => {
+export const SignOutButton = ({ text }: { text?: string }) => {
   return (
     <button
       onClick={() => {
@@ -11,7 +11,7 @@ export const SignOutButton = ({ text }: { text: string }) => {
         toast.success('You are logout');
       }}
     >
-      {text}
+      {text || 'Sign Out'}
     </button>
   );
 };

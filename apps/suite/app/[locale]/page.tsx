@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -12,6 +12,7 @@ type Params = {
 };
 
 export default async function Home({ params: { locale } }: Params) {
+  unstable_setRequestLocale(locale);
   const t = await getTranslations('home');
   return (
     <>

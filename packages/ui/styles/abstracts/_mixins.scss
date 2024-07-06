@@ -101,6 +101,8 @@
 
 @mixin heading($level) {
   @if $level == 1 {
+    display: contents;
+    max-width: rem(550);
     font-weight: 400;
     font-size: rem(96);
     font-family: Arvo;

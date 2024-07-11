@@ -1,6 +1,12 @@
-export type PageProps = {
+export interface PageProps {
   children: React.ReactNode;
-  params: {
-    locale: string;
-  };
+  params: Params;
+}
+
+export type PageParams = {
+  params: Params;
+};
+
+export type Params = {
+  locale: 'es' | 'en';
 };

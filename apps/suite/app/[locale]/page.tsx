@@ -5,13 +5,9 @@ import Link from 'next/link';
 import { Navbar } from '@/components';
 import lading_img from '@repo/ui/assets/animated/traveler-a.svg';
 
-type Params = {
-  params: {
-    locale: string;
-  };
-};
+import { PageParams } from '../types';
 
-export default async function Home({ params: { locale } }: Params) {
+export default async function Home({ params: { locale } }: PageParams) {
   unstable_setRequestLocale(locale);
   const t = await getTranslations('home');
   return (

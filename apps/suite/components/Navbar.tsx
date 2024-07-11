@@ -9,8 +9,9 @@ import { usePathname } from 'next/navigation';
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
 
 import { SignOutButton } from './SignOutButton';
+import { ThemeSwitcher } from './ThemeSwitcher';
 
-export const Navbar = ({ locale }: { locale: string }) => {
+export const Navbar = ({ locale }: { locale: 'en' | 'es' | undefined }) => {
   const pathname = usePathname();
   const session = useSession();
   const t = useTranslations('navbar');
@@ -56,6 +57,7 @@ export const Navbar = ({ locale }: { locale: string }) => {
             !item.protected && (
               <li key={item.name}>
                 <Link
+                  prefetch={true}
                   locale={locale}
                   className={`navbar__menu-item ${item.href === pathname && 'navbar__menu-item--active'}`}
                   href={item.href}
@@ -65,6 +67,9 @@ export const Navbar = ({ locale }: { locale: string }) => {
               </li>
             ),
         )}
+        <li>
+          <ThemeSwitcher />
+        </li>
         <li>
           {session.status === 'authenticated' && (
             <SignOutButton text={t('log-out')} />

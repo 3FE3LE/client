@@ -2,6 +2,7 @@ import '@repo/ui/styles/main.scss';
 
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
+import { ThemeProvider } from 'next-themes';
 
 import { AppWrapper, Footer } from '@/components';
 
@@ -13,7 +14,6 @@ const languages = ['en', 'es'];
 export async function generateStaticParams() {
   return languages.map((locale) => ({ locale }));
 }
-
 export default async function RootLayout({
   children,
   params: { locale },
@@ -21,12 +21,21 @@ export default async function RootLayout({
   unstable_setRequestLocale(locale);
   const messages = await getMessages();
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body>
-        <NextIntlClientProvider messages={messages}>
-          <AppWrapper>{children}</AppWrapper>
-          <Footer locale={locale} />
-        </NextIntlClientProvider>
+        <ThemeProvider
+          enableColorScheme={true}
+          defaultTheme="system"
+          storageKey="theme"
+          themes={['system', 'dark', 'light']}
+        >
+          <NextIntlClientProvider messages={messages}>
+            <AppWrapper>
+              {children}
+              <Footer locale={locale} />
+            </AppWrapper>
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

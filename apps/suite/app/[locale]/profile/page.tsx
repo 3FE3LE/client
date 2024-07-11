@@ -14,5 +14,9 @@ export default async function ProfilePage() {
     redirect('/login');
   }
 
-  return <div>You need to be authenticated to view this page.</div>;
+  return (
+    <div>
+      <h1>Profile</h1>
+    </div>
+  );
 }

@@ -5,7 +5,7 @@ import ss_google_icon from '@repo/ui/assets/google.svg';
 
 export const GoogleSignInButton = () => {
   return (
-    <button
+    <div
       className="form__button--google"
       onClick={(e) => {
         e.preventDefault();
@@ -13,6 +13,6 @@ export const GoogleSignInButton = () => {
       }}
     >
       <Image alt="google" src={ss_google_icon} /> <span>Sign In</span>
-    </button>
+    </div>
   );
 };

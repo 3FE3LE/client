@@ -1,11 +1,6 @@
 import { PageProps } from '@/app/types';
-import { Navbar } from '@/components';
+import { MainLayout } from '@/components';
 
-export default function Layout({ children, params: { locale } }: PageProps) {
-  return (
-    <div>
-      <Navbar locale={locale} />
-      {children}
-    </div>
-  );
+export default function Layout({ children, params }: PageProps) {
+  return <MainLayout params={params}>{children}</MainLayout>;
 }

@@ -1,11 +1,13 @@
 .footer {
   &__container {
-    @include flex-center;
     @include highlighted-color;
+    display: flex;
+    position: sticky;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: flex-start;
     gap: rem(32);
+    z-index: 1;
     padding: rem(16);
   }
 }

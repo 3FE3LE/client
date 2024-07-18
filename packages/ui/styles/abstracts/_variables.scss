@@ -31,10 +31,12 @@ $ss-warning: #edd83d;
 $ss-danger: #f3863d;
 $ss-error: #f8333c;
 $ss-info: #1e91d6;
-
-$text-color: $ss-black;
-$foreground-color: white;
-$background-color: $ss-white;
+// shadow colors
+$ss-shadow-dl: #cacaca;
+$ss-shadow-ul: #ffffff;
+$ss-shadow-dd: #00141a;
+$ss-shadow-ud: #001a24;
+//theme color schema
 
 $primary-color: $ss-green;
 $secondary-color: $ss-blue;

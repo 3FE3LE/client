@@ -15,8 +15,6 @@ export const ThemeSwitcher = () => {
     return null;
   }
 
-  const localTheme = window.localStorage.getItem('theme');
-  setTheme(localTheme as string);
   return (
     <select value={theme} onChange={(e) => setTheme(e.target.value)}>
       <option value="system">System</option>

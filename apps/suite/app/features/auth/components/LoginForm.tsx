@@ -74,7 +74,7 @@ export default function LoginForm() {
         {error && <p className="form__error">{error}</p>}
         <div className="form__group form__group--buttons">
           <BackButton />
-          <SubmitButton isDisable={!isValid || isSubmitting} />
+          <SubmitButton isDisable={isSubmitting} />
         </div>
         <Link className="form__link" href="/register">
           Not have account yet?, click to Sign up

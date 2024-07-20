@@ -1,7 +1,4 @@
 :root {
-  //theme color schema
-  @include background-color;
-  @include text-color;
   // react-tooltip variables
   --rt-color-white: $ss-white;
   --rt-color-dark: $ss-black;
@@ -12,8 +9,13 @@
   --rt-opacity: 0.9;
   --rt-transition-show-delay: 0.15s;
   --rt-transition-closing-delay: 0.15s;
+  background-color: $ss-white;
+  color: $ss-black;
 }
-
+[data-theme='dark'] {
+  background-color: $ss-black;
+  color: $ss-white;
+}
 a {
   color: $primary-color;
   font-family: Arvo;

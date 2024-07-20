@@ -3,7 +3,6 @@ import { getServerSession } from 'next-auth/next';
 import { redirect } from 'next/navigation';
 
 import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
-import { SignOutButton } from '@/components';
 
 // Esta función se ejecutará en el servidor
 const getSessionOnServer = async (): Promise<Session | null> => {
@@ -17,10 +16,9 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div>
+    <div className="dashboard__container">
       <h1>Dashboard</h1>
       <p>Welcome, {session?.user?.email}</p>
-      <SignOutButton />
     </div>
   );
 }

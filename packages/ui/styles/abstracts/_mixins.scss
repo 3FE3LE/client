@@ -32,81 +32,147 @@
 
 @mixin text-color {
   color: $ss-black;
-  @media (prefers-color-scheme: dark) {
+  [data-theme='dark'] & {
     color: $ss-white;
   }
 }
 
 @mixin background-color {
   background: $ss-white;
-  @media (prefers-color-scheme: dark) {
+  [data-theme='dark'] & {
     background: $ss-black;
   }
 }
 
 @mixin foreground-color {
   background: $ss-gray-l;
-  @media (prefers-color-scheme: dark) {
+  [data-theme='dark'] & {
     background: $ss-gray-d;
   }
 }
 
 @mixin highlighted-color {
   background: $ss-gray-lr;
-  @media (prefers-color-scheme: dark) {
+  [data-theme='dark'] & {
     background: $ss-gray-dr;
   }
 }
-@mixin shadow-sm {
-  box-shadow: 0 rem(4) rem(8) 0 $ss-gray-l;
-  @media (prefers-color-scheme: dark) {
-    box-shadow: 0 rem(4) rem(8) 0 $ss-gray-d;
+
+@mixin gradient-concave-color {
+}
+
+@mixin gradient-convex-color {
+}
+
+@mixin shadow-sm($inset: false) {
+  @if $inset {
+    box-shadow:
+      inset 4px 4px 8px $ss-gray-l,
+      inset -4px -4px 8px $ss-gray-lr;
+    [data-theme='dark'] & {
+      box-shadow:
+        inset 4px 4px 8px $ss-gray-dr,
+        inset -4px -4px 8px $ss-gray-d;
+    }
+  } @else {
+    box-shadow:
+      4px 4px 8px $ss-gray-l,
+      -4px -4px 8px $ss-gray-lr;
+    [data-theme='dark'] & {
+      box-shadow:
+        4px 4px 8px $ss-gray-dr,
+        -4px -4px 8px $ss-gray-d;
+    }
   }
 }
 
-@mixin shadow-md {
-  box-shadow: 0 rem(8) rem(12) 0 $ss-gray-l;
-  @media (prefers-color-scheme: dark) {
-    box-shadow: 0 rem(8) rem(12) 0 $ss-gray-d;
+@mixin shadow-md($inset: false) {
+  @if $inset {
+    box-shadow:
+      inset 8px 8px 12px $ss-gray-l,
+      inset -8px -8px 12px $ss-gray-lr;
+    [data-theme='dark'] & {
+      box-shadow:
+        inset 8px 8px 12px $ss-gray-dr,
+        inset -8px -8px 12px $ss-gray-d;
+    }
+  } @else {
+    box-shadow:
+      8px 8px 12px $ss-gray-l,
+      -8px -8px 12px $ss-gray-lr;
+    [data-theme='dark'] & {
+      box-shadow:
+        8px 8px 12px $ss-gray-dr,
+        -8px -8px 12px $ss-gray-d;
+    }
   }
 }
 
-@mixin shadow {
-  box-shadow: 0 rem(12) rem(16) 0 $ss-gray-l;
-  @media (prefers-color-scheme: dark) {
-    box-shadow: 0 rem(12) rem(16) 0 $ss-gray-d;
+@mixin shadow($inset: false) {
+  @if $inset {
+    box-shadow:
+      inset 12px 12px 16px $ss-gray-l,
+      inset -12px -12px 16px $ss-gray-lr;
+    [data-theme='dark'] & {
+      box-shadow:
+        inset 12px 12px 16px $ss-gray-dr,
+        inset -12px -12px 16px $ss-gray-d;
+    }
+  } @else {
+    box-shadow:
+      12px 12px 16px $ss-gray-l,
+      -12px -12px 16px $ss-gray-lr;
+    [data-theme='dark'] & {
+      box-shadow:
+        12px 12px 16px $ss-gray-dr,
+        -12px -12px 16px $ss-gray-d;
+    }
   }
 }
 
-@mixin shadow-lg {
-  box-shadow: 0 rem(16) rem(24) 0 $ss-gray-l;
-  @media (prefers-color-scheme: dark) {
-    box-shadow: 0 rem(16) rem(24) 0 $ss-gray-d;
+@mixin shadow-lg($inset: false) {
+  @if $inset {
+    box-shadow:
+      inset 16px 16px 24px $ss-gray-l,
+      inset -16px -16px 24px $ss-gray-lr;
+    [data-theme='dark'] & {
+      box-shadow:
+        inset 16px 16px 24px $ss-gray-dr,
+        inset -16px -16px 24px $ss-gray-d;
+    }
+  } @else {
+    box-shadow:
+      16px 16px 24px $ss-gray-l,
+      -16px -16px 24px $ss-gray-lr;
+    [data-theme='dark'] & {
+      box-shadow:
+        16px 16px 24px $ss-gray-dr,
+        -16px -16px 24px $ss-gray-d;
+    }
   }
 }
 
 @mixin hover-focus-color {
   background-color: $ss-gray-lr;
-  @media (prefers-color-scheme: dark) {
+  [data-theme='dark'] & {
     background-color: $ss-gray-dr;
   }
 }
 
 @mixin border-color {
   border: 4px solid $ss-gray-l;
-  @media (prefers-color-scheme: dark) {
+  [data-theme='dark'] & {
     border: 4px solid $ss-gray-d;
   }
 }
 
 @mixin heading($level) {
   @if $level == 1 {
-    display: contents;
     max-width: rem(550);
     font-weight: 400;
     font-size: rem(96);
     font-family: Arvo;
-    letter-spacing: -1.5%;
+    letter-spacing: -1.5px;
     @media (max-width: 1200px) {
       font-size: rem(72);
     }
@@ -117,7 +183,7 @@
     font-weight: 400;
     font-size: rem(64);
     font-family: Amaranth;
-    letter-spacing: -0.5%;
+    letter-spacing: -0.5px;
     @media (max-width: 1200px) {
       font-size: rem(48);
     }
@@ -128,7 +194,6 @@
     font-weight: bold;
     font-size: rem(48);
     font-family: Amaranth;
-    letter-spacing: 0%;
     @media (max-width: 1200px) {
       font-size: rem(36);
     }
@@ -143,7 +208,7 @@
     font-weight: 400;
     font-size: rem(32);
     font-family: Amaranth;
-    letter-spacing: 0.25%;
+    letter-spacing: 0.25px;
     @media (max-width: 1200px) {
       font-size: rem(28);
     }
@@ -154,7 +219,6 @@
     font-weight: bold;
     font-size: rem(24);
     font-family: Arvo;
-    letter-spacing: 0%;
     @media (max-width: 1200px) {
       font-size: rem(20);
     }
@@ -168,21 +232,20 @@
     font-weight: 400;
     font-size: rem(16);
     font-family: Zilla Slab;
-    letter-spacing: 0%;
   } @else if $type == interface {
     font-weight: 600;
     font-size: rem(14);
     font-family: Zilla Slab;
-    letter-spacing: 1.25%;
+    letter-spacing: 1.25px;
   } @else if $type == misc {
     font-weight: bold;
     font-size: rem(12);
     font-family: Arvo;
-    letter-spacing: 0.5%;
+    letter-spacing: 0.5px;
   } @else if $type == helps {
     font-weight: 200;
     font-size: rem(10);
     font-family: Zilla Slab;
-    letter-spacing: 1.5%;
+    letter-spacing: 1.5px;
   }
 }

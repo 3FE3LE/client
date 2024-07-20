@@ -1,0 +1,7 @@
+.main {
+  min-height: 100dvh;
+  &__content {
+    display: flex;
+    position: relative;
+  }
+}

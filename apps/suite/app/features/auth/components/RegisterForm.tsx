@@ -21,13 +21,12 @@ export default function RegisterForm() {
   const router = useRouter();
   const {
     register,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange',
     reValidateMode: 'onBlur',
   });
-  console.log(!isValid || isSubmitting);
 
   const onSubmit = async (data: FormData) => {
     toast.loading('Loading...');
@@ -73,7 +72,7 @@ export default function RegisterForm() {
         {error && <p className="form__error">{error}</p>}
         <div className="form__group form__group--buttons">
           <BackButton />
-          <SubmitButton isDisable={!isValid || isSubmitting} />
+          <SubmitButton isDisable={isSubmitting} />
         </div>
         <Link className="form__link" href="/login">
           Have an account?, click to Sign here

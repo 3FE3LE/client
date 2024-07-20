@@ -18,7 +18,10 @@ export const Footer = ({ locale }: { locale: string }) => {
           <Link href="href">
             <li>{t('our-company')}</li>
           </Link>
-          <Link href="href">
+          <Link
+            target="_blank"
+            href="https://chat.whatsapp.com/BQR8qRmAOfRLq8RAUjMVKO"
+          >
             <li>{t('stories-news')}</li>
           </Link>
           <Link href="href">

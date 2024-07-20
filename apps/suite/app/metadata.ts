@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         alt: '17Suit App Suite Overview',
       },
     ],
-    locale: 'en_US',
+    locale: 'en',
     type: 'website',
   },
   twitter: {

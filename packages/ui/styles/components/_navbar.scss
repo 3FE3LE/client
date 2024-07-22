@@ -6,8 +6,8 @@
   top: 0;
   justify-content: space-between;
   align-items: center;
-  padding: rem(16);
-  height: rem(64);
+  padding: rem(0) rem(16);
+  height: rem(52);
 
   &__logo {
     max-width: rem(100);
@@ -15,11 +15,15 @@
 
   &__menu {
     display: flex;
+    align-items: baseline;
+    gap: rem(8);
     padding: 0;
     list-style: none;
   }
   &__menu-item {
-    padding: rem(8) rem(16);
+    @include text(interface);
+    display: inline;
+    padding: rem(8) rem(8);
     &:hover,
     &--active {
       border-radius: rem(4);

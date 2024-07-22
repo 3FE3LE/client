@@ -29,6 +29,7 @@
     padding: rem(4);
     width: rem(24);
     height: rem(24);
+    @include background-color;
     @include shadow-sm;
   }
 }

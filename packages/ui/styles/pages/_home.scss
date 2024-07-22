@@ -2,9 +2,9 @@
   &__container {
     @include flex-center;
     flex-wrap: wrap;
-    margin-top: rem(-64);
+    margin-top: rem(-52);
     padding: rem(16);
-    padding-top: rem(64);
+    padding-top: rem(52);
     min-height: 100dvh;
   }
   &__title {
@@ -20,6 +20,7 @@
   &__button {
     @include highlighted-color;
     @include border-color;
+    @include shadow-sm;
     @include heading(3);
     cursor: pointer;
     border-radius: rem(8);

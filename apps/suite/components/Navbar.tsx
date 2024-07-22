@@ -3,9 +3,9 @@
 import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { Link } from '@/navigations';
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
 
 import { SignOutButton } from './SignOutButton';
@@ -70,11 +70,11 @@ export const Navbar = ({ locale }: { locale: 'en' | 'es' | undefined }) => {
         <li>
           <ThemeSwitcher />
         </li>
-        <li>
-          {session.status === 'authenticated' && (
+        {session.status === 'authenticated' && (
+          <li>
             <SignOutButton text={t('log-out')} />
-          )}
-        </li>
+          </li>
+        )}
       </ul>
     </nav>
   );

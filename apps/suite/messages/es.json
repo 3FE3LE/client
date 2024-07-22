@@ -27,8 +27,8 @@
     "description": "17Suit es una suite de aplicaciones innovadoras diseñadas para simplificar y mejorar tu vida digital. Desde la planificación de viajes hasta la gestión de tareas diarias, 17Suit ofrece una experiencia integrada y consistente en todas sus aplicaciones."
   },
   "navbar": {
-    "login": "Iniciar sesión",
-    "register": "Registrarse",
+    "login": "Iniciar",
+    "register": "Registro",
     "profile": "Perfil",
     "dashboard": "Panel de control",
     "log-out": "Salir"

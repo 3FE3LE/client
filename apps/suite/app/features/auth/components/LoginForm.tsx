@@ -3,7 +3,7 @@
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 
@@ -22,7 +22,7 @@ export default function LoginForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isValid },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange',
@@ -51,6 +51,7 @@ export default function LoginForm() {
 
   return (
     <FormWrapper title="Login" loading={isSubmitting}>
+      <BackButton />
       <form onSubmit={handleSubmit(onSubmit)}>
         {LoginInputs.map((input: LoginInput) => (
           <InputGroup
@@ -58,14 +59,10 @@ export default function LoginForm() {
             errors={errors[input.name]?.message}
             label={input.label}
             name={input.name}
-          >
-            <input
-              {...register(input.name)}
-              type={input.type}
-              name={input.name}
-              placeholder={input.placeholder}
-            />
-          </InputGroup>
+            register={register}
+            type={input.type}
+            placeholder={input.placeholder}
+          />
         ))}
         <div className="form__division">
           <span>or</span>
@@ -73,7 +70,6 @@ export default function LoginForm() {
         <GoogleSignInButton />
         {error && <p className="form__error">{error}</p>}
         <div className="form__group form__group--buttons">
-          <BackButton />
           <SubmitButton isDisable={isSubmitting} />
         </div>
         <Link className="form__link" href="/register">

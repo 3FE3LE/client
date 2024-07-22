@@ -21,12 +21,15 @@ export default function RegisterForm() {
   const router = useRouter();
   const {
     register,
-    formState: { errors, isSubmitting },
+    handleSubmit,
+    formState: { errors, isSubmitting, isValid },
   } = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange',
     reValidateMode: 'onBlur',
   });
+
+  const handleOnSubmit = () => isValid;
 
   const onSubmit = async (data: FormData) => {
     toast.loading('Loading...');
@@ -51,31 +54,26 @@ export default function RegisterForm() {
   return (
     <FormWrapper title="Register" loading={isSubmitting}>
       {isSubmitting && <p>Loading...</p>}
-      <form action={onSubmit}>
+      <BackButton />
+      <form onSubmit={handleSubmit(handleOnSubmit)} action={onSubmit}>
         {RegisterInputs.map((input: RegisterInput) => (
           <InputGroup
             key={input.name}
             errors={errors[input.name]?.message}
             label={input.label}
             name={input.name}
-          >
-            <input
-              {...register(input.name)}
-              type={input.type}
-              name={input.name}
-              id={input.name}
-              placeholder={input.placeholder}
-            />
-          </InputGroup>
+            register={register}
+            type={input.type}
+            placeholder={input.placeholder}
+          />
         ))}
 
         {error && <p className="form__error">{error}</p>}
         <div className="form__group form__group--buttons">
-          <BackButton />
           <SubmitButton isDisable={isSubmitting} />
         </div>
         <Link className="form__link" href="/login">
-          Have an account?, click to Sign here
+          Have an account?, click to Sign in
         </Link>
       </form>
     </FormWrapper>

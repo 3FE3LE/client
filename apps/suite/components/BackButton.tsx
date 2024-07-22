@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 
+import { useRouter } from '@/navigations';
 import left_arrow from '@repo/ui/assets/arrow-left.svg';
 
 export const BackButton = () => {

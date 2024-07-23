@@ -1,4 +1,4 @@
-import { PageProps } from '@/app/types';
+import { PageProps } from '@repo/ui/types';
 
 import { Navbar } from './Navbar';
 import { Sidebar } from './Sidebar';

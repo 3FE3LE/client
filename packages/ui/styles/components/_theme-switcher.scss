@@ -4,6 +4,7 @@
   align-items: center;
   gap: rem(8);
   cursor: pointer;
+  width: min-content;
   span {
     @media (max-width: 768px) {
       display: none;

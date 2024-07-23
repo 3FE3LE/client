@@ -1,14 +1,16 @@
 'use client';
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Monitor, Moon, Sun } from '@repo/ui';
+import { Monitor } from '../icons/Monitor';
+import { Moon } from '../icons/Moon';
+import { Sun } from '../icons/Sun';
 
 export const ThemeSwitcher = () => {
   const themes = [
-    { name: 'system', icon: Monitor },
-    { name: 'dark', icon: Moon },
-    { name: 'light', icon: Sun },
+    { name: 'system', title: 'System', icon: Monitor },
+    { name: 'dark', title: 'Dark', icon: Moon },
+    { name: 'light', title: 'Light', icon: Sun },
   ];
 
   const [mounted, setMounted] = useState(false);
@@ -26,7 +28,7 @@ export const ThemeSwitcher = () => {
 
   return (
     <div className="th-sw" onClick={() => setShowOptions(!showOptions)}>
-      <span className="">Theme</span>
+      <span>{selectedTheme ? selectedTheme.title : 'Theme'}</span>
       <button className={`th-sw__btn `}>
         {selectedTheme && <selectedTheme.icon />}
       </button>

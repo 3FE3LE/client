@@ -3,13 +3,12 @@
 import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 
-import { Link } from '@/navigations';
+import { ThemeSwitcher } from '@repo/ui';
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
+import { Link, usePathname } from '@sss/navigations';
 
 import { SignOutButton } from './SignOutButton';
-import { ThemeSwitcher } from './ThemeSwitcher';
 
 export const Navbar = ({ locale }: { locale: 'en' | 'es' | undefined }) => {
   const pathname = usePathname();

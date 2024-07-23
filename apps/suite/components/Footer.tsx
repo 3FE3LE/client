@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-import { Link, usePathname } from '@/navigations';
+import { Link, usePathname } from '@sss/navigations';
 
 export const Footer = ({ locale }: { locale: string }) => {
   const pathname = usePathname();

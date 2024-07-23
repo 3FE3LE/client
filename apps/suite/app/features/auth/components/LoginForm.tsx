@@ -2,14 +2,13 @@
 
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 
-import { BackButton } from '@/components';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FormWrapper, InputGroup, SubmitButton } from '@repo/ui';
+import { BackButton, FormWrapper, InputGroup, SubmitButton } from '@repo/ui';
+import { useRouter } from '@sss/navigations';
 
 import { LoginInputs } from '../constants/inputs';
 import { LoginSchema as schema } from '../constants/schemas';
@@ -51,7 +50,7 @@ export default function LoginForm() {
 
   return (
     <FormWrapper title="Login" loading={isSubmitting}>
-      <BackButton />
+      <BackButton handleClick={router.back} />
       <form onSubmit={handleSubmit(onSubmit)}>
         {LoginInputs.map((input: LoginInput) => (
           <InputGroup

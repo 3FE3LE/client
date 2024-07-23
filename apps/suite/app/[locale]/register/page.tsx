@@ -5,9 +5,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
-import { RegisterForm } from '@/app/features/auth/components';
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
+import { authOptions } from '@sss/app/api/auth/[...nextauth]/authOptions';
+import { RegisterForm } from '@sss/app/features/auth/components';
 
 export const metadata: Metadata = {
   title: '17Suit - Register',

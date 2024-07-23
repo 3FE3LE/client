@@ -2,10 +2,9 @@ import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Navbar } from '@/components';
 import lading_img from '@repo/ui/assets/animated/traveler-a.svg';
-
-import { PageParams } from '../types';
+import { PageParams } from '@repo/ui/types';
+import { Navbar } from '@sss/components';
 
 export default async function Home({ params: { locale } }: PageParams) {
   unstable_setRequestLocale(locale);

@@ -2,7 +2,9 @@ import { Session } from 'next-auth';
 import { getServerSession } from 'next-auth/next';
 import { redirect } from 'next/navigation';
 
-import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
+import { Card } from '@repo/ui';
+import { authOptions } from '@sss/app/api/auth/[...nextauth]/authOptions';
+import { Link } from '@sss/navigations';
 
 // Esta función se ejecutará en el servidor
 const getSessionOnServer = async (): Promise<Session | null> => {
@@ -19,6 +21,13 @@ export default async function DashboardPage() {
     <div className="dashboard__container">
       <h1>Dashboard</h1>
       <p>Welcome, {session?.user?.email}</p>
+      <Card>
+        <h3 className="card__header">One Plan trip</h3>
+        <p className="card__body">Plan your next adventure with ease</p>
+        <Link href={'http://localhost:3002'} className="card__button">
+          Launch app
+        </Link>
+      </Card>
     </div>
   );
 }

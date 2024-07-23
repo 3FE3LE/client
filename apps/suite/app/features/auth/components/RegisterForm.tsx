@@ -2,14 +2,13 @@
 
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 
-import { BackButton } from '@/components';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FormWrapper, InputGroup, SubmitButton } from '@repo/ui';
+import { BackButton, FormWrapper, InputGroup, SubmitButton } from '@repo/ui';
+import { useRouter } from '@sss/navigations';
 
 import { UserRegister } from '../actions';
 import { RegisterInputs } from '../constants/inputs';
@@ -54,7 +53,7 @@ export default function RegisterForm() {
   return (
     <FormWrapper title="Register" loading={isSubmitting}>
       {isSubmitting && <p>Loading...</p>}
-      <BackButton />
+      <BackButton handleClick={router.back} />
       <form onSubmit={handleSubmit(handleOnSubmit)} action={onSubmit}>
         {RegisterInputs.map((input: RegisterInput) => (
           <InputGroup

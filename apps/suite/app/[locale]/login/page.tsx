@@ -4,9 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
-import { LoginForm } from '@/app/features/auth/components';
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
+import { authOptions } from '@sss/app/api/auth/[...nextauth]/authOptions';
+import { LoginForm } from '@sss/app/features/auth/components';
 
 import type { Metadata } from 'next';
 export const metadata: Metadata = {

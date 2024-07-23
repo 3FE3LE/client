@@ -1,13 +1,12 @@
-import '@repo/ui/styles/main.scss';
+import '@sss/styles/main.scss';
 
-import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
-import { ThemeProvider } from 'next-themes';
 
-import { AppWrapper, Footer } from '@/components';
+import { AppWrapper } from '@repo/ui';
+import { PageProps } from '@repo/ui/types';
+import { Footer } from '@sss/components';
 
 import { metadata } from '../metadata';
-import { PageProps } from '../types';
 
 const languages = ['en', 'es'];
 
@@ -23,19 +22,10 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body>
-        <ThemeProvider
-          enableColorScheme={true}
-          defaultTheme="system"
-          storageKey="theme"
-          themes={['system', 'dark', 'light']}
-        >
-          <NextIntlClientProvider messages={messages}>
-            <AppWrapper>
-              {children}
-              <Footer locale={locale} />
-            </AppWrapper>
-          </NextIntlClientProvider>
-        </ThemeProvider>
+        <AppWrapper messages={messages} locale={locale}>
+          {children}
+          <Footer locale={locale} />
+        </AppWrapper>
       </body>
     </html>
   );

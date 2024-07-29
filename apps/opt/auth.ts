@@ -1,10 +1,8 @@
 import { createHttpClient } from 'edgedb';
 import NextAuth from 'next-auth';
-import Credentials from 'next-auth/providers/credentials';
 import Google from 'next-auth/providers/google';
 
 import { EdgeDBAdapter } from '@auth/edgedb-adapter';
-import { loginUser } from '@sss/app/features/auth/repository';
 
 import type { Adapter } from 'next-auth/adapters';
 
@@ -19,24 +17,6 @@ const adapter: Adapter = EdgeDBAdapter(client);
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: adapter,
   providers: [
-    Credentials({
-      name: 'Credentials',
-      credentials: {
-        email: {},
-        password: {},
-      },
-      async authorize(credentials) {
-        const user = await loginUser(
-          credentials.email as string,
-          credentials.password as string,
-        );
-        if (user) {
-          return { ...user };
-        } else {
-          return null;
-        }
-      },
-    }),
     Google({
       allowDangerousEmailAccountLinking: true,
       authorization: {

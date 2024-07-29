@@ -1,6 +1,7 @@
-import { withAuth } from 'next-auth/middleware';
 import createMiddleware from 'next-intl/middleware';
-import { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
+
+import { auth } from '@web/auth';
 
 const locales = ['es', 'en'];
 
@@ -11,39 +12,31 @@ const intlMiddleware = createMiddleware({
   defaultLocale: 'en',
 });
 
-const authMiddleware = withAuth(
-  // Note that this callback is only invoked if
-  // the `authorized` callback has returned `true`
-  // and not for pages listed in `pages`.
-  function onSuccess(req) {
-    return intlMiddleware(req);
-  },
-  {
-    callbacks: {
-      authorized: ({ token }) => token != null,
-    },
-    pages: {
-      signIn: '/login',
-    },
-  },
+const publicPathnameRegex = RegExp(
+  `^(/(${locales.join('|')}))?(${publicPages
+    .flatMap((p) => (p === '/' ? ['', '/'] : p))
+    .join('|')})/?$`,
+  'i',
 );
 
-export default function middleware(req: NextRequest) {
-  const publicPathnameRegex = RegExp(
-    `^(/(${locales.join('|')}))?(${publicPages
-      .flatMap((p) => (p === '/' ? ['', '/'] : p))
-      .join('|')})/?$`,
-    'i',
-  );
+export default auth((req) => {
   const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
 
   if (isPublicPage) {
     return intlMiddleware(req);
   } else {
-    return (authMiddleware as any)(req);
+    if (req.auth && req.auth.user) {
+      return intlMiddleware(req);
+    } else {
+      return NextResponse.redirect(new URL('/login', req.url));
+    }
   }
-}
+});
 
 export const config = {
-  matcher: ['/profile', '/dashboard', '/((?!api|_next|.*\\..*).*)'],
+  matcher: [
+    '/profile',
+    '/dashboard',
+    '/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)',
+  ],
 };

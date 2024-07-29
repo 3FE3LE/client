@@ -28,12 +28,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
     }),
   ],
-  pages: {
-    signIn: '/login',
-    error: '/error',
-    verifyRequest: '/verify',
-    newUser: '/register',
-  },
   session: {
     strategy: 'jwt',
   },

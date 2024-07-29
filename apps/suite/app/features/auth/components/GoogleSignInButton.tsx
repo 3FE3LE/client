@@ -1,7 +1,6 @@
 import { signIn } from 'next-auth/react';
-import Image from 'next/image';
 
-import ss_google_icon from '@repo/ui/assets/google.svg';
+import { Google } from '@repo/ui';
 
 export const GoogleSignInButton = () => {
   return (
@@ -12,7 +11,7 @@ export const GoogleSignInButton = () => {
         signIn('google', { redirect: true, callbackUrl: '/dashboard' });
       }}
     >
-      <Image alt="google" src={ss_google_icon} /> <span>Sign In</span>
+      <Google /> <span>Sign In</span>
     </div>
   );
 };

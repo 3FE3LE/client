@@ -23,3 +23,4 @@ export { EyeOff } from './icons/EyeOff';
 export { Eye } from './icons/Eye';
 export { LeftArrow } from './icons/LeftArrow';
 export { Plane } from './icons/Plane';
+export { Google } from './icons/Google';

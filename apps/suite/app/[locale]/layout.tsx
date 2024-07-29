@@ -4,7 +4,7 @@ import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 
 import { AppWrapper } from '@repo/ui';
 import { PageProps } from '@repo/ui/types';
-import { Footer } from '@sss/components';
+import { MainLayout } from '@sss/components';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { metadata } from '../metadata';
@@ -24,8 +24,7 @@ export default async function RootLayout({
     <html lang={locale} suppressHydrationWarning>
       <body>
         <AppWrapper messages={messages} locale={locale}>
-          {children}
-          <Footer locale={locale} />
+          <MainLayout params={{ locale }}>{children}</MainLayout>
         </AppWrapper>
         <SpeedInsights />
       </body>

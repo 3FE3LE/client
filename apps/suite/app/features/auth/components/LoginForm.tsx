@@ -29,22 +29,22 @@ export default function LoginForm() {
   });
 
   const onSubmit = async (data: any) => {
+    toast.loading;
     const result = await signIn('credentials', {
       redirect: false,
       email: data.email,
       password: data.password,
     });
-
-    if (result?.error) {
-      // Manejar el error de inicio de sesión
-      toast.dismiss();
-      toast.error(result.error);
-      setError(result.error);
-    } else {
-      // Redirigir al dashboard si el inicio de sesión es exitoso
+    // Redirigir al dashboard si el inicio de sesión es exitoso
+    if (result?.ok) {
       toast.dismiss();
       toast.success('Login success');
       router.push('/dashboard');
+    } else {
+      // Manejar el error de inicio de sesión
+      toast.dismiss();
+      toast.error(result?.error as string);
+      setError(result?.error as string);
     }
   };
 
@@ -52,6 +52,10 @@ export default function LoginForm() {
     <FormWrapper title="Login" loading={isSubmitting}>
       <BackButton handleClick={router.back} />
       <form onSubmit={handleSubmit(onSubmit)}>
+        <GoogleSignInButton />
+        <div className="form__division">
+          <span>or</span>
+        </div>
         {LoginInputs.map((input: LoginInput) => (
           <InputGroup
             key={input.name}
@@ -63,12 +67,8 @@ export default function LoginForm() {
             placeholder={input.placeholder}
           />
         ))}
-        <div className="form__division">
-          <span>or</span>
-        </div>
-        <GoogleSignInButton />
-        {error && <p className="form__error">{error}</p>}
         <div className="form__group form__group--buttons">
+          {error && <p className="form__error">{error}</p>}
           <SubmitButton isDisable={isSubmitting} />
         </div>
         <Link className="form__link" href="/register">

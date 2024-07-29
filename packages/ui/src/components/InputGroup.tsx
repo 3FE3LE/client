@@ -9,6 +9,7 @@ export type InputProps = {
   placeholder?: string;
   errors?: string | undefined;
   register: any;
+  required?: boolean;
 };
 
 export function InputGroup({
@@ -18,6 +19,7 @@ export function InputGroup({
   placeholder,
   register,
   errors,
+  required,
 }: InputProps) {
   const [show, setShow] = React.useState(false);
 
@@ -30,6 +32,7 @@ export function InputGroup({
       </label>
       <input
         {...register(name)}
+        required={required}
         name={name}
         type={show ? 'text' : type}
         placeholder={placeholder}

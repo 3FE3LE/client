@@ -20,24 +20,21 @@ export default function RegisterForm() {
   const router = useRouter();
   const {
     register,
-    handleSubmit,
-    formState: { errors, isSubmitting, isValid },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(schema),
-    mode: 'onChange',
+    mode: 'all',
     reValidateMode: 'onBlur',
   });
-
-  const handleOnSubmit = () => isValid;
 
   const onSubmit = async (data: FormData) => {
     toast.loading('Loading...');
     const result = await UserRegister(data);
     if (result.message !== 'User created successfully') {
       // Manejar el error de inicio de sesión
+      setError(result.message);
       toast.dismiss();
       toast.error(result.message);
-      setError(result.message);
     } else {
       toast.success(result.message);
       // Redirigir al dashboard si el inicio de sesión es exitoso
@@ -52,29 +49,33 @@ export default function RegisterForm() {
 
   return (
     <FormWrapper title="Register" loading={isSubmitting}>
-      {isSubmitting && <p>Loading...</p>}
       <BackButton handleClick={router.back} />
-      <form onSubmit={handleSubmit(handleOnSubmit)} action={onSubmit}>
-        {RegisterInputs.map((input: RegisterInput) => (
-          <InputGroup
-            key={input.name}
-            errors={errors[input.name]?.message}
-            label={input.label}
-            name={input.name}
-            register={register}
-            type={input.type}
-            placeholder={input.placeholder}
-          />
-        ))}
+      {isSubmitting ? (
+        <p>Loading...</p>
+      ) : (
+        <form action={onSubmit}>
+          {RegisterInputs.map((input: RegisterInput) => (
+            <InputGroup
+              key={input.name}
+              errors={errors[input.name]?.message}
+              label={input.label}
+              name={input.name}
+              register={register}
+              type={input.type}
+              placeholder={input.placeholder}
+              required={true}
+            />
+          ))}
 
-        {error && <p className="form__error">{error}</p>}
-        <div className="form__group form__group--buttons">
-          <SubmitButton isDisable={isSubmitting} />
-        </div>
-        <Link className="form__link" href="/login">
-          Have an account?, click to Sign in
-        </Link>
-      </form>
+          <div className="form__group form__group--buttons">
+            {error && <p className="form__error">{error}</p>}
+            <SubmitButton isDisable={isSubmitting} />
+          </div>
+          <Link className="form__link" href="/login">
+            Have an account?, click to Sign in
+          </Link>
+        </form>
+      )}
     </FormWrapper>
   );
 }

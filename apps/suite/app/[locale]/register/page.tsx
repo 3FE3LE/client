@@ -1,13 +1,12 @@
 import { Metadata } from 'next';
 import { Session } from 'next-auth';
-import { getServerSession } from 'next-auth/next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
-import { authOptions } from '@sss/app/api/auth/[...nextauth]/authOptions';
 import { RegisterForm } from '@sss/app/features/auth/components';
+import { auth } from '@sss/auth';
 
 export const metadata: Metadata = {
   title: '17Suit - Register',
@@ -15,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 const getSessionOnServer = async (): Promise<Session | null> => {
-  return await getServerSession(authOptions);
+  return await auth();
 };
 
 export default async function Register() {

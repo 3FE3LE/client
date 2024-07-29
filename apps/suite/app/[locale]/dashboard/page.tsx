@@ -1,14 +1,13 @@
 import { Session } from 'next-auth';
-import { getServerSession } from 'next-auth/next';
 import { redirect } from 'next/navigation';
 
 import { Card } from '@repo/ui';
-import { authOptions } from '@sss/app/api/auth/[...nextauth]/authOptions';
+import { auth } from '@sss/auth';
 import { Link } from '@sss/navigations';
 
 // Esta función se ejecutará en el servidor
 const getSessionOnServer = async (): Promise<Session | null> => {
-  return await getServerSession(authOptions);
+  return await auth();
 };
 
 export default async function DashboardPage() {

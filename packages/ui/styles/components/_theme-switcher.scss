@@ -14,12 +14,7 @@
   }
   &__options {
     display: flex;
-    position: absolute;
-    top: rem(32);
-    right: 0;
-    flex-direction: column;
     gap: rem(4);
-    margin-bottom: rem(16);
   }
   &__btn {
     display: flex;

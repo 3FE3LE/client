@@ -1,17 +1,11 @@
-import { Session } from 'next-auth';
 import { redirect } from 'next/navigation';
 
 import { Card } from '@repo/ui';
 import { auth } from '@sss/auth';
 import { Link } from '@sss/navigations';
 
-// Esta función se ejecutará en el servidor
-const getSessionOnServer = async (): Promise<Session | null> => {
-  return await auth();
-};
-
 export default async function DashboardPage() {
-  const session = await getSessionOnServer();
+  const session = await auth();
   if (!session) {
     redirect('/login');
   }

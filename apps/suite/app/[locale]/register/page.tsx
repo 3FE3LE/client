@@ -24,14 +24,16 @@ export default async function Register() {
     redirect('/dashboard');
   }
   return (
-    <div className="register-page">
-      <div className="register-page__container">
+    <div className="register-page__container">
+      <div className="register-page__article">
         <h1 className="heading--1">
           Sign Up in{' '}
           <Link href="/">
             <Image priority alt="logo" src={ss_logo} width={250} />
           </Link>
         </h1>
+      </div>
+      <div className="register-page__article">
         <RegisterForm />
       </div>
     </div>

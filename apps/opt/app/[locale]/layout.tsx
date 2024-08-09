@@ -2,7 +2,7 @@ import '@opt/styles/main.scss';
 
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 
-import { AppWrapper, ThemeSwitcher } from '@repo/ui';
+import { AppWrapper } from '@opt/components';
 import { PageProps } from '@repo/ui/types';
 
 import { metadata } from '../metadata';
@@ -19,10 +19,9 @@ export default async function RootLayout({
   unstable_setRequestLocale(locale);
   const messages = await getMessages();
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
         <AppWrapper messages={messages} locale={locale}>
-          <ThemeSwitcher />
           {children}
         </AppWrapper>
       </body>

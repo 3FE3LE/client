@@ -9,7 +9,6 @@ import type { Adapter } from 'next-auth/adapters';
 const client = createHttpClient({
   secretKey: process.env.EDGEDB_SECRET_KEY,
   instanceName: process.env.EDGEDB_INSTANCE,
-  tlsSecurity: process.env.NODE_ENV !== 'production' ? 'insecure' : 'strict',
 });
 
 const adapter: Adapter = EdgeDBAdapter(client);

@@ -1,4 +1,4 @@
-import { registerUser, loginUser } from './repository';
+import { loginUser, registerUser } from './repository';
 
 export const useRegister = () => {
   const register = async ({
@@ -13,17 +13,4 @@ export const useRegister = () => {
     return await registerUser(name, email, password);
   };
   return { register };
-};
-
-export const useLogin = () => {
-  const login = async ({
-    email,
-    password,
-  }: {
-    email: string | undefined;
-    password: string | undefined;
-  }) => {
-    return await loginUser(email, password);
-  };
-  return { login };
 };

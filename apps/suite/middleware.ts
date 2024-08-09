@@ -5,7 +5,7 @@ import { auth } from '@sss/auth';
 
 const locales = ['es', 'en'];
 
-const publicPages = ['/', '/login', '/register'];
+const publicPages = ['/', '/login', '/register', '/error', '/verify'];
 
 const intlMiddleware = createMiddleware({
   locales,

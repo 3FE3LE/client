@@ -33,6 +33,6 @@ export const loginUser = async (
     });
     return response.data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || 'Login failed');
+    throw new Error(error.response?.data);
   }
 };

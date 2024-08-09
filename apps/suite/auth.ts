@@ -11,13 +11,12 @@ import type { Adapter } from 'next-auth/adapters';
 const client = createHttpClient({
   secretKey: process.env.EDGEDB_SECRET_KEY,
   instanceName: process.env.EDGEDB_INSTANCE,
-  tlsSecurity: process.env.NODE_ENV !== 'production' ? 'insecure' : 'strict',
 });
 
-const adapter: Adapter = EdgeDBAdapter(client);
+export const edgeDBAdapter: Adapter = EdgeDBAdapter(client);
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: adapter,
+  adapter: edgeDBAdapter,
   providers: [
     Credentials({
       name: 'Credentials',
@@ -31,7 +30,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           credentials.password as string,
         );
         if (user) {
-          return { ...user };
+          return user;
         } else {
           return null;
         }
@@ -51,8 +50,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   pages: {
     signIn: '/login',
     error: '/error',
-    verifyRequest: '/verify',
-    newUser: '/register',
   },
   session: {
     strategy: 'jwt',

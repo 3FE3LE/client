@@ -12,7 +12,7 @@ export type InputProps = {
   required?: boolean;
 };
 
-export function InputGroup({
+export const InputGroup: React.FC<InputProps> = ({
   name,
   label,
   type,
@@ -20,13 +20,13 @@ export function InputGroup({
   register,
   errors,
   required,
-}: InputProps) {
+}) => {
   const [show, setShow] = React.useState(false);
 
   const handleClick = () => setShow(!show);
 
   return (
-    <div className="form__group">
+    <fieldset className="form__group">
       <label className="form__label" htmlFor={name}>
         {label}
       </label>
@@ -42,6 +42,6 @@ export function InputGroup({
         <EyeIconToggle onClick={handleClick} show={show} />
       )}
       <span className={`form__error ${errors && ''}`}>{errors}</span>
-    </div>
+    </fieldset>
   );
-}
+};

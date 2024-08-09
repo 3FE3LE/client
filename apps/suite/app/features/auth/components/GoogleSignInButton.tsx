@@ -4,14 +4,14 @@ import { Google } from '@repo/ui';
 
 export const GoogleSignInButton = () => {
   return (
-    <div
+    <button
       className="form__button--google"
       onClick={(e) => {
         e.preventDefault();
-        signIn('google', { redirect: true, callbackUrl: '/dashboard' });
+        signIn('google', { redirectTo: '/dashboard' });
       }}
     >
       <Google /> <span>Sign In</span>
-    </div>
+    </button>
   );
 };

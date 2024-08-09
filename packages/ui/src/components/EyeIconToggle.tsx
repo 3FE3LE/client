@@ -8,7 +8,10 @@ export type EyeIconToggleProps = {
   onClick: () => void;
 };
 
-export const EyeIconToggle = ({ show, onClick }: EyeIconToggleProps) => {
+export const EyeIconToggle: React.FC<EyeIconToggleProps> = ({
+  show,
+  onClick,
+}) => {
   return (
     <div onClick={onClick} className="form__icon-toggle">
       {show ? <Eye /> : <EyeOff />}

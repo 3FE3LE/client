@@ -4,10 +4,10 @@ import { LeftArrow } from '../icons/LeftArrow';
 
 export type BackButtonProps = { handleClick: () => void };
 
-export const BackButton = ({ handleClick }: BackButtonProps) => {
+export const BackButton: React.FC<BackButtonProps> = ({ handleClick }) => {
   return (
-    <div className="form__button--back" onClick={handleClick}>
+    <button className="form__button--back" onClick={handleClick}>
       <LeftArrow />
-    </div>
+    </button>
   );
 };

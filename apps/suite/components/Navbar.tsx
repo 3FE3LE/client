@@ -1,42 +1,43 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
-import { ThemeSwitcher } from '@repo/ui';
+import { UserCircle } from '@repo/ui';
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
 import { Link, usePathname } from '@sss/navigations';
 
-import { SignOutButton } from './SignOutButton';
-
-export const Navbar = ({ locale }: { locale: 'en' | 'es' | undefined }) => {
+export const Navbar = ({
+  locale,
+  authenticated,
+}: {
+  locale: 'en' | 'es' | undefined;
+  authenticated: boolean;
+}) => {
   const pathname = usePathname();
-  const session = useSession();
-  const t = useTranslations('navbar');
 
-  const protectedRoute = session.status === 'authenticated';
+  const t = useTranslations('navbar');
 
   const menuItems = [
     {
       name: 'login',
       href: '/login',
-      protected: protectedRoute,
+      protected: authenticated,
     },
     {
       name: 'register',
       href: '/register',
-      protected: protectedRoute,
+      protected: authenticated,
     },
     {
       name: 'dashboard',
       href: '/dashboard',
-      protected: !protectedRoute,
+      protected: !authenticated,
     },
     {
       name: 'profile',
       href: '/profile',
-      protected: !protectedRoute,
+      protected: !authenticated,
     },
   ];
 
@@ -66,12 +67,11 @@ export const Navbar = ({ locale }: { locale: 'en' | 'es' | undefined }) => {
               </li>
             ),
         )}
-        <li>
-          <ThemeSwitcher />
-        </li>
-        {session.status === 'authenticated' && (
+        {authenticated && (
           <li>
-            <SignOutButton text={t('log-out')} />
+            <button>
+              <UserCircle />
+            </button>
           </li>
         )}
       </ul>

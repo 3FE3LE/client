@@ -6,7 +6,7 @@ import { Monitor } from '../icons/Monitor';
 import { Moon } from '../icons/Moon';
 import { Sun } from '../icons/Sun';
 
-export const ThemeSwitcher = () => {
+export const ThemeSwitcher: React.FC = () => {
   const themes = [
     { name: 'system', title: 'System', icon: Monitor },
     { name: 'dark', title: 'Dark', icon: Moon },

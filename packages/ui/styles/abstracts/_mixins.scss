@@ -1,3 +1,22 @@
+@mixin container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  gap: rem(16);
+  width: 100%;
+}
+
+@mixin article {
+  display: flex;
+  flex-wrap: wrap;
+  gap: rem(16);
+  min-width: rem(300);
+  max-width: rem(550);
+  height: fit-content;
+}
+
 @mixin flex-center {
   display: flex;
   justify-content: center;
@@ -47,21 +66,34 @@
 @mixin foreground-color {
   background: $ss-gray-l;
   [data-theme='dark'] & {
-    background: $ss-gray-d;
+    background: $ss-gray-dr;
   }
 }
 
 @mixin highlighted-color {
   background: $ss-gray-lr;
   [data-theme='dark'] & {
-    background: $ss-gray-dr;
+    background: $ss-gray-d;
   }
 }
 
-@mixin gradient-concave-color {
-}
-
-@mixin gradient-convex-color {
+@mixin gradient-bg($color) {
+  @if $color == 'primary' {
+    background: $primary-convex-bg;
+    &:hover {
+      background: $primary-concave-bg;
+    }
+  } @else if $color == 'secondary' {
+    background: $secondary-convex-bg;
+    &:hover {
+      background: $secondary-concave-bg;
+    }
+  } @else if $color == 'accent' {
+    background: $accent-convex-bg;
+    &:hover {
+      background: $accent-concave-bg;
+    }
+  }
 }
 
 @mixin shadow-sm($inset: false) {
@@ -155,14 +187,14 @@
 @mixin hover-focus-color {
   background-color: $ss-gray-lr;
   [data-theme='dark'] & {
-    background-color: $ss-gray-dr;
+    background-color: $ss-gray-d;
   }
 }
 
 @mixin border-color {
   border: 4px solid $ss-gray-l;
   [data-theme='dark'] & {
-    border: 4px solid $ss-gray-d;
+    border: 4px solid $ss-gray-dr;
   }
 }
 
@@ -173,10 +205,10 @@
     font-size: rem(96);
     font-family: Arvo;
     letter-spacing: -1.5px;
-    @media (max-width: 1200px) {
+    @media (max-width: 1024px) {
       font-size: rem(72);
     }
-    @media (max-width: 768px) {
+    @media (max-width: 480px) {
       font-size: rem(48);
     }
   } @else if $level == 2 {
@@ -184,20 +216,20 @@
     font-size: rem(64);
     font-family: Amaranth;
     letter-spacing: -0.5px;
-    @media (max-width: 1200px) {
+    @media (max-width: 1024px) {
       font-size: rem(48);
     }
-    @media (max-width: 768px) {
+    @media (max-width: 480px) {
       font-size: rem(36);
     }
   } @else if $level == 3 {
     font-weight: bold;
     font-size: rem(48);
     font-family: Amaranth;
-    @media (max-width: 1200px) {
+    @media (max-width: 1024px) {
       font-size: rem(36);
     }
-    @media (max-width: 768px) {
+    @media (max-width: 480px) {
       font-size: rem(24);
     }
   }
@@ -209,20 +241,20 @@
     font-size: rem(32);
     font-family: Amaranth;
     letter-spacing: 0.25px;
-    @media (max-width: 1200px) {
+    @media (max-width: 1024px) {
       font-size: rem(28);
     }
-    @media (max-width: 768px) {
+    @media (max-width: 480px) {
       font-size: rem(24);
     }
   } @else if $level == 2 {
     font-weight: bold;
     font-size: rem(24);
     font-family: Arvo;
-    @media (max-width: 1200px) {
+    @media (max-width: 1024px) {
       font-size: rem(20);
     }
-    @media (max-width: 768px) {
+    @media (max-width: 480px) {
       font-size: rem(18);
     }
   }

@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
+import { ThemeSwitcher } from '@repo/ui';
 import { Link, usePathname } from '@sss/navigations';
 
 export const Footer = ({ locale }: { locale: string }) => {
@@ -78,6 +79,10 @@ export const Footer = ({ locale }: { locale: string }) => {
             </Link>
           </li>
         </ul>
+      </div>
+      <div>
+        <h5>{t('theme')}</h5>
+        <ThemeSwitcher />
       </div>
     </footer>
   );

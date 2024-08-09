@@ -1,6 +1,8 @@
 .not-found {
-  @include flex-center;
-  height: 100dvh;
-  flex-direction: column;
-  gap: rem(40);
+  &__container {
+    @include flex-center;
+    flex-direction: column;
+    gap: rem(40);
+    width: 100%;
+  }
 }

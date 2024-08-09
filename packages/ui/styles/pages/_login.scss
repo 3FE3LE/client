@@ -1,8 +1,9 @@
 // _login.scss
 .login-page {
   &__container {
-    @include flex-center;
-    flex-wrap: wrap;
-    gap: rem(40);
+    @include container;
+  }
+  &__article {
+    @include article;
   }
 }

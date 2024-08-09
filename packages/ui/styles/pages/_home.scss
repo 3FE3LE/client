@@ -1,31 +1,21 @@
 .home {
   &__container {
-    @include flex-center;
-    flex-wrap: wrap;
-    margin-top: rem(-52);
-    padding: rem(16);
-    padding-top: rem(52);
-    min-height: 100dvh;
+    @include container;
   }
   &__title {
-    @include flex-center;
-    flex-direction: column;
-    gap: rem(16);
-    min-width: rem(300);
-    max-width: rem(550);
+    @include article;
     & img {
       min-width: rem(300);
     }
   }
   &__button {
-    @include highlighted-color;
-    @include border-color;
+    @include gradient-bg(primary);
     @include shadow-sm;
     @include heading(3);
     cursor: pointer;
     border-radius: rem(8);
     padding: rem(12) rem(16);
-    color: $primary-color;
+    color: $ss-gray-lr;
     &:hover,
     &:focus {
       @include hover-focus-color;

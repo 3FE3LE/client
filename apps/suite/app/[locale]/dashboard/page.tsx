@@ -10,6 +10,8 @@ export default async function DashboardPage() {
     redirect('/login');
   }
 
+  const isProduction = process.env.NODE_ENV === 'production';
+
   return (
     <div className="dashboard__container">
       <h1>Dashboard</h1>
@@ -17,7 +19,14 @@ export default async function DashboardPage() {
       <Card>
         <h3 className="card__header">One Plan trip</h3>
         <p className="card__body">Plan your next adventure with ease</p>
-        <Link href={'http://localhost:3002'} className="card__button">
+        <Link
+          href={
+            isProduction
+              ? 'https://oneplantrip.17suit.com/dashboard'
+              : 'http://localhost:3002/dashboard'
+          }
+          className="card__button"
+        >
           Launch app
         </Link>
       </Card>

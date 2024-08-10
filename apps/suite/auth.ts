@@ -8,6 +8,8 @@ import { loginUser } from '@sss/app/features/auth/repository';
 
 import type { Adapter } from 'next-auth/adapters';
 
+const production = process.env.NODE_ENV === 'production';
+
 const client = createHttpClient({
   secretKey: process.env.EDGEDB_SECRET_KEY,
   instanceName: process.env.EDGEDB_INSTANCE,
@@ -66,6 +68,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.id = token.id as string;
       }
       return session;
+    },
+  },
+  cookies: {
+    sessionToken: {
+      name: `${production ? '__Secure-' : ''}authjs.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: 'lax',
+        path: '/',
+        secure: production,
+        domain: production ? '.17suit.com' : 'localhost',
+      },
     },
   },
 });

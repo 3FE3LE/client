@@ -4,7 +4,9 @@
     "plugins": [{ "name": "next" }],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./apps/suite/*"]
+      "@opt/*": ["./apps/opt/*"],
+      "@sss/*": ["./apps/suite/*"],
+      "@web/*": ["./apps/web/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

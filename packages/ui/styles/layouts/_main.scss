@@ -1,7 +1,14 @@
-.main {
+.layout {
   min-height: 100dvh;
   &__content {
+    @include background-color;
     display: flex;
     position: relative;
+  }
+  &__section {
+    display: flex;
+    padding: rem(16);
+    width: 100%;
+    min-height: calc(100dvh - rem(52));
   }
 }

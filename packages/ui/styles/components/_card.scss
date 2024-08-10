@@ -1,0 +1,34 @@
+.card {
+  @include shadow;
+  @include border-color;
+  @include highlighted-color;
+  border-radius: rem(12);
+  padding: rem(16);
+  width: 100%;
+  max-width: rem(320);
+  height: 100%;
+  max-height: rem(280);
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+  &__header {
+    @include subtitle(1);
+    margin-bottom: rem(8);
+  }
+  &__body {
+    @include text(base);
+    margin-bottom: rem(8);
+  }
+  &__button {
+    @include text(interface);
+    display: block;
+    border-radius: rem(4);
+    @include gradient-bg(primary);
+    padding: rem(8);
+    color: $ss-white;
+    text-align: center;
+  }
+}

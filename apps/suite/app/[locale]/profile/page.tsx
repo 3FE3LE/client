@@ -1,11 +1,10 @@
 import { Session } from 'next-auth';
-import { getServerSession } from 'next-auth/next';
 import { redirect } from 'next/navigation';
 
-import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
+import { auth } from '@sss/auth';
 
 const getSessionOnServer = async (): Promise<Session | null> => {
-  return await getServerSession(authOptions);
+  return await auth();
 };
 
 export default async function ProfilePage() {

@@ -1,13 +1,13 @@
-import '@repo/ui/styles/main.scss';
+import '@sss/styles/main.scss';
 
-import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
-import { ThemeProvider } from 'next-themes';
 
-import { AppWrapper, Footer } from '@/components';
+import { PageProps } from '@repo/ui/types';
+import { auth } from '@sss/auth';
+import { AppWrapper, Footer, Navbar, Sidebar } from '@sss/components';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { metadata } from '../metadata';
-import { PageProps } from '../types';
 
 const languages = ['en', 'es'];
 
@@ -19,23 +19,23 @@ export default async function RootLayout({
   params: { locale },
 }: PageProps) {
   unstable_setRequestLocale(locale);
+  const session = await auth();
+
   const messages = await getMessages();
   return (
     <html lang={locale} suppressHydrationWarning>
       <body>
-        <ThemeProvider
-          enableColorScheme={true}
-          defaultTheme="system"
-          storageKey="theme"
-          themes={['system', 'dark', 'light']}
-        >
-          <NextIntlClientProvider messages={messages}>
-            <AppWrapper>
-              {children}
-              <Footer locale={locale} />
-            </AppWrapper>
-          </NextIntlClientProvider>
-        </ThemeProvider>
+        <AppWrapper messages={messages} locale={locale}>
+          <main className="layout">
+            <Navbar locale={locale} authenticated={!!session} />
+            <div className="layout__content">
+              {session && <Sidebar />}
+              <section className="layout__section">{children}</section>
+            </div>
+            <Footer locale={locale} />
+          </main>
+        </AppWrapper>
+        <SpeedInsights />
       </body>
     </html>
   );

@@ -1,18 +1,17 @@
 import { signIn } from 'next-auth/react';
-import Image from 'next/image';
 
-import ss_google_icon from '@repo/ui/assets/google.svg';
+import { Google } from '@repo/ui';
 
 export const GoogleSignInButton = () => {
   return (
-    <div
+    <button
       className="form__button--google"
       onClick={(e) => {
         e.preventDefault();
-        signIn('google', { redirect: true, callbackUrl: '/dashboard' });
+        signIn('google', { redirectTo: '/dashboard' });
       }}
     >
-      <Image alt="google" src={ss_google_icon} /> <span>Sign In</span>
-    </div>
+      <Google /> <span>Sign In</span>
+    </button>
   );
 };

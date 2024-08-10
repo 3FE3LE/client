@@ -1,18 +1,16 @@
 'use server';
 
-import { useLogin, useRegister } from './useCases';
+import { signIn } from '@sss/auth';
+
+import { useRegister } from './useCases';
 
 export const UserRegister = async (formData: FormData) => {
   const { register } = useRegister();
 
-  const name = formData.get('name')?.toString();
-  const email = formData.get('email')?.toString();
-  const password = formData.get('password')?.toString();
-
   const newUser = {
-    name,
-    email,
-    password,
+    name: formData.get('name')?.toString(),
+    email: formData.get('email')?.toString(),
+    password: formData.get('password')?.toString(),
   };
 
   const result = await register(newUser);
@@ -21,17 +19,15 @@ export const UserRegister = async (formData: FormData) => {
 };
 
 export const UserLogin = async (formData: FormData) => {
-  const { login } = useLogin();
-
-  const email = formData.get('email')?.toString();
-  const password = formData.get('password')?.toString();
-
   const user = {
-    email,
-    password,
+    email: formData.get('email'),
+    password: formData.get('password'),
   };
-
-  console.log(user);
-
-  await login(user);
+  const result = await signIn('credentials', {
+    ...user,
+    redirect: true,
+    redirectTo: '/dashboard',
+  });
+  console.log(result);
+  return result;
 };

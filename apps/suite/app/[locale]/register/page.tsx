@@ -1,13 +1,12 @@
 import { Metadata } from 'next';
 import { Session } from 'next-auth';
-import { getServerSession } from 'next-auth/next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
-import { RegisterForm } from '@/app/features/auth/components';
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
+import { RegisterForm } from '@sss/app/features/auth/components';
+import { auth } from '@sss/auth';
 
 export const metadata: Metadata = {
   title: '17Suit - Register',
@@ -15,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 const getSessionOnServer = async (): Promise<Session | null> => {
-  return await getServerSession(authOptions);
+  return await auth();
 };
 
 export default async function Register() {
@@ -25,14 +24,16 @@ export default async function Register() {
     redirect('/dashboard');
   }
   return (
-    <div className="register-page">
-      <div className="register-page__container">
+    <div className="register-page__container">
+      <div className="register-page__article">
         <h1 className="heading--1">
           Sign Up in{' '}
           <Link href="/">
             <Image priority alt="logo" src={ss_logo} width={250} />
           </Link>
         </h1>
+      </div>
+      <div className="register-page__article">
         <RegisterForm />
       </div>
     </div>

@@ -1,8 +1,8 @@
 //Colors
 // Gray scale
-$ss-gray-dr: #00141a;
-$ss-black: #00171f;
-$ss-gray-d: #001a24;
+$ss-gray-dr: #002735;
+$ss-black: #002e3e;
+$ss-gray-d: #003547;
 $ss-gray: #717171;
 $ss-gray-l: #cacaca;
 $ss-white: #eeeeee;
@@ -37,3 +37,11 @@ $ss-info: #1e91d6;
 $primary-color: $ss-green;
 $secondary-color: $ss-blue;
 $accent-color: $ss-red;
+
+$primary-convex-bg: linear-gradient(145deg, #009b76, #008363);
+$secondary-convex-bg: linear-gradient(145deg, #39b3ff, #3096e6);
+$accent-convex-bg: linear-gradient(145deg, #ff4e62, #e64253);
+
+$primary-concave-bg: linear-gradient(145deg, #008363, #009b76);
+$secondary-concave-bg: linear-gradient(145deg, #3096e6, #39b3ff);
+$accent-concave-bg: linear-gradient(145deg, #e64253, #ff4e62);

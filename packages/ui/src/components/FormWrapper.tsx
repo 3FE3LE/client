@@ -6,11 +6,15 @@ export type FormWrapperProps = {
   title: string;
 };
 
-export function FormWrapper({ children, title, loading }: FormWrapperProps) {
+export const FormWrapper: React.FC<FormWrapperProps> = ({
+  children,
+  title,
+  loading,
+}) => {
   return (
-    <div className={`form__wrapper ${loading ? 'form__wrapper--loading' : ''}`}>
+    <div className={`form__wrapper ${loading && 'form__wrapper--loading'}`}>
       <h2>{title}</h2>
       {children}
     </div>
   );
-}
+};

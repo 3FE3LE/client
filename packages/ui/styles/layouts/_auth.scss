@@ -1,9 +1,0 @@
-// _auth-layout.scss
-.auth-layout {
-  @include flex-center;
-  min-height: 100dvh;
-  &__container {
-    padding: rem(16);
-    border-radius: rem(8);
-  }
-}

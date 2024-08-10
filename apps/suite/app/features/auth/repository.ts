@@ -13,7 +13,6 @@ export const registerUser = async (
       email,
       password,
     });
-    console.log(response);
     return response.data;
   } catch (error: any) {
     if (!error.response?.data) {
@@ -34,6 +33,6 @@ export const loginUser = async (
     });
     return response.data;
   } catch (error: any) {
-    throw new Error(error.response?.data?.message || 'Login failed');
+    throw new Error(error.response?.data);
   }
 };

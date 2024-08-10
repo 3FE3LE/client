@@ -28,7 +28,7 @@ export default auth((req) => {
     if (req.auth && req.auth.user) {
       return intlMiddleware(req);
     } else {
-      return NextResponse.redirect(new URL('/login', req.url));
+      return NextResponse.redirect(new URL('/', req.url));
     }
   }
 });

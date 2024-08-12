@@ -13,10 +13,10 @@ const client = createHttpClient({
   instanceName: process.env.EDGEDB_INSTANCE,
 });
 
-const adapter: Adapter = EdgeDBAdapter(client);
+const edgeDBAdapter: Adapter = EdgeDBAdapter(client);
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: adapter,
+  adapter: edgeDBAdapter,
   providers: [
     Google({
       allowDangerousEmailAccountLinking: true,

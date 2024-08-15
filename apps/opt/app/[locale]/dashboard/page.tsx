@@ -1,6 +1,6 @@
 import { Link } from '@opt/navigations';
 
-export default function Dashboard() {
+export default async function DashboardPage() {
   return (
     <div>
       <header>

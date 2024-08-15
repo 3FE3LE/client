@@ -1,8 +1,6 @@
-import { redirect } from 'next/navigation';
-
 import { Card } from '@repo/ui';
 import { auth } from '@sss/auth';
-import { Link } from '@sss/navigations';
+import { Link, redirect } from '@sss/navigations';
 
 export default async function DashboardPage() {
   const session = await auth();

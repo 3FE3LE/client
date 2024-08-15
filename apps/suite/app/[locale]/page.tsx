@@ -1,11 +1,10 @@
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
-import Link from 'next/link';
 
 import lading_img from '@repo/ui/assets/animated/traveler-a.svg';
 import { PageParams } from '@repo/ui/types';
 import { auth } from '@sss/auth';
-import { redirect } from '@sss/navigations';
+import { Link, redirect } from '@sss/navigations';
 
 export default async function Home({ params: { locale } }: PageParams) {
   const session = await auth();

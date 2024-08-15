@@ -1,9 +1,10 @@
-import React from 'react';
+import { cookies } from 'next/headers';
 
 import { GetAllTrips } from '@opt/app/features/trips/actions';
 
 export default async function Trips() {
-  const trips = await GetAllTrips();
+  const token = cookies().get('auth_token')?.value;
+  const trips = await GetAllTrips(token!);
   console.log(trips);
 
   return (

@@ -1,0 +1,197 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+model User {
+  id            String          @id @default(cuid())
+  username      String?         @unique
+  password      String?
+  name          String?
+  email         String          @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  Authenticator Authenticator[] // Para soporte opcional de WebAuthn
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Role Role[]
+  Plan Plan[]
+
+  PlanGroup PlanGroup[]
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
+}
+
+model Role {
+  id          Int     @id @default(autoincrement())
+  name        String  @unique
+  description String
+  read        Boolean
+  write       Boolean
+  create      Boolean
+  update      Boolean
+  delete      Boolean
+  users       User[]
+}
+
+model Budget {
+  id         Int      @id @default(autoincrement())
+  amount     Float
+  min        Float
+  max        Float
+  currencyId Int
+  currency   Currency @relation(fields: [currencyId], references: [id])
+
+  Plan Plan[]
+}
+
+model Currency {
+  id     Int    @id @default(autoincrement())
+  name   String
+  symbol String
+
+  Budget Budget[]
+}
+
+model Continent {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  Country Country[]
+}
+
+model Country {
+  id          Int       @id @default(autoincrement())
+  name        String
+  code        String
+  continent   Continent @relation(fields: [continentId], references: [id])
+  continentId Int
+
+  State State[]
+}
+
+model State {
+  id        Int     @id @default(autoincrement())
+  name      String
+  code      String
+  country   Country @relation(fields: [countryId], references: [id])
+  countryId Int
+
+  City City[]
+}
+
+model City {
+  id      Int    @id @default(autoincrement())
+  name    String
+  state   State  @relation(fields: [stateId], references: [id])
+  stateId Int
+
+  Destination Destination[]
+}
+
+model Destination {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  address     String?
+  latitude    Float
+  longitude   Float
+  countryId   Int
+  stateId     Int
+  cityId      Int
+  createdAt   DateTime @default(now())
+  city        City     @relation(fields: [cityId], references: [id])
+
+  Plan Plan[]
+}
+
+model Plan {
+  id           Int           @id @default(autoincrement())
+  title        String
+  description  String
+  createdAt    DateTime      @default(now())
+  statusId     Int
+  status       Status        @relation(fields: [statusId], references: [id])
+  userId       Int
+  startDate    DateTime?
+  endDate      DateTime?
+  budgetId     Int
+  budget       Budget        @relation(fields: [budgetId], references: [id])
+  destinations Destination[]
+
+  User User[]
+}
+
+model Activity {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  createdAt   DateTime  @default(now())
+  startTime   DateTime?
+  endTime     DateTime?
+  priority    Priority
+}
+
+model PlanGroup {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  createdAt   DateTime @default(now())
+  creatorId   Int
+  mebers User[]
+}
+
+model Status {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+
+  Plan Plan[]
+}
+
+enum Priority {
+  Low
+  Medium
+  High
+}

@@ -1,24 +1,17 @@
-import { createHttpClient } from 'edgedb';
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import Google from 'next-auth/providers/google';
 
-import { EdgeDBAdapter } from '@auth/edgedb-adapter';
+import { PrismaAdapter } from '@auth/prisma-adapter';
+import { PrismaClient } from '@prisma/client';
 import { loginUser } from '@sss/app/features/auth/repository';
 
-import type { Adapter } from 'next-auth/adapters';
+const prisma = new PrismaClient();
 
 const production = process.env.NODE_ENV === 'production';
 
-const client = createHttpClient({
-  secretKey: process.env.EDGEDB_SECRET_KEY,
-  instanceName: process.env.EDGEDB_INSTANCE,
-});
-
-export const edgeDBAdapter: Adapter = EdgeDBAdapter(client);
-
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: edgeDBAdapter,
+  adapter: PrismaAdapter(prisma),
   providers: [
     Credentials({
       name: 'Credentials',

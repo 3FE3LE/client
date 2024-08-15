@@ -1,4 +1,4 @@
-import { loginUser, registerUser } from './repository';
+import { registerUser } from './repository';
 
 export const useRegister = () => {
   const register = async ({

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { cookies } from 'next/headers';
 
 const API_URL = process.env.API_URL;
 
@@ -30,6 +31,16 @@ export const loginUser = async (
     const response = await axios.post(`${API_URL}/login`, {
       email,
       password,
+    });
+    const { token } = response.data;
+    cookies().set('auth_token', token, {
+      httpOnly: true,
+      sameSite: 'lax',
+      path: '/',
+      secure: process.env.NODE_ENV === 'production', // Solo en https
+      maxAge: 3600 * 1000 * 24 * 30, // Expiración de 1 mes
+      domain:
+        process.env.NODE_ENV === 'production' ? '.17suit.com' : 'localhost',
     });
     return response.data;
   } catch (error: any) {

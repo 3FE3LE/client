@@ -22,7 +22,11 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <AppWrapper messages={messages} locale={locale}>
-          {children}
+          <main className="layout">
+            <div className="layout__content">
+              <section className="layout__section">{children}</section>
+            </div>
+          </main>
         </AppWrapper>
       </body>
     </html>

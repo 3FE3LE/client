@@ -3,7 +3,7 @@ import '@web/styles/main.scss';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 
 import { PageProps } from '@repo/ui/types';
-import { AppWrapper } from '@web/components';
+import { AppWrapper } from '@web/components/UI';
 
 const languages = ['en', 'es'];
 

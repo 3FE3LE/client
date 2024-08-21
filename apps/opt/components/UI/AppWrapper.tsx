@@ -1,7 +1,6 @@
 import { SessionProvider } from 'next-auth/react';
 import { NextIntlClientProvider } from 'next-intl';
 import { ThemeProvider } from 'next-themes';
-import React from 'react';
 import { Toaster } from 'react-hot-toast';
 
 export type AppWrapperProps = {

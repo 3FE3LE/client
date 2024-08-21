@@ -1,9 +1,5 @@
-import React from 'react';
+import { TripDetails } from '@opt/components/trips';
 
-export default function TripDetail({
-  params: { id },
-}: {
-  params: { id: string };
-}) {
-  return <div>TripDetail : {id}</div>;
+export default function Trip({ params }: { params: { id: string } }) {
+  return <TripDetails id={params.id} />;
 }

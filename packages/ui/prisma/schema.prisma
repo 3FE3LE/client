@@ -7,24 +7,27 @@ datasource db {
   url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
+
 model User {
-  id            String          @id @default(cuid())
-  username      String?         @unique
+  id            String    @id @default(cuid())
+  username      String?   @unique
   password      String?
   name          String?
-  email         String          @unique
-  emailVerified DateTime?
+  email         String    @unique
+  emailVerified DateTime? @map("email_verified")
   image         String?
-  accounts      Account[]
-  Authenticator Authenticator[] // Para soporte opcional de WebAuthn
+  roleId        Int?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Role Role[]
-  Plan Plan[]
+  role      Role?       @relation(fields: [roleId], references: [id])
+  trips     Trip[]
+  accounts  Account[]
+  tripGroup TripGroup[]
+  Payment   Payment[]
 
-  PlanGroup PlanGroup[]
+  @@map("users")
 }
 
 model Account {
@@ -46,21 +49,7 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([provider, providerAccountId])
-}
-
-model Authenticator {
-  credentialID         String  @unique
-  userId               String
-  providerAccountId    String
-  credentialPublicKey  String
-  counter              Int
-  credentialDeviceType String
-  credentialBackedUp   Boolean
-  transports           String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@id([userId, credentialID])
+  @@map("accounts")
 }
 
 model Role {
@@ -83,111 +72,166 @@ model Budget {
   currencyId Int
   currency   Currency @relation(fields: [currencyId], references: [id])
 
-  Plan Plan[]
+  trips Trip[]
 }
 
 model Currency {
   id     Int    @id @default(autoincrement())
-  name   String
+  name   String @unique
   symbol String
 
-  Budget Budget[]
-}
-
-model Continent {
-  id   Int    @id @default(autoincrement())
-  name String
-
-  Country Country[]
-}
-
-model Country {
-  id          Int       @id @default(autoincrement())
-  name        String
-  code        String
-  continent   Continent @relation(fields: [continentId], references: [id])
-  continentId Int
-
-  State State[]
-}
-
-model State {
-  id        Int     @id @default(autoincrement())
-  name      String
-  code      String
-  country   Country @relation(fields: [countryId], references: [id])
-  countryId Int
-
-  City City[]
-}
-
-model City {
-  id      Int    @id @default(autoincrement())
-  name    String
-  state   State  @relation(fields: [stateId], references: [id])
-  stateId Int
-
-  Destination Destination[]
+  budgets     Budget[]
+  PaymentPlan PaymentPlan[]
+  Payment     Payment[]
 }
 
 model Destination {
-  id          Int      @id @default(autoincrement())
+  id          String   @id @default(uuid()) // Cambiado a UUID
   name        String
-  description String
+  description String?
   address     String?
+  city        String?
+  state       String?
+  continent   String?
+  postalCode  String?
   latitude    Float
   longitude   Float
-  countryId   Int
-  stateId     Int
-  cityId      Int
   createdAt   DateTime @default(now())
-  city        City     @relation(fields: [cityId], references: [id])
 
-  Plan Plan[]
+  trips      Trip[]
+  activities Activity[]
 }
 
-model Plan {
-  id           Int           @id @default(autoincrement())
-  title        String
-  description  String
-  createdAt    DateTime      @default(now())
-  statusId     Int
-  status       Status        @relation(fields: [statusId], references: [id])
-  userId       Int
-  startDate    DateTime?
-  endDate      DateTime?
-  budgetId     Int
-  budget       Budget        @relation(fields: [budgetId], references: [id])
-  destinations Destination[]
+// Definimos los enums primero
+enum TripType {
+  SOLO
+  FAMILIAR
+  FRIENDS
+  COUPLE
+  BUSINESS
+  GROUP
+}
 
-  User User[]
+enum TripPriority {
+  BUDGET
+  DESTINATION
+  COMPANY
+  DATES
+  EXPERIENCE
+}
+
+enum TripStatus {
+  DRAFT
+  PLANNING
+  BOOKED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  ON_HOLD
+}
+
+model Trip {
+  id          String       @id @default(uuid()) // Cambiado a UUID
+  title       String
+  description String
+  createdAt   DateTime     @default(now())
+  userId      String
+  budgetId    Int?
+  tripGroupId String?
+  startDate   DateTime?
+  endDate     DateTime?
+  priority    TripPriority
+  status      TripStatus   @default(PLANNING)
+  tripType    TripType     @default(SOLO)
+  budget      Budget?      @relation(fields: [budgetId], references: [id])
+  user        User         @relation(fields: [userId], references: [id])
+  tripGroup   TripGroup?   @relation(fields: [tripGroupId], references: [id])
+
+  members      Member[]
+  destinations Destination[]
+  activities   Activity[]
+  Invitation   Invitation[]
+}
+
+model Member {
+  id     String @id @default(uuid())
+  name   String
+  email  String @unique
+  roleId Int
+  tripId String
+  trip   Trip   @relation(fields: [tripId], references: [id])
+}
+
+model Guest {
+  id         String      @id @default(uuid()) // Cambiado a UUID
+  name       String
+  email      String      @unique
+  createdAt  DateTime    @default(now())
+  invitation Invitation?
+}
+
+model Invitation {
+  id         String    @id @default(uuid()) // Cambiado a UUID
+  guestId    String    @unique
+  tripId     String
+  invitedAt  DateTime  @default(now())
+  acceptedAt DateTime?
+  guest      Guest     @relation(fields: [guestId], references: [id], onDelete: Cascade)
+  trip       Trip      @relation(fields: [tripId], references: [id], onDelete: Cascade)
 }
 
 model Activity {
-  id          Int       @id @default(autoincrement())
-  name        String
-  description String
-  createdAt   DateTime  @default(now())
-  startTime   DateTime?
-  endTime     DateTime?
-  priority    Priority
+  id            String       @id @default(uuid())
+  name          String
+  description   String
+  createdAt     DateTime     @default(now())
+  startTime     DateTime?
+  endTime       DateTime?
+  priority      Priority     @default(Medium)
+  tripId        String? // Relación opcional con un Trip
+  destinationId String? // Relación opcional con un Destination
+  trip          Trip?        @relation(fields: [tripId], references: [id])
+  destination   Destination? @relation(fields: [destinationId], references: [id])
 }
 
-model PlanGroup {
-  id          Int      @id @default(autoincrement())
+model TripGroup {
+  id          String   @id @default(uuid())
   name        String
   description String
   createdAt   DateTime @default(now())
   creatorId   Int
-  mebers User[]
+  trips       Trip[] // Relación con múltiples Trips
+  members     User[]
 }
 
-model Status {
-  id          Int    @id @default(autoincrement())
+// Modelos base para planes de pago
+model PaymentPlan {
+  id          Int       @id @default(autoincrement())
   name        String
   description String
+  price       Float
+  currencyId  Int
+  currency    Currency  @relation(fields: [currencyId], references: [id])
+  Payment     Payment[]
+}
 
-  Plan Plan[]
+model Payment {
+  id            Int           @id @default(autoincrement())
+  paymentPlanId Int
+  userId        String
+  amount        Float
+  currencyId    Int
+  status        PaymentStatus @default(Pending)
+  createdAt     DateTime      @default(now())
+  paymentPlan   PaymentPlan   @relation(fields: [paymentPlanId], references: [id])
+  user          User          @relation(fields: [userId], references: [id])
+  currency      Currency      @relation(fields: [currencyId], references: [id])
+}
+
+enum PaymentStatus {
+  Pending
+  Completed
+  Failed
 }
 
 enum Priority {

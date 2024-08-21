@@ -1,25 +1,24 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import { BackButton, FormWrapper, InputGroup, SubmitButton } from '@repo/ui';
+import { useLogin } from '@sss/core/auth/hooks';
 import { useRouter } from '@sss/navigations';
 
-import { UserLogin, UserRegister } from '../actions';
-import { RegisterInputs } from '../constants/inputs';
-import { RegisterSchema as schema } from '../constants/schemas';
-import { RegisterInput } from '../types/authTypes';
+import { LoginInputs } from '../../core/auth/constants/inputs';
+import { LoginSchema as schema } from '../../core/auth/constants/schemas';
 import { GoogleSignInButton } from './GoogleSignInButton';
 
-export const RegisterForm = () => {
-  const [isLoading, setIsLoading] = useState(false);
+export const LoginForm = () => {
   const router = useRouter();
+  const { login, isLoading } = useLogin(); // Usa el hook para manejar la autenticación
   const {
     register,
+    resetField,
+    handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -27,33 +26,22 @@ export const RegisterForm = () => {
     reValidateMode: 'onBlur',
   });
 
-  const handleSubmit = () => {
-    setIsLoading(true);
-    toast.loading('Loading...');
-  };
-
-  const onSubmit = async (data: FormData) => {
-    try {
-      await UserRegister(data);
-      toast.remove();
-      toast.success('User created successfully');
-      await UserLogin(data);
-    } catch (error) {
-      toast.remove();
-      toast.error(error as string);
-      setIsLoading(false);
+  const onSubmit = async (data: { email: string; password: string }) => {
+    await login(data); // Llama al hook para realizar la autenticación
+    if (!errors.password) {
+      resetField('password'); // Resetea el campo de contraseña en caso de error
     }
   };
 
   return (
-    <FormWrapper title="Register" loading={isLoading}>
+    <FormWrapper title="Login" loading={isLoading}>
       <BackButton handleClick={router.back} />
-      <form action={onSubmit} onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <GoogleSignInButton />
         <div className="form__division">
           <span>or</span>
         </div>
-        {RegisterInputs.map((input: RegisterInput) => (
+        {LoginInputs.map((input) => (
           <InputGroup
             key={input.name}
             errors={errors[input.name]?.message}
@@ -65,12 +53,11 @@ export const RegisterForm = () => {
             required={true}
           />
         ))}
-
         <div className="form__group form__group--buttons">
           <SubmitButton isDisable={isLoading} />
         </div>
-        <Link className="form__link" href="/login">
-          Have an account?, click to Sign in
+        <Link className="form__link" href="/register">
+          Not have account yet?, click to Sign up
         </Link>
       </form>
     </FormWrapper>

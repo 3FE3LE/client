@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
-import { RegisterForm } from '@sss/app/features/auth/components';
 import { auth } from '@sss/auth';
+import { RegisterForm } from '@sss/components/auth';
 
 export const metadata: Metadata = {
   title: '17Suit - Register',

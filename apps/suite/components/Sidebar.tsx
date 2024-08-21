@@ -1,4 +1,4 @@
-import { SignOutButton } from '../app/features/auth/components/SignOutButton';
+import { SignOutButton } from './auth';
 
 export const Sidebar = () => {
   return (

@@ -35,7 +35,7 @@ export default auth((req) => {
 
 export const config = {
   matcher: [
-    '/profile',
+    '/trips',
     '/dashboard',
     '/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)',
   ],

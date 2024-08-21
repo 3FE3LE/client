@@ -5,7 +5,7 @@ export default async function DashboardPage() {
     <div>
       <header>
         <h2>Your trips</h2>
-        <button>new plan</button>
+        <button>new Trip</button>
       </header>
       <article>
         <h3>Current trip</h3>

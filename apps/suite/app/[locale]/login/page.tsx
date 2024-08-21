@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
-import { LoginForm } from '@sss/app/features/auth/components';
 import { auth } from '@sss/auth';
+import { LoginForm } from '@sss/components/auth';
 
 import type { Metadata } from 'next';
 export const metadata: Metadata = {

@@ -1,6 +1,9 @@
 .form {
   &__wrapper {
     form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: rem(32);
       width: 100%;
     }
     @include border-color;
@@ -9,7 +12,7 @@
     position: relative;
     flex-direction: column;
     align-items: center;
-    gap: rem(32);
+    gap: rem(16);
     border-radius: rem(12);
     padding: rem(24);
     width: 100%;
@@ -20,12 +23,18 @@
       pointer-events: none;
     }
   }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: rem(16);
+    width: 100%;
+  }
   &__group {
     display: flex;
     position: relative;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: rem(40);
     border: none;
     width: 100%;
     & input {
@@ -86,8 +95,9 @@
   &__division {
     @include foreground-color;
     @include flex-center;
-    margin: rem(16) 0;
+    margin: rem(8) 0;
     margin-bottom: rem(24);
+    width: 100%;
     height: rem(2);
     span {
       @include background-color;
@@ -96,63 +106,6 @@
     }
   }
 
-  &__button {
-    @include text(interface);
-    cursor: pointer;
-    border: none;
-    border-radius: rem(4);
-    background-color: $ss-green;
-    padding: rem(12);
-    width: 100%;
-    color: $ss-white;
-    &:hover {
-      background-color: $ss-green-d;
-    }
-    &:focus {
-      background-color: $ss-green-d;
-    }
-    &:active {
-      background-color: $ss-green-d;
-    }
-    &:disabled {
-      cursor: not-allowed;
-      &:hover {
-        background-color: $ss-gray;
-        color: $ss-white;
-      }
-    }
-    &--google {
-      @include flex-center;
-      @include text(interface);
-      gap: rem(12);
-      margin-bottom: rem(24);
-      border-radius: rem(4);
-      background-color: $ss-gray-lr;
-      padding: rem(4);
-      width: 100%;
-      color: $ss-gray-dr;
-      &:hover {
-        background-color: $ss-gray-lr;
-      }
-      &:focus {
-        background-color: $ss-gray-lr;
-      }
-      &:active {
-        background-color: $ss-gray-lr;
-      }
-    }
-    &--back {
-      @include flex-center;
-      @include shadow-sm;
-      @include highlighted-color;
-      position: absolute;
-      left: rem(24);
-      border-radius: rem(24);
-      padding: rem(8);
-      width: rem(32);
-      height: rem(32);
-    }
-  }
   &__link {
     @include text(base);
     display: block;

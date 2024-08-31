@@ -1,11 +1,15 @@
 * {
+  transition:
+    background 250ms ease-out,
+    color 250ms ease-out,
+    box-shadow 250ms ease-out,
+    border 250ms ease-out;
   margin: 0;
   padding: 0;
 }
 *,
 *::before,
 *::after {
-  transition: all 250ms ease-out;
   box-sizing: border-box;
 }
 
@@ -40,6 +44,7 @@ h6 {
 img,
 video,
 svg {
+  min-width: 24px;
   max-width: 100%;
   height: auto;
 }

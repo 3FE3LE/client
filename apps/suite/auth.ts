@@ -1,12 +1,12 @@
 import NextAuth, { AuthError } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import Google from 'next-auth/providers/google';
-import { cookies } from 'next/headers';
 
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { PrismaClient } from '@prisma/client';
 
 import { loginUser } from './core/auth/repository';
+import { createAuthCookie, signToken } from './utils';
 
 const prisma = new PrismaClient();
 
@@ -27,21 +27,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             email: credentials.email as string,
             password: credentials.password as string,
           });
-
           if (user) {
             const { token } = user;
-            // Configurar la cookie en el lado del servidor
-            cookies().set('auth_token', token, {
-              httpOnly: false,
-              sameSite: 'lax',
-              path: '/',
-              secure: process.env.NODE_ENV === 'production',
-              maxAge: 3600 * 1000 * 24 * 30,
-              domain:
-                process.env.NODE_ENV === 'production'
-                  ? '.17suit.com'
-                  : 'localhost',
-            });
+            createAuthCookie(token);
             return user;
           } else {
             return null;
@@ -83,6 +71,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     strategy: 'jwt',
   },
   callbacks: {
+    async signIn({ user, account }) {
+      if (account?.provider === 'google') {
+        const token = await signToken(user);
+        createAuthCookie(token);
+      }
+      return true;
+    },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;

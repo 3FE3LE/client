@@ -18,10 +18,12 @@ export const useTrips = (): {
     isError: error,
   };
 };
+
+// Hook para obtener datos de un trip específico por id
 export const useTripsById = (
   id: string,
 ): { trip: TripType; isLoading: boolean; isError: any } => {
-  const { data, error } = useSWR('/trips/' + id);
+  const { data, error } = useSWR('/trips/?id=' + id);
 
   return {
     trip: data,
@@ -43,7 +45,7 @@ export const createTrip = async (tripData: TripType) => {
 // Función para actualizar un trip existente
 export const updateTrip = async (id: string, tripData: TripType) => {
   await apiRequest(
-    `${process.env.NEXT_PUBLIC_API_URL}/trips/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/trips/?id=${id}`,
     'PUT',
     tripData,
   );

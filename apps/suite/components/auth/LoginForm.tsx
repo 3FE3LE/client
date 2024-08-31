@@ -1,16 +1,17 @@
 'use client';
 
+import { ArrowLeft } from 'lucide-react';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { BackButton, FormWrapper, InputGroup, SubmitButton } from '@repo/ui';
+import { ActionButton, FormWrapper, Google, InputGroup } from '@repo/ui';
 import { useLogin } from '@sss/core/auth/hooks';
 import { useRouter } from '@sss/navigations';
 
 import { LoginInputs } from '../../core/auth/constants/inputs';
 import { LoginSchema as schema } from '../../core/auth/constants/schemas';
-import { GoogleSignInButton } from './GoogleSignInButton';
 
 export const LoginForm = () => {
   const router = useRouter();
@@ -35,9 +36,18 @@ export const LoginForm = () => {
 
   return (
     <FormWrapper title="Login" loading={isLoading}>
-      <BackButton handleClick={router.back} />
+      <div className="form__header">
+        <ActionButton type="icon" onClick={router.back}>
+          <ArrowLeft />
+        </ActionButton>
+        <ActionButton
+          type="full"
+          onClick={() => signIn('google', { redirectTo: '/dashboard' })}
+        >
+          <Google /> Sing in
+        </ActionButton>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <GoogleSignInButton />
         <div className="form__division">
           <span>or</span>
         </div>
@@ -54,7 +64,9 @@ export const LoginForm = () => {
           />
         ))}
         <div className="form__group form__group--buttons">
-          <SubmitButton isDisable={isLoading} />
+          <ActionButton type="full" variant="primary" disabled={isLoading}>
+            Submit
+          </ActionButton>
         </div>
         <Link className="form__link" href="/register">
           Not have account yet?, click to Sign up

@@ -1,5 +1,6 @@
 'use client';
-import { useTripsById } from '../../core/trips/useCases';
+
+import { useTripsById } from '@opt/core/trips/useCases';
 
 export const TripDetails = ({ id }: { id: string }) => {
   const { trip, isLoading, isError } = useTripsById(id);
@@ -14,15 +15,16 @@ export const TripDetails = ({ id }: { id: string }) => {
       TripDetails
       <h1>{trip.title}</h1>
       <p>{trip.description}</p>
-      <p>Budget: {budget.amount}</p>
+      <p>Budget: {budget && budget.amount}</p>
       <div>
-        {destinations.map((destination) => (
-          <p key={destination.address} className="">
-            Destinations: {destination.name}{' '}
-          </p>
-        ))}
+        {destinations &&
+          destinations.map((destination) => (
+            <p key={destination.address} className="">
+              Destinations: {destination.name}{' '}
+            </p>
+          ))}
       </div>
-      <p>Status: {status.name}</p>
+      <p>Status: {status}</p>
     </div>
   );
 };

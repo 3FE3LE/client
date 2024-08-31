@@ -1,7 +1,6 @@
+import { TripType } from '@opt/core/trips/types';
 import { Link } from '@opt/navigations';
-import { Card } from '@repo/ui';
-
-import { TripType } from '../../core/trips/types';
+import { ActionButton, Card } from '@repo/ui';
 
 export const TripCard = ({
   id,
@@ -15,7 +14,7 @@ export const TripCard = ({
       <h3>{title}</h3>
       <p>{description}</p>
       <Link href={`/trips/${id}`}>
-        <button>Details</button>
+        <ActionButton>Details</ActionButton>
       </Link>
     </Card>
   );

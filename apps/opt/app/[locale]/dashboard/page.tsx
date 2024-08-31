@@ -1,11 +1,12 @@
 import { Link } from '@opt/navigations';
+import { ActionButton } from '@repo/ui';
 
 export default async function DashboardPage() {
   return (
     <div>
       <header>
         <h2>Your trips</h2>
-        <button>new Trip</button>
+        <ActionButton>new Trip</ActionButton>
       </header>
       <article>
         <h3>Current trip</h3>

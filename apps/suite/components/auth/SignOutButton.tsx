@@ -1,6 +1,7 @@
+import { ArrowLeftCircleIcon } from 'lucide-react';
 import { cookies } from 'next/headers';
 
-import { LeftCircleArrow } from '@repo/ui';
+import { ActionButton } from '@repo/ui';
 import { signOut } from '@sss/auth';
 
 export function SignOutButton() {
@@ -12,9 +13,9 @@ export function SignOutButton() {
         await signOut();
       }}
     >
-      <button type="submit">
-        <LeftCircleArrow />
-      </button>
+      <ActionButton size="small" type="icon">
+        <ArrowLeftCircleIcon />
+      </ActionButton>
     </form>
   );
 }

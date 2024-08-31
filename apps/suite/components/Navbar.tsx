@@ -1,9 +1,10 @@
 'use client';
 
+import { User } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
-import { UserCircle } from '@repo/ui';
+import { ActionButton } from '@repo/ui';
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
 import { Link, usePathname } from '@sss/navigations';
 
@@ -69,9 +70,9 @@ export const Navbar = ({
         )}
         {authenticated && (
           <li>
-            <button>
-              <UserCircle />
-            </button>
+            <ActionButton size="small" type="icon">
+              <User />
+            </ActionButton>
           </li>
         )}
       </ul>

@@ -1,20 +1,76 @@
-// _button.scss
 .button {
-  display: inline-block;
-  padding: rem(12) rem(24);
-  @include foreground-color;
-  @include text-color;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: rem(16);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
   cursor: pointer;
-  border: none;
-  border-radius: rem(4);
-  font-size: rem(16);
-  text-align: center;
+  font-weight: bold;
 
+  // Variantes de estilo
   &--primary {
-    background-color: $primary-color;
+    @include gradient-bg('primary');
+    color: $ss-white;
   }
 
   &--secondary {
-    background-color: $secondary-color;
+    @include gradient-bg('secondary');
+    color: $ss-white;
+  }
+
+  &--outline {
+    background-color: $ss-gray-lr;
+    color: $ss-gray;
+
+    &:hover {
+      background-color: darken($ss-gray-lr, 10%);
+    }
+  }
+
+  // Tamaños
+  &--small {
+    border-radius: rem(4);
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  &--medium {
+    border-radius: rem(8);
+    padding: 0.75rem 1.5rem;
+    max-height: rem(42);
+    font-size: 1rem;
+  }
+
+  &--large {
+    border-radius: rem(12);
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+
+  // Estados
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: $ss-gray;
+    color: $ss-white;
+  }
+
+  &--loading {
+    opacity: 0.8;
+    pointer-events: none;
+  }
+
+  &--icon {
+    @include shadow-sm;
+    border-radius: 50%;
+    padding: rem(8) !important;
+    aspect-ratio: 1/1;
+  }
+
+  &--full {
+    width: 100%;
+    max-width: 100%;
   }
 }

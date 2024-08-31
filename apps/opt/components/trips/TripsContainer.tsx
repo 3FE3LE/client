@@ -1,9 +1,13 @@
 'use client';
 
-import { useTrips } from '../../core/trips/useCases';
+import { createTripsHooks } from '@opt/core/trips/hooks';
+import { TripRepositoryApi } from '@opt/infrastructure/api/TripRepository';
+
 import { TripCard } from './TripCard';
 
 export const TripsContainer = () => {
+  const { useTrips } = createTripsHooks(TripRepositoryApi);
+
   const { trips, isLoading, isError } = useTrips();
 
   if (isLoading) return <div>Loading...</div>;
@@ -11,7 +15,7 @@ export const TripsContainer = () => {
 
   return (
     <div>
-      {trips && trips.map((trip: any) => <TripCard key={trip.id} {...trip} />)}
+      {trips && trips.map((trip) => <TripCard key={trip.id} {...trip} />)}
     </div>
   );
 };

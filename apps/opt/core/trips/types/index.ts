@@ -8,7 +8,7 @@ export type TripType = {
   startDate: Date;
   endDate: Date;
   budgetId: number;
-  status: Status;
+  status: string;
   budget: Budget;
   destinations: Destination[];
 };
@@ -32,16 +32,5 @@ export type Destination = {
   address: string;
   latitude: number;
   longitude: number;
-  city: City;
-};
-
-export type City = {
-  id: number;
-  name: string;
-};
-
-export type Status = {
-  id: number;
-  name: string;
-  description: string;
+  city: string;
 };

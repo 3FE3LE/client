@@ -1,16 +1,17 @@
 export type TripType = {
-  id: number;
+  id?: number;
   title: string;
   description: string;
-  createdAt: Date;
-  statusId: number;
+  createdAt?: Date;
   userId: string;
-  startDate: Date;
-  endDate: Date;
-  budgetId: number;
-  status: string;
-  budget: Budget;
-  destinations: Destination[];
+  startDate?: Date;
+  endDate?: Date;
+  budgetId?: number;
+  status?: string;
+  tripType: string;
+  priority: string;
+  budget?: Budget;
+  destinations?: Destination[];
 };
 
 export type Budget = {

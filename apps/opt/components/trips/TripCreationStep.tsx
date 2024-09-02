@@ -1,18 +1,17 @@
 'use client';
-import React from 'react';
-
+import { useTripStore } from '@opt/store/tripStore';
 import { InputField } from '@repo/ui';
 
 export const TripCreationStep = () => {
-  const [titleInput, setTitleInput] = React.useState('');
+  const { tripTitle, setTripTitle } = useTripStore();
   return (
     <div className="step">
       <h1 className="step__title">Put a name to your adventure</h1>
       <article className="step__container">
         <InputField
           name="Title"
-          handleChange={setTitleInput}
-          value={titleInput}
+          handleChange={setTripTitle}
+          value={tripTitle}
           placeholder="Type your adventure name here"
         />
       </article>

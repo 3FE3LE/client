@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { ForwardRefExoticComponent, RefAttributes, useState } from 'react';
 
+import { useTripStore } from '@opt/store/tripStore';
 import { ActionButton } from '@repo/ui';
 
 const priorities = [
@@ -21,15 +22,20 @@ const priorities = [
 const IconSize = '3rem';
 
 export const TripPriorityStep = () => {
+  const { priority, setPriority } = useTripStore();
+
+  const currentPriority = priorities.find((p) => p.id === priority);
   const [selectedPriority, setSelectedPriority] = useState<
     (typeof priorities)[0] | null
-  >(null);
+  >(currentPriority!);
 
   const isOptionSelected = (selected: string) =>
     selectedPriority?.id === selected ? '#00916e' : 'currentColor';
 
   const handlePrioritySelect = (priority: typeof selectedPriority) => {
     setSelectedPriority(priority);
+    if (priority) setPriority(priority.id);
+
     // Aquí puedes agregar la lógica para pasar a la siguiente pantalla
   };
   return (

@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import React from 'react';
 
+import { useTripStore } from '@opt/store/tripStore';
 import { ActionButton } from '@repo/ui';
 
 const IconSize = '3rem';
@@ -22,15 +23,21 @@ const types = [
 ];
 
 export const TripTypeStep = () => {
+  const { tripType, setTripType } = useTripStore();
+
+  const currenType = types.find((t) => t.id === tripType);
+
   const [selectedType, setSelectedType] = React.useState<
     (typeof types)[0] | null
-  >(null);
+  >(currenType!);
 
   const isOptionSelected = (selected: string) =>
     selectedType?.id === selected ? '#00916e' : 'currentColor';
 
   const handleTypeSelect = (type: typeof selectedType) => {
     setSelectedType(type);
+    if (type) setTripType(type.id);
+
     // Aquí puedes agregar la lógica para pasar a la siguiente pantalla
   };
   return (

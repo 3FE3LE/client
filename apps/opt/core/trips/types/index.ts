@@ -12,6 +12,7 @@ export type TripType = {
   priority: string;
   budget?: Budget;
   destinations?: Destination[];
+  activities?: Activity[];
 };
 
 export type Budget = {
@@ -35,3 +36,15 @@ export type Destination = {
   longitude: number;
   city: string;
 };
+
+export type Activity = {
+  name: string;
+  description: string;
+  priority: ActivityPriority;
+};
+
+enum ActivityPriority {
+  Low,
+  Medium,
+  Hight,
+}

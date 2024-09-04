@@ -1,13 +1,11 @@
 'use client';
 import { useSession } from 'next-auth/react';
-import { useState } from 'react';
 
 import { TripType } from '@opt/core/trips/types';
-import { createTripUseCases } from '@opt/core/trips/useCases';
-import { TripRepositoryApi } from '@opt/infrastructure/api/TripRepository';
+import { createTrip } from '@opt/integration/actions/TripActions';
 import { useRouter } from '@opt/navigations';
 import { useTripStore } from '@opt/store/tripStore';
-import { ActionButton, Card } from '@repo/ui/';
+import { ActionButton } from '@repo/ui/';
 
 export default function StepperFlow({ steps }: any) {
   const { tripTitle, tripType, priority, step, setStep, reset } =
@@ -15,7 +13,6 @@ export default function StepperFlow({ steps }: any) {
   const session = useSession();
   const router = useRouter();
 
-  const { createTrip } = createTripUseCases(TripRepositoryApi);
   const isValid = !!tripTitle && !!tripType && !!priority;
 
   const nextStep = () => {
@@ -40,9 +37,14 @@ export default function StepperFlow({ steps }: any) {
       description: `A ${tripType} Trip with ${priority} priority to ${tripTitle}`,
       userId: session.data?.user?.id!,
     };
-    router.push('/trips');
-    await createTrip(newTrip);
-    reset();
+    const result = await createTrip(newTrip);
+    if (result?.success) {
+      router.push('/trips');
+      reset();
+    } else {
+      // Manejar el error aquí
+      console.error(result?.error);
+    }
   };
 
   return (

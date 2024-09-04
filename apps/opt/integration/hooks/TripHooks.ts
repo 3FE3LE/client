@@ -1,8 +1,8 @@
-// hooks/useTrips.ts
 import useSWR, { mutate } from 'swr';
 
-import { TripRepository } from '../repository';
-import { TripType } from '../types';
+// hooks/useTrips.ts
+import { TripRepository } from '@opt/core/trips/repository';
+import { TripType } from '@opt/core/trips/types';
 
 export const createTripsHooks = (repository: TripRepository) => ({
   useTrips: (): { trips: TripType[]; isLoading: boolean; isError: any } => {
@@ -18,7 +18,7 @@ export const createTripsHooks = (repository: TripRepository) => ({
   useTripById: (
     id: string,
   ): { trip: TripType | null; isLoading: boolean; isError: any } => {
-    const { data, error } = useSWR(['/trips/?id=', id], () =>
+    const { data, error } = useSWR(['/trips/', id], () =>
       repository.getTripById(id),
     );
 

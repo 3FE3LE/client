@@ -1,6 +1,6 @@
 import { ActionButton } from '@repo/ui';
 
-export const TripDestinies = ({ destinations }: { destinations: any[] }) => {
+export const TripDestinies = ({ destinies }: { destinies: any[] }) => {
   return (
     <div>
       <div>
@@ -9,10 +9,10 @@ export const TripDestinies = ({ destinations }: { destinations: any[] }) => {
           <span>Add destiny</span>
         </ActionButton>
       </div>
-      {destinations && destinations.length! > 0 ? (
-        destinations.map((destination) => (
-          <p key={destination.address} className="">
-            Destiny: {destination.name}
+      {destinies && destinies.length! > 0 ? (
+        destinies.map((destiny) => (
+          <p key={destiny.address} className="">
+            Destiny: {destiny.name}
           </p>
         ))
       ) : (

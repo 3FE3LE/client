@@ -13,7 +13,7 @@ import { ActionButton } from '@repo/ui';
 
 const priorities = [
   { id: 'BUDGET', icon: WalletIcon, label: 'Presupuesto' },
-  { id: 'DESTINATION', icon: MapPinIcon, label: 'Destino' },
+  { id: 'DESTINY', icon: MapPinIcon, label: 'Destino' },
   { id: 'COMPANY', icon: UsersIcon, label: 'Compañía' },
   { id: 'DATES', icon: CalendarIcon, label: 'Fechas' },
   { id: 'EXPERIENCE', icon: CompassIcon, label: 'Experiencia' },

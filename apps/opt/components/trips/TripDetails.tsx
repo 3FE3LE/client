@@ -15,7 +15,7 @@ export const TripDetails = ({ id }: { id: string }) => {
 
   if (isError) return <div>Error loading trip details</div>;
 
-  const { budget, destinations, activities } = trip!;
+  const { budget, destinies, activities } = trip!;
 
   return (
     trip && (
@@ -26,7 +26,7 @@ export const TripDetails = ({ id }: { id: string }) => {
         <p className="subtitle--2">{trip.tripType}</p>
         <p>Status: {trip.status}</p>
         <TripBudget budget={budget} />
-        <TripDestinies destinations={destinations!} />
+        <TripDestinies destinies={destinies!} />
         <TripActivities activities={activities!} />
       </div>
     )

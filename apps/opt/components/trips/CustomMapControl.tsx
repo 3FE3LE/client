@@ -159,7 +159,7 @@ export function CustomMapControl() {
           <div className="flex space-x-2">
             <InputField
               name="Search"
-              placeholder="your destination"
+              placeholder="your destiny"
               value={searchInput}
               handleChange={setSearchInput}
               handleSubmit={handleSearch}

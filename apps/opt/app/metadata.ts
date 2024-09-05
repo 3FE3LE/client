@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'One Plan Trip - Your All-in-One Travel Planner',
   description:
-    'Plan, organize, and enjoy your travels with One Plan Trip. Manage destinations, budgets, activities, and more in one place.',
+    'Plan, organize, and enjoy your travels with One Plan Trip. Manage destinies, budgets, activities, and more in one place.',
   keywords: [
     'travel planner',
     'trip organizer',

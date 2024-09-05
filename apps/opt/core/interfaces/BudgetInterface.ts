@@ -1,0 +1,11 @@
+import { Currency } from '@opt/core/interfaces/TripInterface';
+
+export interface Budget {
+  id: number;
+  amount: number;
+  min: number;
+  max: number;
+  currencyId: number;
+  userId: string;
+  currency: Currency; // Asumiendo que tienes una interfaz Currency
+}

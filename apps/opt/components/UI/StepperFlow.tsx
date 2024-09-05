@@ -1,7 +1,7 @@
 'use client';
 import { useSession } from 'next-auth/react';
 
-import { TripType } from '@opt/core/trips/types';
+import { Trip } from '@opt/core/interfaces';
 import { createTrip } from '@opt/integration/actions/TripActions';
 import { useRouter } from '@opt/navigations';
 import { useTripStore } from '@opt/store/tripStore';
@@ -30,7 +30,7 @@ export default function StepperFlow({ steps }: any) {
   };
 
   const handleFinish = async () => {
-    const newTrip: TripType = {
+    const newTrip: Trip = {
       title: tripTitle,
       tripType: tripType!,
       priority: priority!,

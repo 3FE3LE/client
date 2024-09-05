@@ -1,4 +1,4 @@
-import { TripType } from '@opt/core/trips/types';
+import { Trip } from '@opt/core/interfaces';
 import { Link } from '@opt/navigations';
 import { ActionButton, Card } from '@repo/ui';
 
@@ -8,7 +8,7 @@ export const TripCard = ({
   description,
   startDate,
   endDate,
-}: TripType) => {
+}: Trip) => {
   return (
     <Card>
       <h3>{title}</h3>

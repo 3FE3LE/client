@@ -2,9 +2,9 @@
 import { useSession } from 'next-auth/react';
 
 import { Trip } from '@opt/core/interfaces';
-import { createTrip } from '@opt/integration/actions/TripActions';
+import { TripActions } from '@opt/integration/actions/';
 import { useRouter } from '@opt/navigations';
-import { useTripStore } from '@opt/store/tripStore';
+import { useTripStore } from '@opt/store';
 import { ActionButton } from '@repo/ui/';
 
 export default function StepperFlow({ steps }: any) {
@@ -30,6 +30,7 @@ export default function StepperFlow({ steps }: any) {
   };
 
   const handleFinish = async () => {
+    const { createTrip } = TripActions;
     const newTrip: Trip = {
       title: tripTitle,
       tripType: tripType!,

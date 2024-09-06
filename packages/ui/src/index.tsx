@@ -11,6 +11,7 @@ export {
 export { FormWrapper, type FormWrapperProps } from './components/FormWrapper';
 export { InputField, type InputFieldProps } from './components/InputField';
 export { InputGroup, type InputProps } from './components/InputGroup';
+export { Modal, type ModalProps } from './components/Modal';
 export { ThemeSwitcher } from './components/ThemeSwitcher';
 //ASSETS
 export { NotFoundImage } from './assets/NotFoundImage';

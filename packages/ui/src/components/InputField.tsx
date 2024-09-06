@@ -3,8 +3,8 @@ import React from 'react';
 export type InputFieldProps = {
   name: string;
   placeholder?: string;
-  value?: string;
-  handleChange: (value: string) => void;
+  value?: string | number;
+  handleChange: (value: any) => void;
   handleSubmit?: () => void;
   children?: React.ReactNode;
 };

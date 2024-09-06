@@ -3,4 +3,4 @@
 import { Activity } from '../interfaces';
 import { CRUDRepository } from './CRUDRepository';
 
-export interface ActivityRepository extends CRUDRepository<Activity, string> {}
+export interface ActivityRepository extends CRUDRepository<Activity, number> {}

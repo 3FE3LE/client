@@ -18,9 +18,3 @@ export interface Trip {
   destinies?: Destiny[];
   activities?: Activity[];
 }
-
-export type Currency = {
-  id: number;
-  name: string;
-  symbol: string;
-};

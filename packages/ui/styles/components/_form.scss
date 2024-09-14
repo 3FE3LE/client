@@ -37,18 +37,23 @@
     align-items: flex-start;
     border: none;
     width: 100%;
-    & input {
+    & input,
+    select {
       @include text-color;
       @include foreground-color;
       outline-style: none;
-      border-radius: rem(4);
+      border-radius: rem(6);
       padding: rem(8);
       width: 100%;
+      height: rem(42);
       &:hover {
         @include hover-focus-color;
       }
       &:focus {
         @include hover-focus-color;
+      }
+      &:invalid {
+        border: rem(2) solid $ss-error;
       }
     }
     &--buttons {

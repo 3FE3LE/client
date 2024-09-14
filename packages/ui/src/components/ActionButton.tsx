@@ -5,7 +5,7 @@ export type ActionButtonProps = {
   children: ReactNode;
   type?: 'icon' | 'button' | 'full';
   size?: 'small' | 'medium' | 'large';
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'accent' | 'outline';
   disabled?: boolean;
   loading?: boolean;
 };

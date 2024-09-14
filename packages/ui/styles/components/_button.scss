@@ -20,6 +20,11 @@
     color: $ss-white;
   }
 
+  &--accent {
+    @include gradient-bg('accent');
+    color: $ss-white;
+  }
+
   &--outline {
     background-color: $ss-gray-lr;
     color: $ss-gray;

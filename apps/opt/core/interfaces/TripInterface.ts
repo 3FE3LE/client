@@ -3,7 +3,7 @@ import { Budget } from './BudgetInterface';
 import { Destiny } from './DestinyInterface';
 
 export interface Trip {
-  id?: number;
+  id?: string;
   title: string;
   description: string;
   createdAt?: Date;

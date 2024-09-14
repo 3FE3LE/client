@@ -1,5 +1,4 @@
-import { getAuthToken } from '@opt/utils';
-
+// integration/api/index.ts
 export const apiRequest = async (
   url: string,
   method: string,

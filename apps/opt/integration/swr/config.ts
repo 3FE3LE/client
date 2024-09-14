@@ -16,7 +16,7 @@ export const fetcher = async (url: string, options: RequestInit = {}) => {
   });
 
   if (!response.ok) {
-    throw new Error('Error fetching data');
+    throw new Error(response.statusText);
   }
 
   return response.json();

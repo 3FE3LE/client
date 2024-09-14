@@ -1,3 +1,4 @@
+import { AddBudgetModal } from './AddBudgetModal';
 import { CustomMapControl } from './CustomMapControl';
 import { GoogleMaps } from './GoogleMaps';
 import { MarkerWithInfoWindow } from './MarkerWithInfoWindow';
@@ -12,13 +13,14 @@ import { TripsContainer } from './TripsContainer';
 import { TripTypeStep } from './TripTypeStep';
 
 export {
+  AddBudgetModal,
+  CustomMapControl,
+  GoogleMaps,
   TripCard,
   TripsContainer,
   TripDetails,
   TripPriorityStep,
   TripTypeStep,
-  GoogleMaps,
-  CustomMapControl,
   MarkerWithInfoWindow,
   TripCreationStep,
   TripActivities,

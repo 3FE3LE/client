@@ -10,7 +10,7 @@ const token = cookies().get('auth_token')?.value;
 
 // Crear un nuevo trip
 
-export const createTrip = async (trip: Trip): Promise<ActionResponse<Trip>> => {
+export const createTrip = async (trip: Trip): Promise<ActionResponse> => {
   try {
     await TripAdapter.create(trip, token!);
     return { success: true };
@@ -25,7 +25,7 @@ export const createTrip = async (trip: Trip): Promise<ActionResponse<Trip>> => {
 export const updateTrip = async (
   id: string,
   trip: Trip,
-): Promise<ActionResponse<Trip>> => {
+): Promise<ActionResponse> => {
   try {
     const data = await TripAdapter.update(id, trip, token!);
     return { success: true, data };
@@ -37,7 +37,7 @@ export const updateTrip = async (
 };
 
 // Eliminar un trip
-export const deleteTrip = async (id: string): Promise<ActionResponse<Trip>> => {
+export const deleteTrip = async (id: string): Promise<ActionResponse> => {
   try {
     await TripAdapter.delete(id, token!);
     return { success: true };

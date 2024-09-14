@@ -11,7 +11,7 @@ const token = cookies().get('auth_token')?.value;
 
 export const createActivity = async (
   activity: Activity,
-): Promise<ActionResponse<Activity>> => {
+): Promise<ActionResponse> => {
   try {
     await ActivityAdapter.create(activity, token!);
     return { success: true };
@@ -25,7 +25,7 @@ export const createActivity = async (
 export const updateActivity = async (
   id: number,
   activity: Activity,
-): Promise<ActionResponse<Activity>> => {
+): Promise<ActionResponse> => {
   try {
     await ActivityAdapter.update(id, activity, token!);
     return { success: true };
@@ -36,9 +36,7 @@ export const updateActivity = async (
   }
 };
 
-export const deleteActivity = async (
-  id: number,
-): Promise<ActionResponse<Activity>> => {
+export const deleteActivity = async (id: number): Promise<ActionResponse> => {
   try {
     await ActivityAdapter.delete(id, token!);
     return { success: true };

@@ -10,9 +10,7 @@ const token = cookies().get('auth_token')?.value;
 
 // Crear un nuevo budget
 
-export const createBudget = async (
-  budget: Budget,
-): Promise<ActionResponse<Budget>> => {
+export const createBudget = async (budget: Budget): Promise<ActionResponse> => {
   try {
     const data = await BudgetAdapter.create(budget, token!);
     return { success: true, data };
@@ -26,7 +24,7 @@ export const createBudget = async (
 export const updateBudget = async (
   id: number,
   budget: Budget,
-): Promise<ActionResponse<Budget>> => {
+): Promise<ActionResponse> => {
   try {
     await BudgetAdapter.update(id, budget, token!);
     return { success: true };
@@ -37,9 +35,7 @@ export const updateBudget = async (
   }
 };
 
-export const deleteBudget = async (
-  id: number,
-): Promise<ActionResponse<Budget>> => {
+export const deleteBudget = async (id: number): Promise<ActionResponse> => {
   try {
     await BudgetAdapter.delete(id, token!);
     return { success: true };

@@ -1,7 +1,7 @@
-export type ActionResponse<T> = {
+export type ActionResponse = {
   success: boolean;
   error?: string;
-  data?: T | T[];
+  data?: any;
   token?: string;
   message?: string;
 };

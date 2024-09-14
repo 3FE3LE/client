@@ -30,7 +30,7 @@ export const createTripsHooks = (repository: TripRepository) => ({
     };
   },
   useAction: async (
-    action: (...args: any[]) => Promise<ActionResponse<Trip>>,
+    action: (...args: any[]) => Promise<ActionResponse>,
     args: any[],
   ) => {
     const { data, error } = await action(...args);

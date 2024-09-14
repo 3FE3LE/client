@@ -12,7 +12,7 @@ const token = cookies().get('auth_token')?.value;
 
 export const createDestiny = async (
   destiny: Destiny,
-): Promise<ActionResponse<Destiny>> => {
+): Promise<ActionResponse> => {
   try {
     await DestinyAdapter.create(destiny, token!);
     return { success: true };
@@ -27,7 +27,7 @@ export const createDestiny = async (
 export const updateDestiny = async (
   id: string,
   destiny: Destiny,
-): Promise<ActionResponse<Destiny>> => {
+): Promise<ActionResponse> => {
   try {
     await DestinyAdapter.update(id, destiny, token!);
     return { success: true };
@@ -39,9 +39,7 @@ export const updateDestiny = async (
 };
 
 // Eliminar un destino
-export const deleteDestiny = async (
-  id: string,
-): Promise<ActionResponse<Destiny>> => {
+export const deleteDestiny = async (id: string): Promise<ActionResponse> => {
   try {
     await DestinyAdapter.delete(id, token!);
     return { success: true };

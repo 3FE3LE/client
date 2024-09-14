@@ -2,6 +2,7 @@ import createMiddleware from 'next-intl/middleware';
 import { NextResponse } from 'next/server';
 
 import { auth } from '@opt/auth';
+import { SSS_URI } from '@repo/ui/constants';
 
 const locales = ['es', 'en'];
 
@@ -28,7 +29,7 @@ export default auth((req) => {
     if (req.auth && req.auth.user) {
       return intlMiddleware(req);
     } else {
-      return NextResponse.redirect(new URL('/', req.url));
+      return NextResponse.redirect(new URL(SSS_URI + '/login', req.url));
     }
   }
 });

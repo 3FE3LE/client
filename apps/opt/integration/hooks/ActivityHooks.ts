@@ -20,7 +20,7 @@ export const createActivityHooks = (repository: ActivityRepository) => ({
   useActivityById: (
     id: number,
   ): { activity: Activity | null; isLoading: boolean; isError: any } => {
-    const { data, error } = useSWR(['/activities/', id], () =>
+    const { data, error } = useSWR(['/activities', id], () =>
       repository.getById(id),
     );
 

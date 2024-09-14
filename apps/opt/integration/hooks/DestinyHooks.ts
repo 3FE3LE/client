@@ -21,7 +21,9 @@ export const createDestinyHooks = (repository: DestinyRepository) => ({
   useDestinyById: (
     id: string,
   ): { destiny: Destiny | null; isLoading: boolean; isError: any } => {
-    const { data, error } = useSWR(`/destinies/${id}`, repository.getById);
+    const { data, error } = useSWR([`/destinies`, id], () =>
+      repository.getById(id),
+    );
 
     return {
       destiny: data ?? null,

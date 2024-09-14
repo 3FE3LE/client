@@ -18,7 +18,7 @@ export const createBudgetHooks = (repository: BudgetRepository) => ({
   useBudgetById: (
     id: number,
   ): { budget: Budget | null; isLoading: boolean; isError: any } => {
-    const { data, error } = useSWR(['/budgets/', id], () =>
+    const { data, error } = useSWR(['/budgets', id], () =>
       repository.getById(id),
     );
 

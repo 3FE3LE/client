@@ -15,15 +15,15 @@ export const TripAdapter: TripRepository = {
     return fetcher(`/trips/${id}`);
   },
 
-  create: async (trip: Trip, token: string): Promise<void> => {
-    await apiRequest(`/trips`, 'POST', token, trip);
+  create: async (trip: Trip, token: string): Promise<Trip> => {
+    return await apiRequest(`/trips`, 'POST', token, trip);
   },
 
-  update: async (id: string, trip: Trip, token: string): Promise<void> => {
-    await apiRequest(`/trips/${id}`, 'PUT', token, trip);
+  update: async (id: string, trip: Trip, token: string): Promise<Trip> => {
+    return await apiRequest(`/trips/${id}`, 'PUT', token, trip);
   },
 
-  delete: async (id: string, token: string): Promise<void> => {
-    await apiRequest(`/trips/${id}`, 'DELETE', token);
+  delete: async (id: string, token: string): Promise<Trip> => {
+    return await apiRequest(`/trips/${id}`, 'DELETE', token);
   },
 };

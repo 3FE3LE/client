@@ -8,22 +8,26 @@ import { fetcher } from '../swr/config';
 export const BudgetAdapter: BudgetRepository = {
   // hooks methods
   getAll: async (): Promise<Budget[]> => {
-    return fetcher(`/budgets`);
+    return fetcher(`/budget`);
   },
   getById: async (id: number): Promise<Budget | null> => {
-    return fetcher(`/budgets/${id}`);
+    return fetcher(`/budget/${id}`);
   },
   getCurrencies: async (): Promise<Currency[]> => {
-    return fetcher(`/currencies`);
+    return fetcher(`/budget/currencies/`);
   },
   // actions methods
-  create: async (budget: Budget, token: string): Promise<void> => {
-    await apiRequest(`/budgets`, 'POST', token, budget);
+  create: async (budget: Budget, token: string): Promise<Budget> => {
+    return await apiRequest(`/budget`, 'POST', token, budget);
   },
-  update: async (id: number, budget: Budget, token: string): Promise<void> => {
-    await apiRequest(`/budgets/${id}`, 'PUT', token, budget);
+  update: async (
+    id: number,
+    budget: Budget,
+    token: string,
+  ): Promise<Budget> => {
+    return await apiRequest(`/budget/${id}`, 'PUT', token, budget);
   },
-  delete: async (id: number, token: string): Promise<void> => {
-    await apiRequest(`/budgets/${id}`, 'DELETE', token);
+  delete: async (id: number, token: string): Promise<Budget> => {
+    return await apiRequest(`/budget/${id}`, 'DELETE', token);
   },
 };

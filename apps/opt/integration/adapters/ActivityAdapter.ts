@@ -13,17 +13,17 @@ export const ActivityAdapter: ActivityRepository = {
     return fetcher(`/activities/${id}`);
   },
   // actions methods
-  create: async (activity: Activity, token: string): Promise<void> => {
-    await apiRequest(`/activities`, 'POST', token, activity);
+  create: async (activity: Activity, token: string): Promise<Activity> => {
+    return await apiRequest(`/activities`, 'POST', token, activity);
   },
   update: async (
     id: number,
     activity: Activity,
     token: string,
-  ): Promise<void> => {
-    await apiRequest(`/activities/${id}`, 'PUT', token, activity);
+  ): Promise<Activity> => {
+    return await apiRequest(`/activities/${id}`, 'PUT', token, activity);
   },
-  delete: async (id: number, token: string): Promise<void> => {
-    await apiRequest(`/activities/${id}`, 'DELETE', token);
+  delete: async (id: number, token: string): Promise<Activity> => {
+    return await apiRequest(`/activities/${id}`, 'DELETE', token);
   },
 };

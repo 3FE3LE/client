@@ -10,10 +10,12 @@ const token = cookies().get('auth_token')?.value;
 
 // Crear un nuevo budget
 
-export const createBudget = async (budget: Budget): Promise<ActionResponse> => {
+export const createBudget = async (
+  budget: Budget,
+): Promise<ActionResponse<Budget>> => {
   try {
-    await BudgetAdapter.create(budget, token);
-    return { success: true };
+    const data = await BudgetAdapter.create(budget, token!);
+    return { success: true, data };
   } catch (error) {
     console.error('Failed to create budget:', error);
     if (error instanceof Error) return { success: false, error: error.message };
@@ -24,9 +26,9 @@ export const createBudget = async (budget: Budget): Promise<ActionResponse> => {
 export const updateBudget = async (
   id: number,
   budget: Budget,
-): Promise<ActionResponse> => {
+): Promise<ActionResponse<Budget>> => {
   try {
-    await BudgetAdapter.update(id, budget, token);
+    await BudgetAdapter.update(id, budget, token!);
     return { success: true };
   } catch (error) {
     console.error('Failed to update budget:', error);
@@ -35,9 +37,11 @@ export const updateBudget = async (
   }
 };
 
-export const deleteBudget = async (id: number): Promise<ActionResponse> => {
+export const deleteBudget = async (
+  id: number,
+): Promise<ActionResponse<Budget>> => {
   try {
-    await BudgetAdapter.delete(id, token);
+    await BudgetAdapter.delete(id, token!);
     return { success: true };
   } catch (error) {
     console.error('Failed to delete budget:', error);

@@ -13,17 +13,17 @@ export const DestinyAdapter: DestinyRepository = {
     return fetcher(`/destinies/${id}`);
   },
   // actions methods
-  create: async (destiny: Destiny, token: string): Promise<void> => {
-    await apiRequest(`/destinies`, 'POST', token, destiny);
+  create: async (destiny: Destiny, token: string): Promise<Destiny> => {
+    return await apiRequest(`/destinies`, 'POST', token, destiny);
   },
   update: async (
     id: string,
     destiny: Destiny,
     token: string,
-  ): Promise<void> => {
-    await apiRequest(`/destinies/${id}`, 'PUT', token, destiny);
+  ): Promise<Destiny> => {
+    return await apiRequest(`/destinies/${id}`, 'PUT', token, destiny);
   },
-  delete: async (id: string, token: string): Promise<void> => {
-    await apiRequest(`/destinies/${id}`, 'DELETE', token);
+  delete: async (id: string, token: string): Promise<Destiny> => {
+    return await apiRequest(`/destinies/${id}`, 'DELETE', token);
   },
 };

@@ -20,7 +20,7 @@ const initialState: BudgetState = {
   amount: 0,
   min: 0,
   max: 0,
-  currencyId: 0,
+  currencyId: NaN,
 };
 
 export const useBudgetStore = create<BudgetState & BudgetActions>()(

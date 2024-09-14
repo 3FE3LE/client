@@ -1,11 +1,21 @@
+'use client';
+import { useRouter } from 'next/navigation';
+
+import { Destiny } from '@opt/core/interfaces';
 import { ActionButton } from '@repo/ui';
 
-export const TripDestinies = ({ destinies }: { destinies: any[] }) => {
+export const TripDestinies = ({ destinies }: { destinies: Destiny[] }) => {
+  const router = useRouter();
+
   return (
     <div>
       <div>
         <h3>Destinies</h3>
-        <ActionButton variant="primary" size="small">
+        <ActionButton
+          onClick={() => router.push('/trips/map')}
+          variant="primary"
+          size="small"
+        >
           <span>Add destiny</span>
         </ActionButton>
       </div>

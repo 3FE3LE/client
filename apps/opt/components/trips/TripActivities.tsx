@@ -1,6 +1,10 @@
+import { Activity } from '@opt/core/interfaces';
 import { ActionButton } from '@repo/ui';
 
-export const TripActivities = ({ activities }: { activities: any[] }) => {
+export const TripActivities = ({ activities }: { activities: Activity[] }) => {
+  if (!activities) {
+    return <span>No Activities, yet</span>;
+  }
   return (
     <div>
       <div>
@@ -9,15 +13,11 @@ export const TripActivities = ({ activities }: { activities: any[] }) => {
           <span>Add activity</span>
         </ActionButton>
       </div>
-      {activities.length > 0 ? (
-        activities.map((activity) => (
-          <p key={activity.name} className="">
-            Activity: {activity.name}
-          </p>
-        ))
-      ) : (
-        <span>No Activities, yet</span>
-      )}
+      {activities.map((activity) => (
+        <p key={activity.name} className="">
+          Activity: {activity.name}
+        </p>
+      ))}
     </div>
   );
 };

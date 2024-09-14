@@ -1,5 +1,6 @@
 'use client';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
+import { toast } from 'react-hot-toast';
 
 import { Trip } from '@opt/core/interfaces';
 import { TripActions } from '@opt/integration/actions/';
@@ -43,8 +44,8 @@ export default function StepperFlow({ steps }: any) {
       router.push('/trips');
       reset();
     } else {
-      // Manejar el error aquí
-      console.error(result?.error);
+      signOut();
+      toast.error(result?.error as string);
     }
   };
 

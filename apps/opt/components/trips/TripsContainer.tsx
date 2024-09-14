@@ -8,7 +8,7 @@ import { TripCard } from './TripCard';
 export const TripsContainer = () => {
   const { useTrips } = createTripsHooks(TripAdapter);
 
-  const { trips, isLoading, isError } = useTrips();
+  const { results: trips, isLoading, isError } = useTrips();
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading trips</div>;

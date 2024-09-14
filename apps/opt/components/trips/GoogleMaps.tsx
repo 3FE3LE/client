@@ -29,7 +29,6 @@ export const GoogleMaps = ({ apiKey }: { apiKey: string }) => {
           <CustomMapControl />
         </MapControl>
         <MarkerWithInfoWindow />
-        <Pin />
       </Map>
     </APIProvider>
   );

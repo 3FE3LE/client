@@ -20,7 +20,7 @@ export const TripDetails = ({ id }: { id: string }) => {
 
   useEffect(() => {
     if (trip) setTrip(trip);
-  });
+  }, [trip, setTrip]);
 
   if (isLoading) return <div>Loading...</div>;
 

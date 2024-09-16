@@ -4,9 +4,8 @@ import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 
 import { Budget } from '@opt/core/interfaces';
-import { BudgetActions, TripActions } from '@opt/integration/actions';
-import { TripAdapter } from '@opt/integration/adapters';
-import { createTripsHooks } from '@opt/integration/hooks';
+import { TripActions } from '@opt/integration/actions';
+import { createGlobalHooks } from '@opt/integration/hooks';
 import { useBudgetStore, useTripStore } from '@opt/store';
 import { ActionButton } from '@repo/ui';
 
@@ -17,7 +16,7 @@ export const TripBudget = ({ budget }: { budget: any }) => {
 
   const { amount, max, min, currencyId, reset } = useBudgetStore();
   const { trip } = useTripStore();
-  const { useAction } = createTripsHooks(TripAdapter);
+  const { useAction } = createGlobalHooks('/trips');
 
   const session = useSession();
 
@@ -29,29 +28,21 @@ export const TripBudget = ({ budget }: { budget: any }) => {
       max: Number(max),
       userId: session.data?.user?.id,
     };
-
-    const { createBudget } = BudgetActions;
     const { updateTrip } = TripActions;
 
-    const result = await createBudget(newBudget);
-    if (result.error) {
-      toast.error(result.error);
-      return;
-    }
-    const resultTrip = await useAction(updateTrip, [
+    const {
+      data: result,
+      isError,
+      isLoading,
+    } = await useAction(updateTrip, [
       trip?.id!,
       {
-        title: trip?.title,
-        description: trip?.description,
-        priority: trip?.priority,
-        userId: trip.userId,
-        tripType: trip?.tripType,
-        budgetId: result.data?.id,
+        ...trip,
+        budget: newBudget,
       },
     ]);
-    console.log(resultTrip);
-    if (result.error) {
-      toast.error(result.error);
+    if (isError) {
+      toast.error(isError);
       return;
     }
     reset();

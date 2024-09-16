@@ -1,7 +1,8 @@
 export interface Destiny {
-  id: string;
+  id?: string;
   name: string;
   description?: string;
+  placeId?: string;
   address?: string;
   city?: string;
   state?: string;
@@ -10,6 +11,6 @@ export interface Destiny {
   continent?: string;
   latitude: number;
   longitude: number;
-  createdAt: Date;
+  createdAt?: Date;
   // No incluimos trips ni activities aquí para evitar referencias circulares
 }

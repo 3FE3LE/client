@@ -7,23 +7,23 @@ import { fetcher } from '../swr/config';
 export const DestinyAdapter: DestinyRepository = {
   // hooks methods
   getAll: async (): Promise<Destiny[]> => {
-    return fetcher(`/destinies`);
+    return fetcher(`/destiny`);
   },
   getById: async (id: string): Promise<Destiny | null> => {
-    return fetcher(`/destinies/${id}`);
+    return fetcher(`/destiny/${id}`);
   },
   // actions methods
   create: async (destiny: Destiny, token: string): Promise<Destiny> => {
-    return await apiRequest(`/destinies`, 'POST', token, destiny);
+    return await apiRequest(`/destiny`, 'POST', token, destiny);
   },
   update: async (
     id: string,
     destiny: Destiny,
     token: string,
   ): Promise<Destiny> => {
-    return await apiRequest(`/destinies/${id}`, 'PUT', token, destiny);
+    return await apiRequest(`/destiny/${id}`, 'PUT', token, destiny);
   },
   delete: async (id: string, token: string): Promise<Destiny> => {
-    return await apiRequest(`/destinies/${id}`, 'DELETE', token);
+    return await apiRequest(`/destiny/${id}`, 'DELETE', token);
   },
 };

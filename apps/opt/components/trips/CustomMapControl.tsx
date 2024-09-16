@@ -32,7 +32,7 @@ export function CustomMapControl() {
   const { destiny, setDestiny, searchInput, setSearchInput, reset } =
     useDestinyStore();
   const { trip } = useTripStore();
-  const { useAction } = createGlobalHooks('/trips');
+  const { useAction: action } = createGlobalHooks('/trips');
 
   const { addMarker, adjustZoom, toggleMapType } = useMapControls(map);
 
@@ -82,7 +82,7 @@ export function CustomMapControl() {
   const handleSaveDestiny = async () => {
     toast.loading('Saving destiny...');
     const newDestiny: Destiny = destinyMapper(destiny!);
-    const { isError } = await useAction(updateTrip, [
+    const { isError } = await action(updateTrip, [
       trip.id,
       { ...trip, destinies: [...trip.destinies!, newDestiny] },
     ]);

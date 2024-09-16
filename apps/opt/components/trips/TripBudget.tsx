@@ -16,7 +16,7 @@ export const TripBudget = ({ budget }: { budget: any }) => {
 
   const { amount, max, min, currencyId, reset } = useBudgetStore();
   const { trip } = useTripStore();
-  const { useAction } = createGlobalHooks('/trips');
+  const { useAction: action } = createGlobalHooks('/trips');
 
   const session = useSession();
 
@@ -34,7 +34,7 @@ export const TripBudget = ({ budget }: { budget: any }) => {
       data: result,
       isError,
       isLoading,
-    } = await useAction(updateTrip, [
+    } = await action(updateTrip, [
       trip?.id!,
       {
         ...trip,

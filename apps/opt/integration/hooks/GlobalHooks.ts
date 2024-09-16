@@ -9,8 +9,7 @@ export const createGlobalHooks = (key: string) => ({
     args: any[],
   ) => {
     const { data, error } = await action(...args);
-    console.log(key);
-    mutate(`/${key}`);
+    mutate(key);
     // Si la acción es de actualización o eliminación, refrescar el caché del trip individual
     if (typeof args[0] === 'string') {
       mutate([key, args[0]]); // args[0] es el id del trip

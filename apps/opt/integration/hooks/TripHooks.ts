@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-// hooks/useTrips.ts
 import useSWR from 'swr';
 
 import { Trip } from '@opt/core/interfaces';

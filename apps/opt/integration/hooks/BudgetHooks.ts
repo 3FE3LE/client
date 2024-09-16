@@ -1,29 +1,28 @@
 import useSWR from 'swr';
 
-import { Budget } from '@opt/core/interfaces';
-import { Currency } from '@opt/core/interfaces/BudgetInterface';
+import { Budget, Currency } from '@opt/core/interfaces';
 import { BudgetRepository } from '@opt/core/repositories';
 
-export const createBudgetHooks = (repository: BudgetRepository) => ({
-  useBudgets: (): { budgets: Budget[]; isLoading: boolean; isError: any } => {
-    const { data, error } = useSWR('/budgets', repository.getAll);
+import { HookState } from '../types';
 
+export const createBudgetHooks = (repository: BudgetRepository) => ({
+  useBudgets: (): HookState<Budget> => {
+    const { data, error } = useSWR('/budgets', repository.getAll);
+    //
     return {
-      budgets: data || [],
+      results: data || [],
       isLoading: !data && !error,
       isError: error,
     };
   },
 
-  useBudgetById: (
-    id: number,
-  ): { budget: Budget | null; isLoading: boolean; isError: any } => {
+  useBudgetById: (id: number): HookState<Budget> => {
     const { data, error } = useSWR(['/budgets', id], () =>
       repository.getById(id),
     );
 
     return {
-      budget: data ?? null,
+      result: data ?? null,
       isLoading: !data && !error,
       isError: error,
     };

@@ -1,11 +1,11 @@
 import { useCallback } from 'react';
 // hooks/useTrips.ts
-import useSWR, { mutate } from 'swr';
+import useSWR from 'swr';
 
 import { Trip } from '@opt/core/interfaces';
 import { TripRepository } from '@opt/core/repositories';
 
-import { ActionResponse, HookState } from '../types';
+import { HookState } from '../types';
 
 export const createTripsHooks = (repository: TripRepository) => ({
   useTrips: (): HookState<Trip> => {
@@ -29,30 +29,12 @@ export const createTripsHooks = (repository: TripRepository) => ({
       isError: error,
     };
   },
-  useAction: async (
-    action: (...args: any[]) => Promise<ActionResponse>,
-    args: any[],
-  ) => {
-    const { data, error } = await action(...args);
-    // Refrescar el caché de '/trips'
-    mutate('/trips');
-    // Si la acción es de actualización o eliminación, refrescar el caché del trip individual
-    if (typeof args[0] === 'string') {
-      mutate(['/trips', args[0]]); // args[0] es el id del trip
-    }
-
-    return {
-      data: data,
-      isLoading: !data && !error,
-      isError: error,
-    };
-  },
 });
 
 // useMapControls.ts
 export const useMapControls = (map: google.maps.Map | null) => {
   const addMarker = useCallback(
-    (position: google.maps.LatLngLiteral, title: string = 'Nuevo destino') => {
+    (position: google.maps.LatLngLiteral, title: string) => {
       if (map) {
         map.setCenter(position);
         new google.maps.Marker({

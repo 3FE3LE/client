@@ -22,7 +22,7 @@ export const createBudgetHooks = (repository: BudgetRepository) => ({
     );
 
     return {
-      result: data ?? null,
+      result: data ?? undefined,
       isLoading: !data && !error,
       isError: error,
     };

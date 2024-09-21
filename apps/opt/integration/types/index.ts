@@ -7,7 +7,7 @@ export type ActionResponse = {
 };
 
 export interface HookState<T> {
-  result?: T | null;
+  result?: T | undefined;
   results?: T[] | [];
   isLoading: boolean;
   isError: any;

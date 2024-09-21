@@ -26,7 +26,7 @@ export const createDestinyHooks = (repository: DestinyRepository) => ({
     );
 
     return {
-      destiny: data ?? null,
+      destiny: data ?? undefined,
       isLoading: !data && !error,
       isError: error,
     };

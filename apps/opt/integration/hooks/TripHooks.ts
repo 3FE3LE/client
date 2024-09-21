@@ -23,7 +23,7 @@ export const createTripsHooks = (repository: TripRepository) => ({
     );
 
     return {
-      result: data ?? null,
+      result: data ?? undefined,
       isLoading: !data && !error,
       isError: error,
     };

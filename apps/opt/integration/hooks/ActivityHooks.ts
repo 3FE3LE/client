@@ -25,7 +25,7 @@ export const createActivityHooks = (repository: ActivityRepository) => ({
     );
 
     return {
-      activity: data ?? null,
+      activity: data ?? undefined,
       isLoading: !data && !error,
       isError: error,
     };

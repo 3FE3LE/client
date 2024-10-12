@@ -71,9 +71,24 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     async signIn({ user, account }) {
-      if (account?.provider === 'google') {
-        const token = await signToken(user);
+      if (account?.provider === 'google' && user.email) {
+        let dbUser = await prisma.user.findUnique({
+          where: { email: user.email },
+        });
+
+        if (!dbUser) {
+          dbUser = await prisma.user.create({
+            data: {
+              email: user.email,
+              name: user.name,
+              image: user.image,
+            },
+          });
+        }
+
+        const token = await signToken(dbUser);
         createAuthCookie(token);
+        return true;
       }
       return true;
     },

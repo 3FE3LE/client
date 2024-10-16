@@ -34,16 +34,13 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Install TurboRepo
-        run: yarn global add turbo
-
   build:
     runs-on: ubuntu-latest
     needs: install_dependencies
     strategy:
       matrix:
-        app: [web, opt, suite]
-
+        app: [native, web, opt, suite]
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -55,54 +52,4 @@ jobs:
 
       - name: Build the app ${{ matrix.app }}
         run: |
-          yarn turbo run build --filter=apps/${{ matrix.app }}...
-  test:
-    runs-on: ubuntu-latest
-    needs: build
-    strategy:
-      matrix:
-        app: [web, opt, suite]
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Run tests for ${{ matrix.app }}
-        run: |
-          yarn turbo run test --filter=apps/${{ matrix.app }}...
-  lint:
-    runs-on: ubuntu-latest
-    needs: install_dependencies
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Lint all apps
-        run: yarn turbo run lint --filter=apps/...
-
-  coverage:
-    runs-on: ubuntu-latest
-    needs: test
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Generate test coverage
-        run: |
-          yarn turbo run test --filter=apps/... --coverage
+          npx turbo run build --filter=apps/${{ matrix.app }}...

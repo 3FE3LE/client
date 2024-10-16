@@ -39,7 +39,7 @@ jobs:
     needs: install_dependencies
     strategy:
       matrix:
-        app: [native, web, opt, suite]
+        app: [web, opt, suite]
     
     steps:
       - name: Checkout code

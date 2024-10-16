@@ -1,28 +1,50 @@
 'use client';
-import { useTripsById } from '../../core/trips/useCases';
+
+import { notFound } from 'next/navigation';
+import { useEffect } from 'react';
+
+import { TripAdapter } from '@opt/integration/adapters';
+import { createTripsHooks } from '@opt/integration/hooks';
+import { useTripStore } from '@opt/store';
+
+import { TripActivities } from './TripActivities';
+import { TripBudget } from './TripBudget';
+import { TripDestinies } from './TripDestinies';
 
 export const TripDetails = ({ id }: { id: string }) => {
-  const { trip, isLoading, isError } = useTripsById(id);
+  const { setTrip } = useTripStore();
+
+  const { useTripById } = createTripsHooks(TripAdapter);
+
+  const { result: trip, isLoading, isError } = useTripById(id);
+
+  useEffect(() => {
+    if (trip) setTrip(trip);
+  }, [trip, setTrip]);
+
   if (isLoading) return <div>Loading...</div>;
 
-  if (isError) return <div>Error loading trip details</div>;
+  if (isError)
+    isError.message === 'Not Found' ? (
+      notFound()
+    ) : (
+      <div>Error loading trip details: {isError.message}</div>
+    );
 
-  const { budget, destinations, status } = trip;
+  const { budget, destinies, activities } = trip!;
 
   return (
-    <div>
-      TripDetails
-      <h1>{trip.title}</h1>
-      <p>{trip.description}</p>
-      <p>Budget: {budget.amount}</p>
+    trip && (
       <div>
-        {destinations.map((destination) => (
-          <p key={destination.address} className="">
-            Destinations: {destination.name}{' '}
-          </p>
-        ))}
+        <h2 className="subtitle--1">{trip.title}</h2>
+        <p className="">{trip.description}</p>
+        <p className="subtitle--2">{trip.priority}</p>
+        <p className="subtitle--2">{trip.tripType}</p>
+        <p>Status: {trip.status}</p>
+        <TripBudget budget={budget} />
+        <TripDestinies destinies={destinies!} />
+        <TripActivities activities={activities!} />
       </div>
-      <p>Status: {status.name}</p>
-    </div>
+    )
   );
 };

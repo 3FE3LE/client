@@ -1,5 +1,7 @@
 'use client';
-import { BackButton } from '@repo/ui';
+import { ArrowLeft } from 'lucide-react';
+
+import { ActionButton } from '@repo/ui';
 import { useRouter } from '@web/navigations';
 
 export default function NotFound() {
@@ -10,7 +12,9 @@ export default function NotFound() {
       <h4 className="subtitle--1">
         Mmmm... well, sometime this things happens
       </h4>
-      <BackButton handleClick={back} />
+      <ActionButton type="icon" onClick={() => back()}>
+        <ArrowLeft />
+      </ActionButton>
     </div>
   );
 }

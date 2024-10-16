@@ -1,0 +1,12 @@
+{
+  "reporter": ["text", "html"],
+  "extension": [".ts", ".tsx"],
+  "include": [
+    "apps/opt/**/*.ts",
+    "apps/opt/**/*.tsx"
+  ],
+  "exclude": [
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ]
+}

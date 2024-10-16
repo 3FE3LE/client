@@ -1,16 +1,15 @@
 import NextAuth, { AuthError } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import Google from 'next-auth/providers/google';
-import { cookies } from 'next/headers';
 
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { PrismaClient } from '@prisma/client';
+import { isProduction } from '@repo/ui/constants';
 
 import { loginUser } from './core/auth/repository';
+import { createAuthCookie, signToken } from './utils';
 
 const prisma = new PrismaClient();
-
-const production = process.env.NODE_ENV === 'production';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -27,21 +26,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             email: credentials.email as string,
             password: credentials.password as string,
           });
-
           if (user) {
             const { token } = user;
-            // Configurar la cookie en el lado del servidor
-            cookies().set('auth_token', token, {
-              httpOnly: false,
-              sameSite: 'lax',
-              path: '/',
-              secure: process.env.NODE_ENV === 'production',
-              maxAge: 3600 * 1000 * 24 * 30,
-              domain:
-                process.env.NODE_ENV === 'production'
-                  ? '.17suit.com'
-                  : 'localhost',
-            });
+            createAuthCookie(token);
             return user;
           } else {
             return null;
@@ -83,6 +70,28 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     strategy: 'jwt',
   },
   callbacks: {
+    async signIn({ user, account }) {
+      if (account?.provider === 'google' && user.email) {
+        let dbUser = await prisma.user.findUnique({
+          where: { email: user.email },
+        });
+
+        if (!dbUser) {
+          dbUser = await prisma.user.create({
+            data: {
+              email: user.email,
+              name: user.name,
+              image: user.image,
+            },
+          });
+        }
+
+        const token = await signToken(dbUser);
+        createAuthCookie(token);
+        return true;
+      }
+      return true;
+    },
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
@@ -98,13 +107,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   cookies: {
     sessionToken: {
-      name: `${production ? '__Secure-' : ''}authjs.session-token`,
+      name: `${isProduction ? '__Secure-' : ''}authjs.session-token`,
       options: {
         httpOnly: true,
         sameSite: 'lax',
         path: '/',
-        secure: production,
-        domain: production ? '.17suit.com' : 'localhost',
+        secure: isProduction,
+        domain: isProduction ? '.17suit.com' : 'localhost',
       },
     },
   },

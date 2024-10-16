@@ -1,3 +1,4 @@
+'use client';
 import { XIcon } from 'lucide-react';
 
 import { BudgetAdapter } from '@opt/integration/adapters';

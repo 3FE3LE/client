@@ -2,10 +2,15 @@ import '@sss/styles/main.scss';
 
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 
-import { Navbar } from '@repo/ui/';
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
 import { PageProps } from '@repo/ui/types';
-import { AppWrapper, Footer, Sidebar, SWRProvider } from '@sss/components';
+import {
+  AppWrapper,
+  Footer,
+  Navbar,
+  Sidebar,
+  SWRProvider,
+} from '@sss/components';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { auth } from '../../auth';
@@ -31,22 +36,22 @@ export default async function RootLayout({
     {
       name: 'login',
       href: '/login',
-      protected: authenticated,
+      protected: false,
     },
     {
       name: 'register',
       href: '/register',
-      protected: authenticated,
+      protected: false,
     },
     {
       name: 'dashboard',
       href: '/dashboard',
-      protected: !authenticated,
+      protected: true,
     },
     {
       name: 'profile',
       href: '/profile',
-      protected: !authenticated,
+      protected: true,
     },
   ];
   return (

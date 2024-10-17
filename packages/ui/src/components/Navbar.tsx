@@ -48,7 +48,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <ul className="navbar__menu">
         {menuItems.map(
           (item) =>
-            !item.protected && (
+            item.protected === authenticated && (
               <li key={item.name}>
                 <Link
                   prefetch={true}

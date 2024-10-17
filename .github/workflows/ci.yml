@@ -37,10 +37,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: install_dependencies
-    strategy:
-      matrix:
-        app: [web, opt, suite]
-    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -50,6 +46,5 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Build the app ${{ matrix.app }}
-        run: |
-          npx turbo run build --filter=apps/${{ matrix.app }}...
+      - name: Build apps
+        run: yarn build

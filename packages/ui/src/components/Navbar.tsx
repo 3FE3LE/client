@@ -32,7 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <nav className="navbar">
       <Link href="/">
-        {typeof title === 'string' && title ? (
+        {typeof title !== 'object' ? (
           <h1>{title}</h1>
         ) : (
           <Image

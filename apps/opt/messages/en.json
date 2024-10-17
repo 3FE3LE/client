@@ -1,1 +1,9 @@
-{}
+{
+  "navbar": {
+    "login": "Iniciar",
+    "register": "Registro",
+    "profile": "Perfil",
+    "dashboard": "Panel de control",
+    "log-out": "Salir"
+  }
+}

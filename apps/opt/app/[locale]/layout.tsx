@@ -25,7 +25,12 @@ export default async function RootLayout({
         <AppWrapper messages={messages} locale={locale}>
           <SWRProvider>
             <main className="layout">
-              <Navbar title={'One Plan Trip'} menuItems={[]} authenticated />
+              <Navbar
+                title={'One Plan Trip'}
+                menuItems={[]}
+                authenticated
+                locale={locale}
+              />
               <div className="layout__content">
                 <section className="layout__section">{children}</section>
               </div>

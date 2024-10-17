@@ -2,14 +2,10 @@ import '@sss/styles/main.scss';
 
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 
+import { Navbar } from '@repo/ui/';
+import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
 import { PageProps } from '@repo/ui/types';
-import {
-  AppWrapper,
-  Footer,
-  Navbar,
-  Sidebar,
-  SWRProvider,
-} from '@sss/components';
+import { AppWrapper, Footer, Sidebar, SWRProvider } from '@sss/components';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { auth } from '../../auth';
@@ -28,13 +24,43 @@ export default async function RootLayout({
   const session = await auth();
 
   const messages = await getMessages();
+
+  const authenticated = !!session;
+
+  const menuItems = [
+    {
+      name: 'login',
+      href: '/login',
+      protected: authenticated,
+    },
+    {
+      name: 'register',
+      href: '/register',
+      protected: authenticated,
+    },
+    {
+      name: 'dashboard',
+      href: '/dashboard',
+      protected: !authenticated,
+    },
+    {
+      name: 'profile',
+      href: '/profile',
+      protected: !authenticated,
+    },
+  ];
   return (
     <html lang={locale} suppressHydrationWarning>
       <body>
         <AppWrapper messages={messages} locale={locale}>
           <SWRProvider>
             <main className="layout">
-              <Navbar locale={locale} authenticated={!!session} />
+              <Navbar
+                locale={locale}
+                authenticated={authenticated}
+                menuItems={menuItems}
+                title={{ src: ss_logo.src, alt: '17Suit Logo' }}
+              />
               <div className="layout__content">
                 {session && <Sidebar />}
                 <section className="layout__section">{children}</section>

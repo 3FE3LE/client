@@ -3,6 +3,7 @@ import '@opt/styles/main.scss';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 
 import { AppWrapper, SWRProvider } from '@opt/components/UI';
+import { Navbar } from '@repo/ui';
 import { PageProps } from '@repo/ui/types';
 
 import { metadata } from '../metadata';
@@ -24,6 +25,7 @@ export default async function RootLayout({
         <AppWrapper messages={messages} locale={locale}>
           <SWRProvider>
             <main className="layout">
+              <Navbar title={'One Plan Trip'} menuItems={[]} authenticated />
               <div className="layout__content">
                 <section className="layout__section">{children}</section>
               </div>

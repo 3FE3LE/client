@@ -11,7 +11,16 @@
       "persistent": true
     },
     "start": {},
-    "lint": {},
+    "lint": {
+      "outputs": []
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "outputs": ["coverage/**"]
+    },
+    "test:e2e": {
+      "outputs": []
+    },
     "clean": {
       "cache": false
     }

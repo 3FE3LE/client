@@ -3,10 +3,10 @@ import Google from 'next-auth/providers/google';
 
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { PrismaClient } from '@prisma/client';
+import { isProduction } from '@repo/ui/constants';
 
 const prisma = new PrismaClient();
 
-const production = process.env.NODE_ENV === 'production';
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [
@@ -40,13 +40,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   cookies: {
     sessionToken: {
-      name: `${production ? '__Secure-' : ''}authjs.session-token`,
+      name: `${isProduction ? '__Secure-' : ''}authjs.session-token`,
       options: {
         httpOnly: true,
         sameSite: 'lax',
         path: '/',
-        secure: production,
-        domain: production ? '.17suit.com' : 'localhost',
+        secure: isProduction,
+        domain: isProduction ? '.17suit.com' : 'localhost',
       },
     },
   },

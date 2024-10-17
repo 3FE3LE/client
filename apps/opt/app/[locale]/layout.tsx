@@ -2,7 +2,8 @@ import '@opt/styles/main.scss';
 
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 
-import { AppWrapper } from '@opt/components';
+import { AppWrapper, SWRProvider } from '@opt/components/UI';
+import { Navbar } from '@repo/ui';
 import { PageProps } from '@repo/ui/types';
 
 import { metadata } from '../metadata';
@@ -22,11 +23,19 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <AppWrapper messages={messages} locale={locale}>
-          <main className="layout">
-            <div className="layout__content">
-              <section className="layout__section">{children}</section>
-            </div>
-          </main>
+          <SWRProvider>
+            <main className="layout">
+              <Navbar
+                title={'One Plan Trip'}
+                menuItems={[]}
+                authenticated
+                locale={locale}
+              />
+              <div className="layout__content">
+                <section className="layout__section">{children}</section>
+              </div>
+            </main>
+          </SWRProvider>
         </AppWrapper>
       </body>
     </html>

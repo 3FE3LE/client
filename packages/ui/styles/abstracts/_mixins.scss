@@ -191,10 +191,10 @@
   }
 }
 
-@mixin border-color {
-  border: 4px solid $ss-gray-l;
+@mixin border-color($px: 4px) {
+  border: $px solid $ss-gray-l;
   [data-theme='dark'] & {
-    border: 4px solid $ss-gray-dr;
+    border: $px solid $ss-gray-dr;
   }
 }
 

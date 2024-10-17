@@ -1,10 +1,7 @@
 'use client';
+import { Monitor, Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import React, { useEffect, useState } from 'react';
-
-import { Monitor } from '../icons/Monitor';
-import { Moon } from '../icons/Moon';
-import { Sun } from '../icons/Sun';
 
 export const ThemeSwitcher: React.FC = () => {
   const themes = [

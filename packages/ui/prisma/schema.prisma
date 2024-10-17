@@ -7,31 +7,36 @@ datasource db {
   url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
+
 model User {
-  id            String          @id @default(cuid())
-  username      String?         @unique
-  password      String?
-  name          String?
-  email         String          @unique
-  emailVerified DateTime?
+  id            String    @id @default(cuid())
+  username      String?   @unique @db.VarChar(30)
+  password      String?   @db.VarChar(100)
+  name          String?   @db.VarChar(100)
+  email         String    @unique @db.VarChar(100)
+  emailVerified DateTime? @map("email_verified")
   image         String?
-  accounts      Account[]
-  Authenticator Authenticator[] // Para soporte opcional de WebAuthn
+  roleId        Int?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Role Role[]
-  Plan Plan[]
+  role      Role?       @relation(fields: [roleId], references: [id])
+  trips     Trip[]
+  accounts  Account[]
+  tripGroup TripGroup[] @relation("GroupMembers")
+  Payment   Payment[]
+  Budget    Budget[]
+  groups    TripGroup[]
 
-  PlanGroup PlanGroup[]
+  @@map("users")
 }
 
 model Account {
   userId            String
-  type              String
-  provider          String
-  providerAccountId String
+  type              String  @db.VarChar(30)
+  provider          String  @db.VarChar(50)
+  providerAccountId String  @db.VarChar(100)
   refresh_token     String?
   access_token      String?
   expires_at        Int?
@@ -46,27 +51,13 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([provider, providerAccountId])
-}
-
-model Authenticator {
-  credentialID         String  @unique
-  userId               String
-  providerAccountId    String
-  credentialPublicKey  String
-  counter              Int
-  credentialDeviceType String
-  credentialBackedUp   Boolean
-  transports           String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@id([userId, credentialID])
+  @@map("accounts")
 }
 
 model Role {
   id          Int     @id @default(autoincrement())
-  name        String  @unique
-  description String
+  name        String  @unique @db.VarChar(50)
+  description String  @db.VarChar(255)
   read        Boolean
   write       Boolean
   create      Boolean
@@ -81,113 +72,186 @@ model Budget {
   min        Float
   max        Float
   currencyId Int
+  userId     String
   currency   Currency @relation(fields: [currencyId], references: [id])
 
-  Plan Plan[]
+  user User   @relation(fields: [userId], references: [id])
+  Trip Trip[]
+
+  @@index([userId]) // Índice en userId para consultas rápidas
 }
 
 model Currency {
   id     Int    @id @default(autoincrement())
-  name   String
-  symbol String
+  name   String @unique @db.VarChar(50)
+  symbol String @db.VarChar(10)
 
-  Budget Budget[]
+  budgets     Budget[]
+  PaymentPlan PaymentPlan[]
+  Payment     Payment[]
 }
 
-model Continent {
-  id   Int    @id @default(autoincrement())
-  name String
-
-  Country Country[]
-}
-
-model Country {
-  id          Int       @id @default(autoincrement())
-  name        String
-  code        String
-  continent   Continent @relation(fields: [continentId], references: [id])
-  continentId Int
-
-  State State[]
-}
-
-model State {
-  id        Int     @id @default(autoincrement())
-  name      String
-  code      String
-  country   Country @relation(fields: [countryId], references: [id])
-  countryId Int
-
-  City City[]
-}
-
-model City {
-  id      Int    @id @default(autoincrement())
-  name    String
-  state   State  @relation(fields: [stateId], references: [id])
-  stateId Int
-
-  Destination Destination[]
-}
-
-model Destination {
-  id          Int      @id @default(autoincrement())
-  name        String
-  description String
-  address     String?
+model Destiny {
+  id          String   @id @default(uuid())
+  name        String   @db.VarChar(255)
+  description String?
+  placeId     String?  @unique
+  address     String?  @db.VarChar(255)
+  city        String?  @db.VarChar(100)
+  state       String?  @db.VarChar(100)
+  country     String?  @db.VarChar(100)
+  countryCode String?  @db.VarChar(10)
+  continent   String?  @db.VarChar(50)
   latitude    Float
   longitude   Float
-  countryId   Int
-  stateId     Int
-  cityId      Int
   createdAt   DateTime @default(now())
-  city        City     @relation(fields: [cityId], references: [id])
 
-  Plan Plan[]
+  trips      Trip[]
+  activities Activity[]
+
+  @@index([city, state, country]) // Índice en city, state, country para consultas geográficas
 }
 
-model Plan {
-  id           Int           @id @default(autoincrement())
-  title        String
-  description  String
-  createdAt    DateTime      @default(now())
-  statusId     Int
-  status       Status        @relation(fields: [statusId], references: [id])
-  userId       Int
-  startDate    DateTime?
-  endDate      DateTime?
-  budgetId     Int
-  budget       Budget        @relation(fields: [budgetId], references: [id])
-  destinations Destination[]
+enum TripType {
+  SOLO
+  FAMILIAR
+  FRIENDS
+  COUPLE
+  BUSINESS
+  GROUP
+}
 
-  User User[]
+enum TripPriority {
+  BUDGET
+  DESTINY
+  COMPANY
+  DATES
+  EXPERIENCE
+}
+
+enum TripStatus {
+  DRAFT
+  PLANNING
+  BOOKED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  ON_HOLD
+}
+
+model Trip {
+  id            String       @id @default(uuid())
+  title         String       @db.VarChar(255)
+  description   String
+  createdAt     DateTime     @default(now())
+  userId        String
+  budgetId      Int?
+  tripGroupId   String?
+  startDate     DateTime?
+  endDate       DateTime?
+  priority      TripPriority
+  status        TripStatus   @default(PLANNING)
+  tripType      TripType     @default(SOLO)
+  shareableLink String? // Campo para compartir enlace
+  qrCode        String? // Campo opcional para almacenar el código QR
+
+  budget    Budget?    @relation(fields: [budgetId], references: [id])
+  user      User       @relation(fields: [userId], references: [id])
+  tripGroup TripGroup? @relation(fields: [tripGroupId], references: [id])
+
+  members    Member[]
+  destinies  Destiny[]
+  activities Activity[]
+  Invitation Invitation[]
+
+  @@index([startDate, endDate]) // Índices en fechas de inicio y fin para consultas rápidas
+}
+
+model Member {
+  id     String @id @default(uuid())
+  name   String @db.VarChar(100)
+  email  String @unique @db.VarChar(100)
+  roleId Int
+  tripId String
+  trip   Trip   @relation(fields: [tripId], references: [id])
+
+  @@index([email]) // Índice en email
+}
+
+model Guest {
+  id         String      @id @default(uuid())
+  name       String      @db.VarChar(100)
+  email      String      @unique @db.VarChar(100)
+  createdAt  DateTime    @default(now())
+  invitation Invitation?
+}
+
+model Invitation {
+  id         String    @id @default(uuid())
+  guestId    String    @unique
+  tripId     String
+  invitedAt  DateTime  @default(now())
+  acceptedAt DateTime?
+  guest      Guest     @relation(fields: [guestId], references: [id], onDelete: Cascade)
+  trip       Trip      @relation(fields: [tripId], references: [id], onDelete: Cascade)
 }
 
 model Activity {
-  id          Int       @id @default(autoincrement())
-  name        String
+  id          String    @id @default(uuid())
+  name        String    @db.VarChar(255)
   description String
   createdAt   DateTime  @default(now())
   startTime   DateTime?
   endTime     DateTime?
-  priority    Priority
+  priority    Priority  @default(Medium)
+  tripId      String? // Relación opcional con un Trip
+  destinyId   String? // Relación opcional con un Destiny
+  trip        Trip[]
+  destiny     Destiny[]
+
+  @@index([startTime, endTime]) // Índice en tiempos de inicio y fin
 }
 
-model PlanGroup {
-  id          Int      @id @default(autoincrement())
-  name        String
+model TripGroup {
+  id          String   @id @default(uuid())
+  name        String   @db.VarChar(100)
   description String
   createdAt   DateTime @default(now())
-  creatorId   Int
-  mebers User[]
+  userId      String
+  trips       Trip[]
+  members     User[]   @relation("GroupMembers")
+  user        User     @relation(fields: [userId], references: [id])
 }
 
-model Status {
-  id          Int    @id @default(autoincrement())
-  name        String
-  description String
+model PaymentPlan {
+  id          Int       @id @default(autoincrement())
+  name        String    @db.VarChar(100)
+  description String    @db.VarChar(255)
+  price       Float
+  currencyId  Int
+  currency    Currency  @relation(fields: [currencyId], references: [id])
+  Payment     Payment[]
+}
 
-  Plan Plan[]
+model Payment {
+  id            Int           @id @default(autoincrement())
+  paymentPlanId Int
+  userId        String
+  amount        Float
+  currencyId    Int
+  status        PaymentStatus @default(Pending)
+  createdAt     DateTime      @default(now())
+  paymentPlan   PaymentPlan   @relation(fields: [paymentPlanId], references: [id])
+  user          User          @relation(fields: [userId], references: [id])
+  currency      Currency      @relation(fields: [currencyId], references: [id])
+
+  @@index([status]) // Índice en status para búsquedas rápidas de pagos
+}
+
+enum PaymentStatus {
+  Pending
+  Completed
+  Failed
 }
 
 enum Priority {

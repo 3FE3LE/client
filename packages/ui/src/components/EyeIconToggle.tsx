@@ -1,7 +1,5 @@
+import { Eye, EyeOff } from 'lucide-react';
 import React from 'react';
-
-import { Eye } from '../icons/Eye';
-import { EyeOff } from '../icons/EyeOff';
 
 export type EyeIconToggleProps = {
   show: boolean;

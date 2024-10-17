@@ -1,23 +1,23 @@
-import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
-import { GetAllTrips } from '@opt/app/features/trips/actions';
+import { TripsContainer } from '@opt/components/trips';
+import { ActionButton } from '@repo/ui';
 
 export default async function Trips() {
-  const token = cookies().get('auth_token')?.value;
-  const trips = await GetAllTrips(token!);
-  console.log(trips);
-
   return (
     <div>
       <header>
         <h2>Trips</h2>
-        <button>Create new Trip</button>
+        <form
+          action={async () => {
+            'use server';
+            return redirect('/trips/new');
+          }}
+        >
+          <ActionButton variant="primary">Create new Trip</ActionButton>
+        </form>
       </header>
-      <div>
-        {trips.map((tri: any) => (
-          <label key={tri.id}>{tri.name}</label>
-        ))}
-      </div>
+      <TripsContainer />
     </div>
   );
 }

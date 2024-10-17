@@ -33,3 +33,6 @@ jobs:
 
       - name: Build apps
         run: yarn build
+
+      - name: Test apps
+        run: yarn test

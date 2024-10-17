@@ -1,15 +1,12 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
-      - main
+      - develop
 
 jobs:
-  install_dependencies:
+  build_apps:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,17 +31,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-  build:
-    runs-on: ubuntu-latest
-    needs: install_dependencies
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
       - name: Build apps
         run: yarn build
+
+      - name: Test apps
+        run: yarn test

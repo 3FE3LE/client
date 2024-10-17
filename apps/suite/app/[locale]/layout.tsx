@@ -2,6 +2,7 @@ import '@sss/styles/main.scss';
 
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 
+import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
 import { PageProps } from '@repo/ui/types';
 import {
   AppWrapper,
@@ -28,13 +29,43 @@ export default async function RootLayout({
   const session = await auth();
 
   const messages = await getMessages();
+
+  const authenticated = !!session;
+
+  const menuItems = [
+    {
+      name: 'login',
+      href: '/login',
+      protected: false,
+    },
+    {
+      name: 'register',
+      href: '/register',
+      protected: false,
+    },
+    {
+      name: 'dashboard',
+      href: '/dashboard',
+      protected: true,
+    },
+    {
+      name: 'profile',
+      href: '/profile',
+      protected: true,
+    },
+  ];
   return (
     <html lang={locale} suppressHydrationWarning>
       <body>
         <AppWrapper messages={messages} locale={locale}>
           <SWRProvider>
             <main className="layout">
-              <Navbar locale={locale} authenticated={!!session} />
+              <Navbar
+                locale={locale}
+                authenticated={authenticated}
+                menuItems={menuItems}
+                title={{ src: ss_logo.src, alt: '17Suit Logo' }}
+              />
               <div className="layout__content">
                 {session && <Sidebar />}
                 <section className="layout__section">{children}</section>

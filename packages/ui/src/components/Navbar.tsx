@@ -1,61 +1,54 @@
-'use client';
-
 import { User } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import React from 'react';
 
-import { ActionButton } from '@repo/ui';
-import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
-import { Link, usePathname } from '@sss/navigations';
+import { ActionButton } from './ActionButton';
 
-export const Navbar = ({
+type MenuItem = {
+  name: string;
+  href: string;
+  protected: boolean;
+};
+
+export type NavbarProps = {
+  locale?: 'en' | 'es';
+  authenticated: boolean;
+  title?: string | { src: string; alt: string };
+  menuItems: MenuItem[];
+};
+
+export const Navbar: React.FC<NavbarProps> = ({
   locale,
   authenticated,
-}: {
-  locale: 'en' | 'es' | undefined;
-  authenticated: boolean;
+  title,
+  menuItems,
 }) => {
   const pathname = usePathname();
 
   const t = useTranslations('navbar');
-
-  const menuItems = [
-    {
-      name: 'login',
-      href: '/login',
-      protected: authenticated,
-    },
-    {
-      name: 'register',
-      href: '/register',
-      protected: authenticated,
-    },
-    {
-      name: 'dashboard',
-      href: '/dashboard',
-      protected: !authenticated,
-    },
-    {
-      name: 'profile',
-      href: '/profile',
-      protected: !authenticated,
-    },
-  ];
-
   return (
     <nav className="navbar">
       <Link href="/">
-        <Image
-          priority
-          alt="17 suit logo"
-          className="navbar__logo"
-          src={ss_logo}
-        />
+        {typeof title !== 'object' ? (
+          <h1>{title}</h1>
+        ) : (
+          <Image
+            priority
+            alt={title?.alt || 'Logo'}
+            className="navbar__logo"
+            src={title?.src || 'logo'}
+            width={200}
+            height={80}
+          />
+        )}
       </Link>
       <ul className="navbar__menu">
         {menuItems.map(
           (item) =>
-            !item.protected && (
+            item.protected === authenticated && (
               <li key={item.name}>
                 <Link
                   prefetch={true}

@@ -8,7 +8,7 @@ import React from 'react';
 import { ActionButton } from './ActionButton';
 
 type MenuItem = {
-  name: string; // Puedes pasar la key de traducción o el texto ya traducido
+  name: string;
   href: string;
   protected: boolean;
 };
@@ -16,7 +16,7 @@ type MenuItem = {
 export type NavbarProps = {
   locale?: 'en' | 'es';
   authenticated: boolean;
-  title?: string | { src: string; alt: string }; // Soporta texto o imagen
+  title?: string | { src: string; alt: string };
   menuItems: MenuItem[];
 };
 

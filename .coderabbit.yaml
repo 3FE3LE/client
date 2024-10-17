@@ -23,7 +23,9 @@ reviews:
     ignore_title_keywords: []
     labels: []
     drafts: true
-    base_branches: []
+    base_branches: 
+      - develop
+      - main
   tools:
     shellcheck:
       enabled: true

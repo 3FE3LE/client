@@ -31,22 +31,22 @@ export default async function RootLayout({
     {
       name: 'login',
       href: '/login',
-      protected: authenticated,
+      protected: !authenticated,
     },
     {
       name: 'register',
       href: '/register',
-      protected: authenticated,
+      protected: !authenticated,
     },
     {
       name: 'dashboard',
       href: '/dashboard',
-      protected: !authenticated,
+      protected: authenticated,
     },
     {
       name: 'profile',
       href: '/profile',
-      protected: !authenticated,
+      protected: authenticated,
     },
   ];
   return (

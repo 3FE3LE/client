@@ -2,7 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import lading_img from '@repo/ui/assets/animated/globalization-a.svg';
+import landing_img from '@repo/ui/assets/animated/globalization-a.svg';
 
 export default async function HomePage() {
   const t = await getTranslations('home');
@@ -17,7 +17,7 @@ export default async function HomePage() {
         </Link>
       </div>
       <div className="home__title">
-        <Image src={lading_img} alt="traveling image" width={550} />
+        <Image src={landing_img} alt="traveling image" width={550} />
       </div>
     </div>
   );

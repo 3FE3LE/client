@@ -61,10 +61,8 @@ export default async function RootLayout({
           <SWRProvider>
             <main className="layout">
               <Navbar
-                locale={locale}
-                authenticated={authenticated}
-                menuItems={menuItems}
                 title={{ src: ss_logo.src, alt: '17Suit Logo' }}
+                {...{ authenticated, menuItems, locale }}
               />
               <div className="layout__content">
                 {session && <Sidebar />}

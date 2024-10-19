@@ -4,7 +4,11 @@ import { useRouter } from 'next/navigation';
 import { Destiny } from '@opt/core/interfaces';
 import { ActionButton } from '@repo/ui';
 
-export const TripDestinies = ({ destinies }: { destinies: Destiny[] }) => {
+export const TripDestinies = ({
+  destinies,
+}: {
+  destinies: Partial<Destiny>[];
+}) => {
   const router = useRouter();
 
   return (

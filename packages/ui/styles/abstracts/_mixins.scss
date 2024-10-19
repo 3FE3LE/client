@@ -184,6 +184,11 @@
   }
 }
 
+@mixin status-color($bg-color, $text-color) {
+  background-color: $bg-color;
+  color: $text-color;
+}
+
 @mixin hover-focus-color {
   background-color: $ss-gray-lr;
   [data-theme='dark'] & {

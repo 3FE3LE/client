@@ -1,7 +1,11 @@
 import { Activity } from '@opt/core/interfaces';
 import { ActionButton } from '@repo/ui';
 
-export const TripActivities = ({ activities }: { activities: Activity[] }) => {
+export const TripActivities = ({
+  activities,
+}: {
+  activities: Partial<Activity>[];
+}) => {
   if (!activities) {
     return <span>No Activities, yet</span>;
   }

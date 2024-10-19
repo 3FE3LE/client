@@ -1,0 +1,83 @@
+.trip-list {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: rem(24);
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 1280px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  &__item {
+    margin-bottom: rem(16);
+    border-radius: rem(8);
+    padding: rem(16);
+    @include shadow-sm;
+    @include background-color;
+    cursor: pointer;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: rem(16);
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: rem(20);
+  }
+
+  &__status {
+    border-radius: rem(4);
+    @include text(misc);
+    padding: rem(4);
+    &--draft {
+      @include status-color($ss-gray-d, $ss-gray-lr);
+    }
+    &--planning {
+      @include status-color($ss-warning, $ss-gray-dr);
+    }
+    &--booked {
+      @include status-color($ss-blue-l, $ss-gray-dr);
+    }
+    &--in_progress {
+      @include status-color($ss-green, $ss-white);
+    }
+    &--completed {
+      @include status-color($ss-blue-d, $ss-gray-lr);
+    }
+    &--cancelled {
+      @include status-color($ss-red, $ss-white);
+    }
+    &--on_hold {
+      @include status-color($ss-error, $ss-gray-lr);
+    }
+  }
+
+  &__details {
+    display: flex;
+    align-items: center;
+    margin-bottom: rem(12);
+
+    &__icon {
+      margin-right: rem(8);
+    }
+
+    &__arrow {
+      margin: 0 rem(8);
+    }
+  }
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: rem(12);
+  }
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: rem(16);
+  }
+}

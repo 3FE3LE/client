@@ -7,6 +7,10 @@
   }
   &__section {
     display: flex;
+    // flex-direction: column;
+    justify-content: center;
+    // align-items: flex-start;
+    gap: rem(16);
     padding: rem(16);
     width: 100%;
     min-height: calc(100dvh - rem(52));

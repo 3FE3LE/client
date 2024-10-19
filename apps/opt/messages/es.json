@@ -1,9 +1,48 @@
 {
+  "home": {
+    "title1": "Tu viaje perfecto, todo en un solo lugar",
+    "title2": "Planifica tu aventura con One Plan Trip",
+    "title3": "Simplifica tus viajes, maximiza tus experiencias",
+    "title4": "Desde el destino hasta el último detalle",
+    "title5": "La evolución de la planificación de viajes",
+    "subtitle1": "Descubre la sinergia entre tus ideas y nuestras herramientas",
+    "subtitle2": "Un planificador para cada aspecto de tu viaje",
+    "subtitle3": "Conectando tus sueños con itinerarios realistas",
+    "subtitle4": "Experimenta la facilidad de planificar con precisión",
+    "subtitle5": "Desde la idea inicial hasta el último día de tu viaje",
+    "phrase1": "Planea. Organiza. Disfruta.",
+    "phrase2": "Tu asistente de viaje personal",
+    "phrase3": "Donde la inspiración se convierte en acción",
+    "phrase4": "Un plan, infinitas aventuras",
+    "phrase5": "Transforma tus viajes con One Plan Trip",
+    "tryNow": "Planea ahora",
+    "learnMore": "Descubre más",
+    "getStarted": "Comienza tu aventura",
+    "feature1": "Planificación integrada de destinos",
+    "feature2": "Gestión de presupuesto",
+    "feature3": "Organizador de actividades",
+    "feature4": "Colaboración con participantes",
+    "feature5": "Toda la información centralizada",
+    "title": "Acerca de One Plan Trip",
+    "description": "One Plan Trip es tu compañero ideal para la planificación de viajes. Desde la creación de itinerarios detallados hasta la gestión de presupuestos y la colaboración con amigos, nuestra app te ofrece todo lo que necesitas para hacer de tu próximo viaje una experiencia inolvidable."
+  },
   "navbar": {
-    "login": "Iniciar",
-    "register": "Registro",
-    "profile": "Perfil",
-    "dashboard": "Panel de control",
-    "log-out": "Salir"
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "profile": "Mi perfil",
+    "dashboard": "Mis viajes",
+    "log-out": "Cerrar sesión"
+  },
+  "footer": {
+    "about-us": "Sobre nosotros",
+    "help-center": "Centro de ayuda",
+    "for-travel-partners": "Para socios de viaje",
+    "destinations": "Destinos",
+    "our-technology": "Nuestra tecnología",
+    "travel-tips": "Consejos de viaje",
+    "community": "Comunidad",
+    "sustainability": "Viajes sostenibles",
+    "local-experiences": "Experiencias locales",
+    "coming-soon": "Próximas funciones"
   }
 }

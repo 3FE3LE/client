@@ -2,8 +2,10 @@ import '@opt/styles/main.scss';
 
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 
+import { auth } from '@opt/auth';
 import { AppWrapper, SWRProvider } from '@opt/components/UI';
 import { Navbar } from '@repo/ui';
+import { OPT_URI, SSS_URI } from '@repo/ui/constants';
 import { PageProps } from '@repo/ui/types';
 
 import { metadata } from '../metadata';
@@ -18,7 +20,35 @@ export default async function RootLayout({
   params: { locale },
 }: PageProps) {
   unstable_setRequestLocale(locale);
+  const session = await auth();
+
   const messages = await getMessages();
+
+  const authenticated = !!session;
+
+  const menuItems = [
+    {
+      name: 'login',
+      href: SSS_URI + '/login',
+      protected: false,
+    },
+    {
+      name: 'register',
+      href: OPT_URI + '/register',
+      protected: false,
+    },
+    {
+      name: 'dashboard',
+      href: '/dashboard',
+      protected: true,
+    },
+    {
+      name: 'profile',
+      href: '/profile',
+      protected: true,
+    },
+  ];
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
@@ -27,9 +57,7 @@ export default async function RootLayout({
             <main className="layout">
               <Navbar
                 title={'One Plan Trip'}
-                menuItems={[]}
-                authenticated
-                locale={locale}
+                {...{ authenticated, menuItems, locale }}
               />
               <div className="layout__content">
                 <section className="layout__section">{children}</section>

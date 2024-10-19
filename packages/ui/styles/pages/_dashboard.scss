@@ -1,5 +1,50 @@
 .dashboard {
-  &__container {
-    width: 100%;
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: rem(24);
+    margin-bottom: rem(32);
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (min-width: 1280px) {
+      grid-template-columns: repeat(6, 1fr);
+    }
   }
+
+  &__search {
+    display: flex;
+    align-items: center;
+    gap: rem(16);
+    margin: rem(24) 0;
+    .form__group {
+      flex-direction: row;
+      gap: rem(16);
+    }
+  }
+}
+.trip-sections {
+  section {
+    margin-bottom: rem(16);
+  }
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: rem(8);
+  margin-bottom: rem(8);
+  color: $primary-color;
+  font-size: rem(28);
+}
+
+.section__message {
+  border-radius: rem(8);
+  padding: rem(64);
+  width: 100%;
+  color: $ss-gray;
+  text-align: center;
+  @include text(interface);
+  @include shadow-sm(true);
 }

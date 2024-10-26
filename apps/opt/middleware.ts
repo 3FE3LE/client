@@ -4,17 +4,14 @@ import { NextResponse } from 'next/server';
 import { auth } from '@opt/auth';
 import { SSS_URI } from '@repo/ui/constants';
 
-const locales = ['es', 'en'];
+import { routing } from './i18n/routing';
 
 const publicPages = ['/'];
 
-const intlMiddleware = createMiddleware({
-  locales,
-  defaultLocale: 'en',
-});
+const intlMiddleware = createMiddleware(routing);
 
 const publicPathnameRegex = RegExp(
-  `^(/(${locales.join('|')}))?(${publicPages
+  `^(/(${routing.locales.join('|')}))?(${publicPages
     .flatMap((p) => (p === '/' ? ['', '/'] : p))
     .join('|')})/?$`,
   'i',

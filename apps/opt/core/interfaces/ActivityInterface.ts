@@ -1,8 +1,8 @@
 export interface Activity {
-  id: number;
+  readonly id: number;
   name: string;
   description: string;
-  createdAt: Date;
+  readonly createdAt: Date;
   startTime?: Date;
   endTime?: Date;
   priority: Priority;

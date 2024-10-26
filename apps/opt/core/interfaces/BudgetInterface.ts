@@ -1,5 +1,5 @@
 export interface Budget {
-  id?: number;
+  readonly id?: number;
   amount: number;
   min: number;
   max: number;

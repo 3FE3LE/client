@@ -1,16 +1,19 @@
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  password: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
 export interface Member {
-  id: string;
+  readonly id: string;
   name: string;
   email: string;
   roleId: number;
-  tripId: string;
+}
+
+export interface User extends Member {
+  username: string;
+  password: string;
+  readonly createdAt: Date;
+  updatedAt: Date;
+  image: string;
+  emailVerified: Date;
+}
+
+export interface Guest extends Member {
+  readonly createdAt: Date;
 }

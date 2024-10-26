@@ -22,7 +22,7 @@ interface TripActions {
 
 const initialState: TripState = {
   trip: {
-    id: '',
+    id: 't-r-i-p-s-t-id',
     title: '',
     description: '',
     userId: '',

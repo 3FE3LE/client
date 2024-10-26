@@ -1,11 +1,13 @@
+import { UUID } from 'node:crypto';
+
 import { Trip } from './TripInterface';
 import { Member } from './UserInterface';
 
 export interface TripGroup {
-  id: string;
+  readonly id: UUID;
   name: string;
   description: string;
-  createdAt: Date;
+  readonly createdAt: Date;
   members: Member[];
   trips: Trip[];
 }

@@ -1,47 +1,26 @@
 'use server';
-import { cookies } from 'next/headers';
 
 import { Budget } from '@opt/core/interfaces';
+import { ActionType } from '@repo/ui/types';
 
 import { BudgetAdapter } from '../adapters';
 import { ActionResponse } from '../types';
+import { executeAction } from './utils';
 
-const token = cookies().get('auth_token')?.value;
-
-// Crear un nuevo budget
-
-export const createBudget = async (budget: Budget): Promise<ActionResponse> => {
-  try {
-    const data = await BudgetAdapter.create(budget, token!);
-    return { success: true, data };
-  } catch (error) {
-    console.error('Failed to create budget:', error);
-    if (error instanceof Error) return { success: false, error: error.message };
-    return { success: false, error: 'Failed to create budget' };
-  }
-};
+export const createBudget = async (budget: Budget): Promise<ActionResponse> =>
+  executeAction(
+    (token) => BudgetAdapter.create(budget, token),
+    ActionType.CREATE,
+  );
 
 export const updateBudget = async (
   id: number,
   budget: Budget,
-): Promise<ActionResponse> => {
-  try {
-    await BudgetAdapter.update(id, budget, token!);
-    return { success: true };
-  } catch (error) {
-    console.error('Failed to update budget:', error);
-    if (error instanceof Error) return { success: false, error: error.message };
-    return { success: false, error: 'Failed to update budget' };
-  }
-};
+): Promise<ActionResponse> =>
+  executeAction(
+    (token) => BudgetAdapter.update(id, budget, token),
+    ActionType.UPDATE,
+  );
 
-export const deleteBudget = async (id: number): Promise<ActionResponse> => {
-  try {
-    await BudgetAdapter.delete(id, token!);
-    return { success: true };
-  } catch (error) {
-    console.error('Failed to delete budget:', error);
-    if (error instanceof Error) return { success: false, error: error.message };
-    return { success: false, error: 'Failed to delete budget' };
-  }
-};
+export const deleteBudget = async (id: number): Promise<ActionResponse> =>
+  executeAction((token) => BudgetAdapter.delete(id, token), ActionType.DELETE);

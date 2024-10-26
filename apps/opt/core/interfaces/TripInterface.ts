@@ -1,3 +1,5 @@
+import { UUID } from 'node:crypto';
+
 import { Activity } from './ActivityInterface';
 import { Budget } from './BudgetInterface';
 import { Destiny } from './DestinyInterface';
@@ -5,10 +7,10 @@ import { TripGroup } from './TripGroupInterface';
 import { Member } from './UserInterface';
 
 export interface Trip {
-  id?: string;
+  readonly id?: UUID;
   title: string;
   description: string;
-  createdAt?: Date;
+  readonly createdAt?: Date;
   userId: string;
   startDate?: Date;
   endDate?: Date;

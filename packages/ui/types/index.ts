@@ -9,6 +9,7 @@ export type PageParams = {
 
 export type Params = {
   locale: 'es' | 'en';
+  id?: string;
 };
 
 export type OptionType = {
@@ -16,3 +17,9 @@ export type OptionType = {
   value: string;
   label: string;
 };
+
+export enum ActionType {
+  CREATE = 'create',
+  UPDATE = 'update',
+  DELETE = 'delete',
+}

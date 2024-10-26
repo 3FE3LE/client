@@ -1,5 +1,5 @@
 import { Trip } from '@opt/core/interfaces';
-import { Link } from '@opt/navigations';
+import { Link } from '@opt/i18n/routing';
 import { ActionButton, Card } from '@repo/ui';
 
 export const TripCard = ({

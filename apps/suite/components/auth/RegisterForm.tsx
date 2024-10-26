@@ -11,7 +11,7 @@ import { RegisterInputs } from '@sss/core/auth/constants/inputs';
 import { RegisterSchema as schema } from '@sss/core/auth/constants/schemas';
 import { useRegister } from '@sss/core/auth/hooks/useRegister';
 import { RegisterInput } from '@sss/core/auth/types/authTypes';
-import { useRouter } from '@sss/navigations';
+import { useRouter } from '@sss/i18n/routing';
 
 export const RegisterForm = () => {
   const router = useRouter();

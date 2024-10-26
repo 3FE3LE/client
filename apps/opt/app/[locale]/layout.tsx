@@ -1,12 +1,11 @@
 import '@opt/styles/main.scss';
 
-import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 
 import { auth } from '@opt/auth';
 import { AppWrapper, SWRProvider } from '@opt/components/UI';
 import { Navbar } from '@repo/ui';
 import { OPT_URI, SSS_URI } from '@repo/ui/constants';
-import { PageProps } from '@repo/ui/types';
 
 import { metadata } from '../metadata';
 
@@ -17,9 +16,14 @@ export async function generateStaticParams() {
 }
 export default async function RootLayout({
   children,
-  params: { locale },
-}: PageProps) {
-  unstable_setRequestLocale(locale);
+  params,
+}: {
+  children: React.ReactNode;
+  params: { locale: 'es' | 'en' };
+}) {
+  const { locale } = await params;
+
+  setRequestLocale(locale);
   const session = await auth();
 
   const messages = await getMessages();

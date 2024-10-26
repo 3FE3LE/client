@@ -1,7 +1,7 @@
 'use client';
 import { ArrowLeft } from 'lucide-react';
 
-import { useRouter } from '@opt/navigations';
+import { useRouter } from '@opt/i18n/routing';
 import { ActionButton } from '@repo/ui';
 
 export default function NotFound() {

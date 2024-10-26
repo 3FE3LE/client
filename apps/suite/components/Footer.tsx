@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 
 import { ThemeSwitcher } from '@repo/ui';
-import { Link, usePathname } from '@sss/navigations';
+import { Link, usePathname } from '@sss/i18n/routing';
 
 export const Footer = ({ locale }: { locale: string }) => {
   const pathname = usePathname();

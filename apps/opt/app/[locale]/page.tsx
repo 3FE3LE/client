@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
-import Link from 'next/link';
 
+import { Link } from '@opt/i18n/routing';
 import landing_img from '@repo/ui/assets/animated/globalization-a.svg';
 
 export default async function HomePage() {

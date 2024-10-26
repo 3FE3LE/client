@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ActionButton, FormWrapper, Google, InputGroup } from '@repo/ui';
 import { useLogin } from '@sss/core/auth/hooks';
-import { useRouter } from '@sss/navigations';
+import { useRouter } from '@sss/i18n/routing';
 
 import { LoginInputs } from '../../core/auth/constants/inputs';
 import { LoginSchema as schema } from '../../core/auth/constants/schemas';

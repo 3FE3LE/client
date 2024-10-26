@@ -1,6 +1,6 @@
 import '@sss/styles/main.scss';
 
-import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
 import { PageProps } from '@repo/ui/types';
@@ -23,9 +23,13 @@ export async function generateStaticParams() {
 }
 export default async function RootLayout({
   children,
-  params: { locale },
-}: PageProps) {
-  unstable_setRequestLocale(locale);
+  params,
+}: {
+  children: React.ReactNode;
+  params: { locale: 'es' | 'en' };
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const session = await auth();
 
   const messages = await getMessages();

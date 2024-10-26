@@ -1,18 +1,16 @@
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 
 import lading_img from '@repo/ui/assets/animated/traveler-a.svg';
-import { PageParams } from '@repo/ui/types';
 import { auth } from '@sss/auth';
-import { Link, redirect } from '@sss/navigations';
+import { Link, redirect } from '@sss/i18n/routing';
 
-export default async function Home({ params: { locale } }: PageParams) {
+export default async function Home() {
   const session = await auth();
 
   if (session) {
-    redirect('/dashboard');
+    redirect({ href: '/dashboard', locale: 'en' });
   }
-  unstable_setRequestLocale(locale);
   const t = await getTranslations('home');
   return (
     <div className="home__container">

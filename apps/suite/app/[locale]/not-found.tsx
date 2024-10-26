@@ -1,7 +1,7 @@
 'use client';
 
 import { NotFoundImage } from '@repo/ui';
-import { Link } from '@sss/navigations';
+import { Link } from '@sss/i18n/routing';
 
 export default function NotFound() {
   return (

@@ -15,11 +15,11 @@ import { toast } from 'react-hot-toast';
 
 import { Destiny } from '@opt/core/interfaces';
 import { debounce } from '@opt/helpers';
+import { useRouter } from '@opt/i18n/routing';
 import { updateTrip } from '@opt/integration/actions/TripActions';
 import { createGlobalHooks } from '@opt/integration/hooks';
 import { useMapControls } from '@opt/integration/hooks/TripHooks';
 import { destinyMapper } from '@opt/mappings';
-import { useRouter } from '@opt/navigations';
 import { useDestinyStore, useTripStore } from '@opt/store';
 import { fetchPlaceDetails, fetchPlacePredictions } from '@opt/utils';
 import { ActionButton, Card, InputField } from '@repo/ui';
@@ -86,6 +86,7 @@ export function CustomMapControl() {
       trip.id,
       { ...trip, destinies: [...trip.destinies!, newDestiny] },
     ]);
+    toast.dismiss();
     if (isError) {
       toast.error(isError);
       return;

@@ -1,12 +1,12 @@
 import { Card } from '@repo/ui';
 import { OPT_URI } from '@repo/ui/constants';
 import { auth } from '@sss/auth';
-import { Link, redirect } from '@sss/navigations';
+import { Link, redirect } from '@sss/i18n/routing';
 
 export default async function DashboardPage() {
   const session = await auth();
   if (!session) {
-    redirect('/login');
+    redirect({ href: '/login', locale: 'en' });
   }
   return (
     <div className="dashboard__container">

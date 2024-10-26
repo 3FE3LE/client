@@ -1,6 +1,6 @@
 import '@web/styles/main.scss';
 
-import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 
 import { PageProps } from '@repo/ui/types';
 import { AppWrapper } from '@web/components/UI';
@@ -14,7 +14,7 @@ export default async function RootLayout({
   children,
   params: { locale },
 }: PageProps) {
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
   const messages = await getMessages();
   return (
     <html lang="en" suppressHydrationWarning>

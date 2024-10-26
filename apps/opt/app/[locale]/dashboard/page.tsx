@@ -17,9 +17,9 @@ import { useFormatter } from 'next-intl';
 import { useState } from 'react';
 
 import { Trip, TripStatus } from '@opt/core/interfaces/TripInterface';
+import { useRouter } from '@opt/i18n/routing';
 import { TripAdapter } from '@opt/integration/adapters';
 import { createTripsHooks } from '@opt/integration/hooks';
-import { useRouter } from '@opt/navigations';
 import { ActionButton, InputField } from '@repo/ui';
 
 export default function Dashboard() {
@@ -219,11 +219,11 @@ export default function Dashboard() {
             <span className="card__title">Avg. Expenses/Person</span>
             <Users className="card__icon" />
           </div>
-          {/* <div className="card__content">
-            <span className="card__number">
-              ${averageExpensesPerPerson.toFixed(2)}
-            </span>
-          </div> */}
+          <div className="card__content">
+            {/* <span className="card__number">
+              ${averageExpensesPerPerson ? averageExpensesPerPerson.toFixed(2): 'N/A'}
+            </span> */}
+          </div>
         </div>
 
         <div className="card">

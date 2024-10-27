@@ -23,3 +23,5 @@ export enum ActionType {
   UPDATE = 'update',
   DELETE = 'delete',
 }
+
+export type SupportedLocale = 'en' | 'es';

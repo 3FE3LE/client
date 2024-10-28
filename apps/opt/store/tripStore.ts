@@ -3,18 +3,19 @@ import { persist } from 'zustand/middleware';
 
 // store/tripStore.ts
 import { Trip } from '@opt/core/interfaces';
+import { TripPriority, TripType } from '@opt/core/interfaces/TripInterface';
 
 interface TripState {
   trip: Trip;
-  tripType: string | null;
-  priority: string | null;
+  tripType: TripType | null;
+  priority: TripPriority | null;
   tripTitle: string;
   step: number;
 }
 interface TripActions {
   setTrip: (id: Trip) => void;
-  setTripType: (type: string) => void;
-  setPriority: (priority: string) => void;
+  setTripType: (type: TripType) => void;
+  setPriority: (priority: TripPriority) => void;
   setTripTitle: (title: string) => void;
   setStep: (step: number) => void;
   reset: () => void;
@@ -26,8 +27,8 @@ const initialState: TripState = {
     title: '',
     description: '',
     userId: '',
-    tripType: '',
-    priority: '',
+    tripType: TripType.SOLO,
+    priority: TripPriority.BUDGET,
   },
   tripType: null,
   priority: null,

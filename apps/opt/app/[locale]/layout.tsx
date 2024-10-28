@@ -4,15 +4,14 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 
 import { auth } from '@opt/auth';
 import { AppWrapper, SWRProvider } from '@opt/components/UI';
+import { routing } from '@opt/i18n/routing';
 import { Navbar } from '@repo/ui';
-import { OPT_URI, SSS_URI } from '@repo/ui/constants';
+import { OPT_MENU_ITEMS } from '@repo/ui/constants';
 
 import { metadata } from '../metadata';
 
-const languages = ['en', 'es'];
-
 export async function generateStaticParams() {
-  return languages.map((locale) => ({ locale }));
+  return routing.locales.map((locale) => ({ locale }));
 }
 export default async function RootLayout({
   children,
@@ -30,28 +29,7 @@ export default async function RootLayout({
 
   const authenticated = !!session;
 
-  const menuItems = [
-    {
-      name: 'login',
-      href: SSS_URI + '/login',
-      protected: false,
-    },
-    {
-      name: 'register',
-      href: OPT_URI + '/register',
-      protected: false,
-    },
-    {
-      name: 'dashboard',
-      href: '/dashboard',
-      protected: true,
-    },
-    {
-      name: 'profile',
-      href: '/profile',
-      protected: true,
-    },
-  ];
+  const menuItems = OPT_MENU_ITEMS;
 
   return (
     <html lang="en" suppressHydrationWarning>

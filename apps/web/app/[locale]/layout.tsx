@@ -4,11 +4,10 @@ import { getMessages, setRequestLocale } from 'next-intl/server';
 
 import { PageProps } from '@repo/ui/types';
 import { AppWrapper } from '@web/components/UI';
-
-const languages = ['en', 'es'];
+import { routing } from '@web/i18n/routing';
 
 export async function generateStaticParams() {
-  return languages.map((locale) => ({ locale }));
+  return routing.locales.map((locale) => ({ locale }));
 }
 export default async function RootLayout({
   children,

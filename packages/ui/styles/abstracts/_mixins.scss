@@ -187,6 +187,10 @@
 @mixin status-color($bg-color, $text-color) {
   background-color: $bg-color;
   color: $text-color;
+  [data-theme='dark'] & {
+    background-color: darken($bg-color, 10%);
+    color: lighten($text-color, 10%);
+  }
 }
 
 @mixin hover-focus-color {

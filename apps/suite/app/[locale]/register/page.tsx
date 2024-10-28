@@ -2,11 +2,11 @@ import { Metadata } from 'next';
 import { Session } from 'next-auth';
 import Image from 'next/image';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
 import { auth } from '@sss/auth';
 import { RegisterForm } from '@sss/components/auth';
+import { redirect, routing } from '@sss/i18n/routing';
 
 export const metadata: Metadata = {
   title: '17Suit - Register',
@@ -21,7 +21,7 @@ export default async function Register() {
   const session = await getSessionOnServer();
 
   if (session) {
-    redirect('/dashboard');
+    redirect({ href: '/dashboard', locale: routing.defaultLocale });
   }
   return (
     <div className="register-page__container">

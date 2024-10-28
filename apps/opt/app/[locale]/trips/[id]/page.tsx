@@ -1,6 +1,8 @@
 import { TripDetails } from '@opt/components/trips';
 
-export default async function Trip({ params }: { params: any }) {
+type IdParams = Promise<{ id: string }>;
+
+export default async function Trip({ params }: { params: IdParams }) {
   const { id } = await params;
   return <TripDetails id={id} />;
 }

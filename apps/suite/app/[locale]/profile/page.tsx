@@ -1,7 +1,7 @@
 import { Session } from 'next-auth';
-import { redirect } from 'next/navigation';
 
 import { auth } from '@sss/auth';
+import { redirect, routing } from '@sss/i18n/routing';
 
 const getSessionOnServer = async (): Promise<Session | null> => {
   return await auth();
@@ -10,7 +10,7 @@ const getSessionOnServer = async (): Promise<Session | null> => {
 export default async function ProfilePage() {
   const session = await getSessionOnServer();
   if (!session) {
-    redirect('/login');
+    redirect({ href: '/login', locale: routing.defaultLocale });
   }
 
   return (

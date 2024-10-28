@@ -3,13 +3,13 @@ import Image from 'next/image';
 
 import lading_img from '@repo/ui/assets/animated/traveler-a.svg';
 import { auth } from '@sss/auth';
-import { Link, redirect } from '@sss/i18n/routing';
+import { Link, redirect, routing } from '@sss/i18n/routing';
 
 export default async function Home() {
   const session = await auth();
 
   if (session) {
-    redirect({ href: '/dashboard', locale: 'en' });
+    redirect({ href: '/dashboard', locale: routing.defaultLocale });
   }
   const t = await getTranslations('home');
   return (

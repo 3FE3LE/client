@@ -1,6 +1,5 @@
-import { redirect } from 'next/navigation';
-
-import { TripsContainer } from '@opt/components/trips';
+import { TripsContainer, TripsList } from '@opt/components/trips';
+import { redirect, routing } from '@opt/i18n/routing';
 import { ActionButton } from '@repo/ui';
 
 export default async function Trips() {
@@ -11,7 +10,10 @@ export default async function Trips() {
         <form
           action={async () => {
             'use server';
-            return redirect('/trips/new');
+            return redirect({
+              href: '/trips/new',
+              locale: routing.defaultLocale,
+            });
           }}
         >
           <ActionButton variant="primary">Create new Trip</ActionButton>

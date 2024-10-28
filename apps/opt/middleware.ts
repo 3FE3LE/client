@@ -10,10 +10,14 @@ const publicPages = ['/'];
 
 const intlMiddleware = createMiddleware(routing);
 
+const localePattern = `(/(${routing.locales.join('|')}))?`;
+const pagesPattern = publicPages
+  .flatMap((p) => (p === '/' ? ['', '/'] : p))
+  .join('|');
+
+// Combine patterns into final regex
 const publicPathnameRegex = RegExp(
-  `^(/(${routing.locales.join('|')}))?(${publicPages
-    .flatMap((p) => (p === '/' ? ['', '/'] : p))
-    .join('|')})/?$`,
+  `^${localePattern}(${pagesPattern})/?$`,
   'i',
 );
 

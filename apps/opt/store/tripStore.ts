@@ -11,6 +11,7 @@ interface TripState {
   priority: TripPriority | null;
   tripTitle: string;
   step: number;
+  searchTerm: string;
 }
 interface TripActions {
   setTrip: (id: Trip) => void;
@@ -19,6 +20,7 @@ interface TripActions {
   setTripTitle: (title: string) => void;
   setStep: (step: number) => void;
   reset: () => void;
+  setSearchTerm: (searchTerm: string) => void;
 }
 
 const initialState: TripState = {
@@ -30,6 +32,7 @@ const initialState: TripState = {
     tripType: TripType.SOLO,
     priority: TripPriority.BUDGET,
   },
+  searchTerm: '',
   tripType: null,
   priority: null,
   tripTitle: '',
@@ -45,6 +48,7 @@ export const useTripStore = create<TripState & TripActions>()(
       setPriority: (priority) => set({ priority: priority }),
       setTripTitle: (title) => set({ tripTitle: title }),
       setStep: (step) => set({ step: step }),
+      setSearchTerm: (searchTerm) => set({ searchTerm: searchTerm }),
 
       // Implementamos el reset al estado inicial
       reset: () => set({ ...initialState }),

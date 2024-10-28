@@ -9,7 +9,11 @@ import { TripCreationStep } from './TripCreationStep';
 import { TripDestinies } from './TripDestinies';
 import { TripDetails } from './TripDetails';
 import { TripPriorityStep } from './TripPriorityStep';
-import { TripsContainer } from './TripsContainer';
+import { TripsDataWrapper } from './TripsDataWrapper';
+import { TripSearch } from './TripSearch';
+import { TripSection, TripSections } from './TripSections';
+import { TripsList } from './TripsList';
+import { TripStats } from './TripStats';
 import { TripTypeStep } from './TripTypeStep';
 
 export {
@@ -17,9 +21,14 @@ export {
   CustomMapControl,
   GoogleMaps,
   TripCard,
-  TripsContainer,
+  TripsDataWrapper,
+  TripsList,
   TripDetails,
   TripPriorityStep,
+  TripSections,
+  TripSection,
+  TripStats,
+  TripSearch,
   TripTypeStep,
   MarkerWithInfoWindow,
   TripCreationStep,

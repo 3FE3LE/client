@@ -1,4 +1,5 @@
-import { TripsContainer, TripsList } from '@opt/components/trips';
+import { TripsDataWrapper, TripsList } from '@opt/components/trips';
+import { Trip } from '@opt/core/interfaces';
 import { redirect, routing } from '@opt/i18n/routing';
 import { ActionButton } from '@repo/ui';
 
@@ -19,7 +20,9 @@ export default async function Trips() {
           <ActionButton variant="primary">Create new Trip</ActionButton>
         </form>
       </header>
-      <TripsContainer />
+      <TripsDataWrapper>
+        {({ trips }: { trips: Trip[] }) => <TripsList trips={trips} />}
+      </TripsDataWrapper>
     </div>
   );
 }

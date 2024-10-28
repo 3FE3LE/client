@@ -1,4 +1,4 @@
-import { UUID } from 'node:crypto';
+import { UUID } from 'crypto';
 
 export interface Destiny {
   readonly id?: UUID;

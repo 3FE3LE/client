@@ -7,11 +7,10 @@ export interface Member {
 
 export interface User extends Member {
   username: string;
-  password: string;
   readonly createdAt: Date;
   updatedAt: Date;
   image: string;
-  emailVerified: Date;
+  emailVerified?: Date;
 }
 
 export interface Guest extends Member {

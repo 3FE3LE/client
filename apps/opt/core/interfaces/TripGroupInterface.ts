@@ -1,4 +1,4 @@
-import { UUID } from 'node:crypto';
+import { UUID } from 'crypto';
 
 import { Trip } from './TripInterface';
 import { Member } from './UserInterface';

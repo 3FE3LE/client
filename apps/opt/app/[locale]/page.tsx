@@ -10,10 +10,10 @@ export default async function HomePage() {
   return (
     <div className="home__container">
       <div className="home__title">
-        <h1 className="heading--1">{t('title3')}</h1>
+        <h1 className="heading--1">{t('title2')}</h1>
         <h5 className="subtitle--1">{t('subtitle2')}</h5>
         <Link href={`/dashboard`} className="home__button">
-          {t('getStarted')}
+          {t('tryNow')}
         </Link>
       </div>
       <div className="home__title">

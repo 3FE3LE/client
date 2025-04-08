@@ -1,24 +1,12 @@
-import {
-  TripsDataWrapper,
-  TripSearch,
-  TripSections,
-  TripStats,
-} from '@opt/components/trips';
+import { DashboardContent } from '@opt/components/dashboard';
+import { TripsProvider } from '@opt/components/providers/TripsProvider';
 
 export default function Dashboard() {
   return (
-    <div className="dashboard">
-      <TripsDataWrapper>
-        {({ trips }) => (
-          <>
-            <div className="dashboard__search">
-              <TripSearch />
-            </div>
-            <TripStats trips={trips} />
-            <TripSections trips={trips} />
-          </>
-        )}
-      </TripsDataWrapper>
-    </div>
+    <TripsProvider>
+      <div className="dashboard">
+        <DashboardContent />
+      </div>
+    </TripsProvider>
   );
 }

@@ -3,19 +3,20 @@ import { NextResponse } from 'next/server';
 
 import { auth } from '@sss/auth';
 
-const locales = ['es', 'en'];
+import { routing } from './i18n/routing';
 
 const publicPages = ['/', '/login', '/register', '/error', '/verify'];
 
-const intlMiddleware = createMiddleware({
-  locales,
-  defaultLocale: 'en',
-});
+const intlMiddleware = createMiddleware(routing);
 
+const localePattern = `(/(${routing.locales.join('|')}))?`;
+const pagesPattern = publicPages
+  .flatMap((p) => (p === '/' ? ['', '/'] : p))
+  .join('|');
+
+// Combine patterns into final regex
 const publicPathnameRegex = RegExp(
-  `^(/(${locales.join('|')}))?(${publicPages
-    .flatMap((p) => (p === '/' ? ['', '/'] : p))
-    .join('|')})/?$`,
+  `^${localePattern}(${pagesPattern})/?$`,
   'i',
 );
 

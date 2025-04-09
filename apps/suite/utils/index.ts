@@ -4,8 +4,9 @@ import { cookies } from 'next/headers';
 const expires = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
 const secretKey = new TextEncoder().encode(process.env.AUTH_SECRET!);
 
-export const createAuthCookie = (token: string) => {
-  cookies().set('auth_token', token, {
+export const createAuthCookie = async (token: string) => {
+  const c = await cookies();
+  c.set('auth_token', token, {
     httpOnly: false,
     sameSite: 'lax',
     path: '/',

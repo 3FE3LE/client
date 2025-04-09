@@ -3,8 +3,8 @@ import { signOut, useSession } from 'next-auth/react';
 import { toast } from 'react-hot-toast';
 
 import { Trip } from '@opt/core/interfaces';
+import { useRouter } from '@opt/i18n/routing';
 import { TripActions } from '@opt/integration/actions/';
-import { useRouter } from '@opt/navigations';
 import { useTripStore } from '@opt/store';
 import { ActionButton } from '@repo/ui/';
 

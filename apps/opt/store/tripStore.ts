@@ -3,32 +3,36 @@ import { persist } from 'zustand/middleware';
 
 // store/tripStore.ts
 import { Trip } from '@opt/core/interfaces';
+import { TripPriority, TripType } from '@opt/core/interfaces/TripInterface';
 
 interface TripState {
   trip: Trip;
-  tripType: string | null;
-  priority: string | null;
+  tripType: TripType | null;
+  priority: TripPriority | null;
   tripTitle: string;
   step: number;
+  searchTerm: string;
 }
 interface TripActions {
   setTrip: (id: Trip) => void;
-  setTripType: (type: string) => void;
-  setPriority: (priority: string) => void;
+  setTripType: (type: TripType) => void;
+  setPriority: (priority: TripPriority) => void;
   setTripTitle: (title: string) => void;
   setStep: (step: number) => void;
   reset: () => void;
+  setSearchTerm: (searchTerm: string) => void;
 }
 
 const initialState: TripState = {
   trip: {
-    id: '',
+    id: 't-r-i-p-s-t-id',
     title: '',
     description: '',
     userId: '',
-    tripType: '',
-    priority: '',
+    tripType: TripType.SOLO,
+    priority: TripPriority.BUDGET,
   },
+  searchTerm: '',
   tripType: null,
   priority: null,
   tripTitle: '',
@@ -44,6 +48,7 @@ export const useTripStore = create<TripState & TripActions>()(
       setPriority: (priority) => set({ priority: priority }),
       setTripTitle: (title) => set({ tripTitle: title }),
       setStep: (step) => set({ step: step }),
+      setSearchTerm: (searchTerm) => set({ searchTerm: searchTerm }),
 
       // Implementamos el reset al estado inicial
       reset: () => set({ ...initialState }),

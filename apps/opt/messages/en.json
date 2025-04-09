@@ -1,9 +1,48 @@
 {
+  "home": {
+    "title1": "Your perfect trip, all in one place",
+    "title2": "Plan your adventure with One Plan Trip",
+    "title3": "Simplify your travels, maximize your experiences",
+    "title4": "From destination to every last detail",
+    "title5": "The evolution of travel planning",
+    "subtitle1": "Discover the synergy between your ideas and our tools",
+    "subtitle2": "A planner for every aspect of your journey",
+    "subtitle3": "Connecting your dreams with realistic itineraries",
+    "subtitle4": "Experience the ease of planning with precision",
+    "subtitle5": "From initial idea to the last day of your trip",
+    "phrase1": "Plan. Organize. Enjoy.",
+    "phrase2": "Your personal travel assistant",
+    "phrase3": "Where inspiration turns into action",
+    "phrase4": "One plan, endless adventures",
+    "phrase5": "Transform your travels with One Plan Trip",
+    "tryNow": "Plan now",
+    "learnMore": "Discover more",
+    "getStarted": "Start your adventure",
+    "feature1": "Integrated destination planning",
+    "feature2": "Budget management",
+    "feature3": "Activity organizer",
+    "feature4": "Participant collaboration",
+    "feature5": "All information centralized",
+    "title": "About One Plan Trip",
+    "description": "One Plan Trip is your ideal companion for travel planning. From creating detailed itineraries to managing budgets and collaborating with friends, our app offers everything you need to make your next trip an unforgettable experience."
+  },
   "navbar": {
-    "login": "Iniciar",
-    "register": "Registro",
-    "profile": "Perfil",
-    "dashboard": "Panel de control",
-    "log-out": "Salir"
+    "login": "Log in",
+    "register": "Sign up",
+    "profile": "My profile",
+    "dashboard": "My trips",
+    "log-out": "Log out"
+  },
+  "footer": {
+    "about-us": "About us",
+    "help-center": "Help center",
+    "for-travel-partners": "For travel partners",
+    "destinations": "Destinations",
+    "our-technology": "Our technology",
+    "travel-tips": "Travel tips",
+    "community": "Community",
+    "sustainability": "Sustainable travel",
+    "local-experiences": "Local experiences",
+    "coming-soon": "Coming soon"
   }
 }

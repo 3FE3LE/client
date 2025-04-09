@@ -1,24 +1,36 @@
 import '@opt/styles/main.scss';
 
-import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 
+import { auth } from '@opt/auth';
 import { AppWrapper, SWRProvider } from '@opt/components/UI';
+import { routing } from '@opt/i18n/routing';
 import { Navbar } from '@repo/ui';
-import { PageProps } from '@repo/ui/types';
+import { OPT_MENU_ITEMS } from '@repo/ui/constants';
 
 import { metadata } from '../metadata';
 
-const languages = ['en', 'es'];
-
 export async function generateStaticParams() {
-  return languages.map((locale) => ({ locale }));
+  return routing.locales.map((locale) => ({ locale }));
 }
 export default async function RootLayout({
   children,
-  params: { locale },
-}: PageProps) {
-  unstable_setRequestLocale(locale);
+  params,
+}: {
+  children: React.ReactNode;
+  params: { locale: 'es' | 'en' };
+}) {
+  const { locale } = await params;
+
+  setRequestLocale(locale);
+  const session = await auth();
+
   const messages = await getMessages();
+
+  const authenticated = !!session;
+
+  const menuItems = OPT_MENU_ITEMS;
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
@@ -27,9 +39,7 @@ export default async function RootLayout({
             <main className="layout">
               <Navbar
                 title={'One Plan Trip'}
-                menuItems={[]}
-                authenticated
-                locale={locale}
+                {...{ authenticated, menuItems, locale }}
               />
               <div className="layout__content">
                 <section className="layout__section">{children}</section>

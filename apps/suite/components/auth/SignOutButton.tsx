@@ -9,7 +9,8 @@ export function SignOutButton() {
     <form
       action={async () => {
         'use server';
-        cookies().delete('auth_token');
+        const cookiesStore = await cookies();
+        cookiesStore.delete('auth_token');
         await signOut();
       }}
     >

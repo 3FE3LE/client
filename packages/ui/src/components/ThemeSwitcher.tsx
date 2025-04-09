@@ -3,11 +3,13 @@ import { Monitor, Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import React, { useEffect, useState } from 'react';
 
+type IconComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>;
+
 export const ThemeSwitcher: React.FC = () => {
   const themes = [
-    { name: 'system', title: 'System', icon: Monitor },
-    { name: 'dark', title: 'Dark', icon: Moon },
-    { name: 'light', title: 'Light', icon: Sun },
+    { name: 'system', title: 'System', Icon: Monitor as IconComponent },
+    { name: 'dark', title: 'Dark', Icon: Moon as IconComponent },
+    { name: 'light', title: 'Light', Icon: Sun as IconComponent },
   ];
 
   const [mounted, setMounted] = useState(false);
@@ -27,7 +29,7 @@ export const ThemeSwitcher: React.FC = () => {
     <div className="th-sw" onClick={() => setShowOptions(!showOptions)}>
       <span>{selectedTheme ? selectedTheme.title : 'Theme'}</span>
       <button className={`th-sw__btn `}>
-        {selectedTheme && <selectedTheme.icon />}
+        {selectedTheme && <selectedTheme.Icon />}
       </button>
       {showOptions && (
         <div className="th-sw__options">
@@ -42,7 +44,7 @@ export const ThemeSwitcher: React.FC = () => {
                     setShowOptions(!showOptions);
                   }}
                 >
-                  <option.icon />
+                  <option.Icon />
                 </button>
               ),
           )}

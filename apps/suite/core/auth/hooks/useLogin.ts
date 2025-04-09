@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 
 import { loginCase } from '@sss/core/auth/useCases';
-import { useRouter } from '@sss/navigations';
+import { useRouter } from '@sss/i18n/routing';
 
 export const useLogin = () => {
   const [isLoading, setIsLoading] = useState(false);

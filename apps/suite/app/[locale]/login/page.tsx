@@ -1,11 +1,11 @@
 import { Session } from 'next-auth';
 import Image from 'next/image';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
 import { auth } from '@sss/auth';
 import { LoginForm } from '@sss/components/auth';
+import { redirect, routing } from '@sss/i18n/routing';
 
 import type { Metadata } from 'next';
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default async function Login() {
   const session = await getSessionOnServer();
 
   if (session) {
-    redirect('/dashboard');
+    redirect({ href: '/dashboard', locale: routing.defaultLocale });
   }
   return (
     <div className="login-page__container">

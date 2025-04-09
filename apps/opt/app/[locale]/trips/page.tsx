@@ -1,23 +1,10 @@
-import { redirect } from 'next/navigation';
-
-import { TripsContainer } from '@opt/components/trips';
-import { ActionButton } from '@repo/ui';
+import { TripsProvider } from '@opt/components/providers/TripsProvider';
+import { TripsContent } from '@opt/components/trips';
 
 export default async function Trips() {
   return (
-    <div>
-      <header>
-        <h2>Trips</h2>
-        <form
-          action={async () => {
-            'use server';
-            return redirect('/trips/new');
-          }}
-        >
-          <ActionButton variant="primary">Create new Trip</ActionButton>
-        </form>
-      </header>
-      <TripsContainer />
-    </div>
+    <TripsProvider>
+      <TripsContent />
+    </TripsProvider>
   );
 }

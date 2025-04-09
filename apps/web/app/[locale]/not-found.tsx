@@ -2,7 +2,7 @@
 import { ArrowLeft } from 'lucide-react';
 
 import { ActionButton } from '@repo/ui';
-import { useRouter } from '@web/navigations';
+import { useRouter } from '@web/i18n/routing';
 
 export default function NotFound() {
   const { back } = useRouter();

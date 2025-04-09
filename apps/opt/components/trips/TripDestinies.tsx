@@ -1,10 +1,14 @@
 'use client';
-import { useRouter } from 'next/navigation';
 
 import { Destiny } from '@opt/core/interfaces';
+import { useRouter } from '@opt/i18n/routing';
 import { ActionButton } from '@repo/ui';
 
-export const TripDestinies = ({ destinies }: { destinies: Destiny[] }) => {
+export const TripDestinies = ({
+  destinies,
+}: {
+  destinies: Partial<Destiny>[];
+}) => {
   const router = useRouter();
 
   return (

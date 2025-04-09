@@ -1,0 +1,29 @@
+.trip-progress {
+  margin-top: 0.75rem;
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+  }
+
+  &__bar {
+    border-radius: 0.25rem;
+    background: linear-gradient(
+      to right,
+      $ss-gray-lr 49.5%,
+      /* Fondo gris hasta justo antes del centro */ $ss-error 50%,
+      /* Línea vertical en el centro (ajusta el color) */ $ss-gray-lr 50.5%
+        /* Vuelve a gris justo después de la línea */
+    );
+    height: 0.5rem;
+    overflow: hidden;
+
+    &__fill {
+      background-color: $ss-blue;
+      width: var(--progress-value, 0%);
+      height: 100%;
+    }
+  }
+}

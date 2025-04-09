@@ -8,15 +8,16 @@ import {
 } from 'lucide-react';
 import { ForwardRefExoticComponent, RefAttributes, useState } from 'react';
 
+import { TripPriority } from '@opt/core/interfaces/TripInterface';
 import { useTripStore } from '@opt/store/tripStore';
 import { ActionButton } from '@repo/ui';
 
 const priorities = [
-  { id: 'BUDGET', icon: WalletIcon, label: 'Presupuesto' },
-  { id: 'DESTINY', icon: MapPinIcon, label: 'Destino' },
-  { id: 'COMPANY', icon: UsersIcon, label: 'Compañía' },
-  { id: 'DATES', icon: CalendarIcon, label: 'Fechas' },
-  { id: 'EXPERIENCE', icon: CompassIcon, label: 'Experiencia' },
+  { id: TripPriority.BUDGET, icon: WalletIcon, label: 'Presupuesto' },
+  { id: TripPriority.DESTINY, icon: MapPinIcon, label: 'Destino' },
+  { id: TripPriority.COMPANY, icon: UsersIcon, label: 'Compañía' },
+  { id: TripPriority.DATES, icon: CalendarIcon, label: 'Fechas' },
+  { id: TripPriority.EXPERIENCE, icon: CompassIcon, label: 'Experiencia' },
 ];
 
 const IconSize = '3rem';
@@ -62,7 +63,7 @@ export const TripPriorityStep = () => {
             >
               <priority.icon
                 size={IconSize}
-                color={isOptionSelected(priority.id) as string}
+                color={isOptionSelected(priority.id)}
               />
             </ActionButton>
             <span>{priority.label}</span>

@@ -1,5 +1,7 @@
+import { UUID } from 'crypto';
+
 export interface Destiny {
-  id?: string;
+  readonly id?: UUID;
   name: string;
   description?: string;
   placeId?: string;
@@ -11,6 +13,6 @@ export interface Destiny {
   continent?: string;
   latitude: number;
   longitude: number;
-  createdAt?: Date;
+  readonly createdAt?: Date;
   // No incluimos trips ni activities aquí para evitar referencias circulares
 }

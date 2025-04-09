@@ -1,51 +1,27 @@
 'use server';
-import { cookies } from 'next/headers';
-
 import { Destiny } from '@opt/core/interfaces';
+import { ActionType } from '@repo/ui/types';
 
 import { DestinyAdapter } from '../adapters';
 import { ActionResponse } from '../types';
-
-const token = cookies().get('auth_token')?.value;
-
-// Crear un nuevo destino
+import { executeAction } from './utils';
 
 export const createDestiny = async (
   destiny: Destiny,
-): Promise<ActionResponse> => {
-  try {
-    await DestinyAdapter.create(destiny, token!);
-    return { success: true };
-  } catch (error) {
-    console.error('Failed to create destiny:', error);
-    if (error instanceof Error) return { success: false, error: error.message };
-    return { success: false, error: 'Failed to create destiny' };
-  }
-};
+): Promise<ActionResponse> =>
+  executeAction(
+    (token) => DestinyAdapter.create(destiny, token),
+    ActionType.CREATE,
+  );
 
-// Actualizar un destino existente
 export const updateDestiny = async (
   id: string,
   destiny: Destiny,
-): Promise<ActionResponse> => {
-  try {
-    await DestinyAdapter.update(id, destiny, token!);
-    return { success: true };
-  } catch (error) {
-    console.error('Failed to update destiny:', error);
-    if (error instanceof Error) return { success: false, error: error.message };
-    return { success: false, error: 'Failed to update destiny' };
-  }
-};
+): Promise<ActionResponse> =>
+  executeAction(
+    (token) => DestinyAdapter.update(id, destiny, token),
+    ActionType.UPDATE,
+  );
 
-// Eliminar un destino
-export const deleteDestiny = async (id: string): Promise<ActionResponse> => {
-  try {
-    await DestinyAdapter.delete(id, token!);
-    return { success: true };
-  } catch (error) {
-    console.error('Failed to delete destiny:', error);
-    if (error instanceof Error) return { success: false, error: error.message };
-    return { success: false, error: 'Failed to delete destiny' };
-  }
-};
+export const deleteDestiny = async (id: string): Promise<ActionResponse> =>
+  executeAction((token) => DestinyAdapter.delete(id, token), ActionType.DELETE);

@@ -63,7 +63,7 @@ knowledge_base:
   issues:
     scope: auto
   jira:
-    project_keys: []
+    project_keys: [SSS]
   linear:
     team_keys: []
   pull_requests:

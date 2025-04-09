@@ -9,17 +9,18 @@ import {
 } from 'lucide-react';
 import React from 'react';
 
+import { TripType } from '@opt/core/interfaces/TripInterface';
 import { useTripStore } from '@opt/store/tripStore';
 import { ActionButton } from '@repo/ui';
 
 const IconSize = '3rem';
 const types = [
-  { id: 'SOLO', icon: PersonStandingIcon, label: 'Solo' },
-  { id: 'FAMILIAR', icon: BabyIcon, label: 'Family' },
-  { id: 'FRIENDS', icon: HeartHandshakeIcon, label: 'Friends' },
-  { id: 'COUPLE', icon: CalendarHeartIcon, label: 'Couple' },
-  { id: 'BUSINESS', icon: BriefcaseBusinessIcon, label: 'Business' },
-  { id: 'GROUP', icon: UsersRoundIcon, label: 'Group' },
+  { id: TripType.SOLO, icon: PersonStandingIcon, label: 'Solo' },
+  { id: TripType.FAMILIAR, icon: BabyIcon, label: 'Family' },
+  { id: TripType.FRIENDS, icon: HeartHandshakeIcon, label: 'Friends' },
+  { id: TripType.COUPLE, icon: CalendarHeartIcon, label: 'Couple' },
+  { id: TripType.BUSINESS, icon: BriefcaseBusinessIcon, label: 'Business' },
+  { id: TripType.GROUP, icon: UsersRoundIcon, label: 'Group' },
 ];
 
 export const TripTypeStep = () => {

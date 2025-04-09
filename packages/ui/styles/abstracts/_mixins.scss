@@ -184,6 +184,15 @@
   }
 }
 
+@mixin status-color($bg-color, $text-color) {
+  background-color: $bg-color;
+  color: $text-color;
+  [data-theme='dark'] & {
+    background-color: darken($bg-color, 10%);
+    color: lighten($text-color, 10%);
+  }
+}
+
 @mixin hover-focus-color {
   background-color: $ss-gray-lr;
   [data-theme='dark'] & {
@@ -261,23 +270,31 @@
 }
 @mixin text($type) {
   @if $type == base {
-    font-weight: 400;
-    font-size: rem(16);
-    font-family: Zilla Slab;
+    & {
+      font-weight: 400;
+      font-size: rem(16);
+      font-family: Zilla Slab;
+    }
   } @else if $type == interface {
-    font-weight: 600;
-    font-size: rem(14);
-    font-family: Zilla Slab;
-    letter-spacing: 1.25px;
+    & {
+      font-weight: 600;
+      font-size: rem(14);
+      font-family: Zilla Slab;
+      letter-spacing: 1.25px;
+    }
   } @else if $type == misc {
-    font-weight: bold;
-    font-size: rem(12);
-    font-family: Arvo;
-    letter-spacing: 0.5px;
+    & {
+      font-weight: bold;
+      font-size: rem(12);
+      font-family: Arvo;
+      letter-spacing: 0.5px;
+    }
   } @else if $type == helps {
-    font-weight: 200;
-    font-size: rem(10);
-    font-family: Zilla Slab;
-    letter-spacing: 1.5px;
+    & {
+      font-weight: 200;
+      font-size: rem(10);
+      font-family: Zilla Slab;
+      letter-spacing: 1.5px;
+    }
   }
 }

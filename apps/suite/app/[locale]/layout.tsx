@@ -1,9 +1,9 @@
 import '@sss/styles/main.scss';
 
-import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 
 import ss_logo from '@repo/ui/assets/logo-17suit@4x.png';
-import { PageProps } from '@repo/ui/types';
+import { SSS_MENU_ITEMS } from '@repo/ui/constants';
 import {
   AppWrapper,
   Footer,
@@ -11,49 +11,32 @@ import {
   Sidebar,
   SWRProvider,
 } from '@sss/components';
+import { routing } from '@sss/i18n/routing';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { auth } from '../../auth';
 import { metadata } from '../metadata';
 
-const languages = ['en', 'es'];
-
 export async function generateStaticParams() {
-  return languages.map((locale) => ({ locale }));
+  return routing.locales.map((locale) => ({ locale }));
 }
 export default async function RootLayout({
   children,
-  params: { locale },
-}: PageProps) {
-  unstable_setRequestLocale(locale);
+  params,
+}: {
+  children: React.ReactNode;
+  params: { locale: 'es' | 'en' };
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   const session = await auth();
 
   const messages = await getMessages();
 
   const authenticated = !!session;
 
-  const menuItems = [
-    {
-      name: 'login',
-      href: '/login',
-      protected: false,
-    },
-    {
-      name: 'register',
-      href: '/register',
-      protected: false,
-    },
-    {
-      name: 'dashboard',
-      href: '/dashboard',
-      protected: true,
-    },
-    {
-      name: 'profile',
-      href: '/profile',
-      protected: true,
-    },
-  ];
+  const menuItems = SSS_MENU_ITEMS;
+
   return (
     <html lang={locale} suppressHydrationWarning>
       <body>
@@ -61,10 +44,8 @@ export default async function RootLayout({
           <SWRProvider>
             <main className="layout">
               <Navbar
-                locale={locale}
-                authenticated={authenticated}
-                menuItems={menuItems}
                 title={{ src: ss_logo.src, alt: '17Suit Logo' }}
+                {...{ authenticated, menuItems, locale }}
               />
               <div className="layout__content">
                 {session && <Sidebar />}

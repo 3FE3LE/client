@@ -1,5 +1,6 @@
 'use client';
 import { Clock, History, MapPin } from 'lucide-react';
+import { JSX } from 'react';
 
 import { Trip } from '@opt/core/interfaces';
 import { TripStatus } from '@opt/core/interfaces/TripInterface';
